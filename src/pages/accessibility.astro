@@ -1,0 +1,70 @@
+---
+import Page from '../layouts/Page.astro';
+import { CONTACT } from '../data/site';
+
+const breadcrumbs = [{ name: 'Accessibility', url: '/accessibility/' }];
+---
+
+<Page
+  title="Accessibility — John Bald Funeral Directors"
+  heading="Accessibility"
+  description="How we have built this website to be usable by everyone, and how to tell us if something is not working for you."
+  standfirst="People reach this site tired, distressed, and often on a poor connection. It has been built with that in mind."
+  breadcrumbs={breadcrumbs}
+>
+  <h2>What we have done</h2>
+  <ul>
+    <li>
+      <strong>Large, high-contrast text.</strong> Body text is set larger than most
+      websites use, and colours are chosen to meet the strictest contrast standard for
+      readable text.
+    </li>
+    <li>
+      <strong>Nothing moves.</strong> No carousels, no animations, no pop-ups, no chat
+      windows appearing over what you are reading.
+    </li>
+    <li>
+      <strong>Keyboard usable throughout.</strong> Every link, button and form field can
+      be reached and operated without a mouse, with a visible focus outline.
+    </li>
+    <li>
+      <strong>Works with screen readers.</strong> Proper headings, real landmarks,
+      descriptive links, and labelled form fields.
+    </li>
+    <li>
+      <strong>Fast on a poor connection.</strong> The site is built as plain pages with
+      almost no JavaScript, so it loads on rural mobile signal.
+    </li>
+    <li>
+      <strong>You can zoom.</strong> Text resizes up to 200% without anything breaking or
+      overlapping.
+    </li>
+    <li>
+      <strong>The telephone number is always visible</strong> on a phone, without
+      scrolling.
+    </li>
+  </ul>
+
+  <h2>Standards</h2>
+  <p>
+    We aim to meet the Web Content Accessibility Guidelines version 2.2 at level AA
+    throughout, and level AAA for text contrast.
+  </p>
+
+  <h2>If something does not work</h2>
+  <p>
+    Please tell us, and please do not assume it is your fault or not worth mentioning. If
+    you cannot use part of this website, that is a fault we want to fix.
+  </p>
+  <p>
+    Telephone <a href={CONTACT.phoneHref} class="font-semibold">{CONTACT.phone}</a> or
+    email <a href={`mailto:${CONTACT.email}`}>{CONTACT.email}</a>.
+  </p>
+
+  <h2>You never have to use this website</h2>
+  <p>
+    Everything here can be done by telephone or by coming in. If reading a screen is
+    difficult for any reason, telephone us and we will go through whatever you need. We
+    can also post you printed copies of our price list or any of our guides.
+  </p>
+</Page>

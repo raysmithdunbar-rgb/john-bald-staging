@@ -1,0 +1,109 @@
+---
+import Page from '../layouts/Page.astro';
+import { SITE, CONTACT, ACTIVE_ADDRESS } from '../data/site';
+
+const breadcrumbs = [{ name: 'Privacy', url: '/privacy/' }];
+---
+
+<Page
+  title="Privacy Policy — John Bald Funeral Directors"
+  heading="Privacy policy"
+  description="How John Bald Funeral Directors collects, uses and protects your personal information."
+  standfirst="What we collect, why, how long we keep it, and what you can ask us to do with it."
+  breadcrumbs={breadcrumbs}
+>
+  <p>
+    John Bald Funeral Directors is part of {SITE.parentCompany}, which is the data
+    controller for the information described here.
+  </p>
+
+  <h2>What we collect, and why</h2>
+
+  <h3>If you send us a message through this website</h3>
+  <p>
+    Your name, email address, telephone number if you give one, and whatever you write in
+    the message. We use it only to reply to you. We do not add you to a mailing list and
+    we do not pass it to anyone else.
+  </p>
+
+  <h3>If we arrange a funeral for you</h3>
+  <p>
+    We hold information about you and about the person who has died, because we cannot
+    arrange a funeral without it — names, addresses, dates, next of kin, and the details
+    required by registrars, crematoria and cemeteries.
+  </p>
+  <p>
+    Some of this is what data protection law calls special category data, including
+    information about health and about religious belief where that affects the funeral.
+    We handle it on the basis that it is necessary to provide the service you have asked
+    us for, and we treat it with the same discretion we treat everything else you tell us.
+  </p>
+
+  <h3>If you record your funeral wishes with us</h3>
+  <p>
+    We keep what you tell us so that it can be followed. You may change or withdraw it at
+    any time by telling us.
+  </p>
+
+  <h2>Who we share it with</h2>
+  <p>Only where it is necessary to carry out the funeral:</p>
+  <ul>
+    <li>Registrars, crematoria and cemetery authorities</li>
+    <li>The minister, priest or celebrant conducting the service</li>
+    <li>Newspapers, where you have asked us to place a notice</li>
+    <li>Golden Charter, where a funeral plan is involved</li>
+    <li>Social Security Scotland, where you have asked us to help with a claim</li>
+  </ul>
+  <p>
+    We do not sell your information. We do not share it for marketing. We do not pass it
+    to insurers, will writers, estate agents or anyone else who might find a recently
+    bereaved family commercially interesting.
+  </p>
+
+  <h2>How long we keep it</h2>
+  <p>
+    Funeral records are kept for as long as we are required to, and in practice
+    indefinitely — families come back years later asking where a relative's ashes were
+    scattered or which lair was used, and it matters that we can tell them.
+  </p>
+  <p>
+    Website enquiries that do not lead to a funeral are deleted once the conversation has
+    finished.
+  </p>
+
+  <h2>Website analytics</h2>
+  <p>
+    We use privacy-first analytics that count visits without setting cookies, without
+    tracking you across other websites, and without collecting anything that identifies
+    you. That is why this site has no cookie banner — there is nothing to consent to.
+  </p>
+
+  <h2>Your rights</h2>
+  <p>You may ask us to:</p>
+  <ul>
+    <li>Tell you what we hold about you</li>
+    <li>Correct anything that is wrong</li>
+    <li>Delete information, where we are not required to keep it</li>
+    <li>Restrict what we do with it</li>
+    <li>Provide it in a portable form</li>
+  </ul>
+  <p>
+    Ask by telephoning{' '}
+    <a href={CONTACT.phoneHref} class="font-semibold">{CONTACT.phone}</a>, emailing{' '}
+    <a href={`mailto:${CONTACT.email}`}>{CONTACT.email}</a>, or writing to us at{' '}
+    {ACTIVE_ADDRESS.street}, {ACTIVE_ADDRESS.locality}, {ACTIVE_ADDRESS.postcode}.
+  </p>
+
+  <h2>Complaints</h2>
+  <p>
+    Please tell us first — we would rather put something right than have you go elsewhere
+    with it. If you are not satisfied, you may complain to the Information Commissioner's
+    Office at ico.org.uk or on 0303 123 1113.
+  </p>
+</Page>
+
+<!--
+  Before launch: confirm the ICO registration number and the data controller's
+  registered details with the client, and agree a written retention period for
+  website enquiries with whoever operates the form handler.
+-->

@@ -1,0 +1,52 @@
+---
+import Base from './Base.astro';
+import PageHeader from '../components/PageHeader.astro';
+
+interface Crumb {
+  name: string;
+  url: string;
+}
+
+interface Props {
+  title: string;
+  /** Page <h1>. Defaults to `title` with any " | John Bald" suffix stripped. */
+  heading?: string;
+  description: string;
+  standfirst?: string;
+  breadcrumbs?: Crumb[];
+  schema?: Record<string, unknown> | Record<string, unknown>[];
+  noindex?: boolean;
+  /** Wide pages (directories, indexes) opt out of the 68ch prose column. */
+  wide?: boolean;
+}
+
+const {
+  title,
+  heading,
+  description,
+  standfirst,
+  breadcrumbs,
+  schema,
+  noindex,
+  wide = false,
+} = Astro.props;
+
+const crumbs = breadcrumbs ?? [];
+const allCrumbs = crumbs.length > 0 ? [{ name: 'Home', url: '/' }, ...crumbs] : undefined;
+---
+
+<Base
+  title={title}
+  description={description}
+  breadcrumbs={allCrumbs}
+  schema={schema}
+  noindex={noindex}
+>
+  <PageHeader title={heading ?? title} standfirst={standfirst} breadcrumbs={allCrumbs} />
+
+  <div class="mx-auto max-w-6xl px-5 py-12 sm:px-8 sm:py-16">
+    <div class={wide ? '' : 'prose-jb'}>
+      <slot />
+    </div>
+  </div>
+</Base>

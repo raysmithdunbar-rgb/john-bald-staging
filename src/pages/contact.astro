@@ -1,0 +1,190 @@
+---
+import Base from '../layouts/Base.astro';
+import PageHeader from '../components/PageHeader.astro';
+import Callout from '../components/Callout.astro';
+import { CONTACT, ACTIVE_ADDRESS, ADDRESS } from '../data/site';
+
+const breadcrumbs = [
+  { name: 'Home', url: '/' },
+  { name: 'Contact', url: '/contact/' },
+];
+---
+
+<Base
+  title="Contact John Bald Funeral Directors, Dunbar"
+  description="Contact John Bald Funeral Directors in Dunbar. Telephone 01368 863636, day or night. Serving East Lothian and Berwickshire."
+  organisationSchema={true}
+  breadcrumbs={breadcrumbs}
+>
+  <PageHeader
+    title="Contact us"
+    standfirst="If someone has died, please telephone rather than write — we will answer, whatever the hour."
+    breadcrumbs={breadcrumbs}
+  />
+
+  <div class="mx-auto max-w-6xl px-5 py-12 sm:px-8 sm:py-16">
+    <div class="grid gap-12 lg:grid-cols-[1fr_1.1fr]">
+      <div>
+        <div class="border border-poppy bg-poppy-tint p-7">
+          <h2 class="font-serif text-2xl">Telephone</h2>
+          <p class="mt-3">
+            <a href={CONTACT.phoneHref} class="text-3xl font-semibold no-underline">
+              {CONTACT.phone}
+            </a>
+          </p>
+          <p class="mt-3 text-ink-soft">{CONTACT.hours}</p>
+          <p class="mt-3 text-sm text-ink-muted">
+            Answered by one of us. Never a call centre, never a recorded message.
+          </p>
+        </div>
+
+        <h2 class="mt-10 font-serif text-2xl">Our funeral home</h2>
+        <address class="mt-3 not-italic text-ink-soft">
+          {ACTIVE_ADDRESS.street}<br />
+          {ACTIVE_ADDRESS.locality}, {ACTIVE_ADDRESS.region}<br />
+          {ACTIVE_ADDRESS.postcode}
+        </address>
+
+        {
+          !ADDRESS.moveComplete && (
+            <p class="mt-4 text-ink-soft">
+              We are moving to Countess Crescent, Dunbar shortly. Our telephone number is
+              not changing. <a href="/our-funeral-home/">More about the move</a>.
+            </p>
+          )
+        }
+
+        <h2 class="mt-10 font-serif text-2xl">Email</h2>
+        <p class="mt-3">
+          <a href={`mailto:${CONTACT.email}`}>{CONTACT.email}</a>
+        </p>
+        <p class="mt-2 text-sm text-ink-muted">
+          Email is fine for questions about planning ahead, prices or memorials. If
+          someone has died, please telephone instead — we do not want your message
+          sitting unread.
+        </p>
+
+        <h2 class="mt-10 font-serif text-2xl">Calling in</h2>
+        <p class="mt-3 text-ink-soft">
+          You are welcome to put your head round the door without an appointment. If you
+          are coming to arrange a funeral or to visit someone in our care, telephone
+          first so we can make sure you are not disturbed.
+        </p>
+      </div>
+
+      <div>
+        <h2 class="font-serif text-2xl">Send us a message</h2>
+        <p class="mt-3 text-ink-soft">
+          For anything that is not urgent. We will come back to you within one working
+          day.
+        </p>
+
+        <!--
+          The form handler is wired at deploy time — data-netlify works on Netlify,
+          Cloudflare Pages needs a Function. Enquiries here are special-category
+          personal data under UK GDPR: the endpoint must not log message bodies, and
+          a retention period needs agreeing with the client before launch.
+        -->
+        <form
+          name="enquiry"
+          method="POST"
+          data-netlify="true"
+          netlify-honeypot="company"
+          action="/contact/thank-you/"
+          class="mt-8 space-y-6"
+        >
+          <input type="hidden" name="form-name" value="enquiry" />
+
+          <p class="hidden">
+            <label>Leave this field empty <input name="company" tabindex="-1" /></label>
+          </p>
+
+          <div>
+            <label for="name" class="block font-semibold">Your name</label>
+            <input
+              id="name"
+              name="name"
+              type="text"
+              required
+              autocomplete="name"
+              class="mt-2 w-full border border-line bg-paper px-4 py-3 text-base"
+            />
+          </div>
+
+          <div>
+            <label for="email" class="block font-semibold">Email address</label>
+            <input
+              id="email"
+              name="email"
+              type="email"
+              required
+              autocomplete="email"
+              class="mt-2 w-full border border-line bg-paper px-4 py-3 text-base"
+            />
+          </div>
+
+          <div>
+            <label for="phone" class="block font-semibold">
+              Telephone <span class="font-normal text-ink-muted">(optional)</span>
+            </label>
+            <input
+              id="phone"
+              name="phone"
+              type="tel"
+              autocomplete="tel"
+              class="mt-2 w-full border border-line bg-paper px-4 py-3 text-base"
+            />
+          </div>
+
+          <div>
+            <label for="subject" class="block font-semibold">What is it about?</label>
+            <select
+              id="subject"
+              name="subject"
+              class="mt-2 w-full border border-line bg-paper px-4 py-3 text-base"
+            >
+              <option>Planning ahead / funeral plans</option>
+              <option>Prices</option>
+              <option>Memorials and headstones</option>
+              <option>Coffins</option>
+              <option>Something else</option>
+            </select>
+          </div>
+
+          <div>
+            <label for="message" class="block font-semibold">Your message</label>
+            <textarea
+              id="message"
+              name="message"
+              rows="6"
+              required
+              class="mt-2 w-full border border-line bg-paper px-4 py-3 text-base"></textarea>
+          </div>
+
+          <p class="text-sm text-ink-muted">
+            We will use what you send only to reply to you. We will not add you to any
+            mailing list and we will not pass it to anyone else.{' '}
+            <a href="/privacy/">How we handle your information</a>.
+          </p>
+
+          <button
+            type="submit"
+            class="bg-ink px-8 py-4 text-lg font-semibold text-paper hover:bg-poppy-deep"
+          >
+            Send message
+          </button>
+        </form>
+
+        <Callout tone="accent">
+          <p>
+            If someone has died, please do not use this form.{' '}
+            <a href={CONTACT.phoneHref} class="font-semibold">
+              Telephone {CONTACT.phone}
+            </a>{' '}
+            at any hour instead.
+          </p>
+        </Callout>
+      </div>
+    </div>
+  </div>
+</Base>

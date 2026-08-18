@@ -1,0 +1,111 @@
+---
+import Page from '../layouts/Page.astro';
+import Callout from '../components/Callout.astro';
+import { CONTACT } from '../data/site';
+
+const breadcrumbs = [{ name: 'Memorials', url: '/memorials/' }];
+---
+
+<Page
+  title="Memorials & Headstones — East Lothian"
+  heading="Memorials"
+  description="Headstones, plaques and keepsakes arranged in Dunbar. Cemetery regulations, how long to wait, and what your options are. John Bald Funeral Directors."
+  standfirst="There is no deadline on this, and no right answer. Some families decide within months, some take years."
+  breadcrumbs={breadcrumbs}
+>
+  <p>
+    A memorial is the one part of a funeral you get to make slowly. Nothing about it is
+    urgent, and the ground itself requires you to wait, which turns out to be a kindness —
+    most families find they know what they want far better six months on than they did in
+    the first fortnight.
+  </p>
+
+  <h2>Headstones and grave memorials</h2>
+
+  <h3>How long you have to wait</h3>
+  <p>
+    Between six and twelve months after a burial, so that the ground can settle. Putting a
+    heavy stone on unsettled ground means it will lean, and it will have to come off and
+    go back on again. A temporary wooden marker can go up straight away if you would like
+    something there in the meantime.
+  </p>
+
+  <h3>What the cemetery will allow</h3>
+  <p>
+    Every burial ground has its own rules — on height, width, material, colour, and
+    sometimes on wording. East Lothian Council and Scottish Borders Council each publish
+    their own regulations, churchyards often have stricter ones, and natural burial
+    grounds usually allow no conventional headstone at all.
+  </p>
+  <p>
+    We will check what is permitted where your family's lair is before you commission
+    anything, so nobody has the experience of paying for a stone that cannot be erected.
+    The rules for each ground are noted in our{' '}
+    <a href="/directory/cemeteries/">cemetery directory</a>.
+  </p>
+
+  <h3>Adding to an existing stone</h3>
+  <p>
+    Where there is already a family headstone, a new inscription can usually be added. The
+    stone is normally taken away, cut and returned, though some inscriptions can be done
+    in place. Matching lettering on an old stone is a craft, and a good mason will tell
+    you honestly whether it can be matched or whether the new work will always show.
+  </p>
+
+  <h2>Where ashes go</h2>
+  <ul>
+    <li>Interred in a family lair, with the headstone inscribed</li>
+    <li>In a garden of remembrance at the crematorium, with a plaque or a rose</li>
+    <li>Scattered somewhere that meant something</li>
+    <li>Kept at home, in an urn or a casket</li>
+    <li>Divided, so that more than one person has some</li>
+  </ul>
+  <p>
+    There is no hurry on this either. We will hold ashes here for as long as you need,
+    at no charge. Some families collect them the same week; some take a year to feel
+    ready, and that is entirely normal.
+  </p>
+
+  <h2>Smaller keepsakes</h2>
+  <p>
+    Not everyone wants a stone. Other things families ask us for:
+  </p>
+  <ul>
+    <li>Jewellery containing a small quantity of ashes</li>
+    <li>Glass pieces with ashes set into them</li>
+    <li>Fingerprint pendants and cufflinks, taken from the person's own print</li>
+    <li>Memorial trees and benches, where the council or landowner permits</li>
+    <li>Photograph books and framed orders of service</li>
+  </ul>
+  <p>
+    If you would like a fingerprint taken, tell us before the funeral — it cannot be done
+    afterwards. It is the one thing on this page that has a deadline, and it is worth
+    knowing about even if you decide against it.
+  </p>
+
+  <Callout title="No pressure, ever">
+    <p>
+      Memorials are the part of this business where families most often feel pushed. We
+      will show you what is possible, tell you what it costs, and then leave it entirely
+      with you. If you decide a memorial is not for you, that is a complete answer and we
+      will not raise it again.
+    </p>
+  </Callout>
+
+  <h2>What it costs</h2>
+  <p>
+    Memorials vary enormously — a simple plaque and a large double headstone are not in
+    the same world of price. Cemetery authorities also charge a fee for permission to
+    erect a memorial, which is theirs rather than ours. We will get you a full written
+    quotation before anything is ordered, and you are free to go to any monumental mason
+    you like rather than through us.
+  </p>
+
+  <Callout tone="accent">
+    <p>
+      To talk about a memorial, telephone{' '}
+      <a href={CONTACT.phoneHref} class="font-semibold">{CONTACT.phone}</a> or{' '}
+      <a href="/contact/">send us a message</a>. There is no time limit on asking.
+    </p>
+  </Callout>
+</Page>

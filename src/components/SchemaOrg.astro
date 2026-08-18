@@ -1,0 +1,85 @@
+---
+import { SITE, ACTIVE_ADDRESS, CONTACT, GEO, SERVICE_AREA } from '../data/site';
+
+interface Crumb {
+  name: string;
+  url: string;
+}
+
+interface Props {
+  /** Emit the FuneralHome block. Homepage and contact page only — one per site is the useful signal. */
+  organisation?: boolean;
+  breadcrumbs?: Crumb[];
+  /** Any additional JSON-LD node to merge into the graph. */
+  extra?: Record<string, unknown> | Record<string, unknown>[];
+}
+
+const { organisation = false, breadcrumbs, extra } = Astro.props;
+
+const base = Astro.site ?? SITE.url;
+
+const funeralHome = {
+  '@type': 'FuneralHome',
+  '@id': `${SITE.url}/#organisation`,
+  name: SITE.name,
+  description: SITE.description,
+  url: SITE.url,
+  telephone: CONTACT.phone,
+  email: CONTACT.email,
+  parentOrganization: { '@type': 'Organization', name: SITE.parentCompany },
+  address: {
+    '@type': 'PostalAddress',
+    streetAddress: ACTIVE_ADDRESS.street,
+    addressLocality: ACTIVE_ADDRESS.locality,
+    addressRegion: ACTIVE_ADDRESS.region,
+    postalCode: ACTIVE_ADDRESS.postcode,
+    addressCountry: ACTIVE_ADDRESS.country,
+  },
+  geo: {
+    '@type': 'GeoCoordinates',
+    latitude: GEO.latitude,
+    longitude: GEO.longitude,
+  },
+  openingHoursSpecification: {
+    '@type': 'OpeningHoursSpecification',
+    dayOfWeek: [
+      'Monday',
+      'Tuesday',
+      'Wednesday',
+      'Thursday',
+      'Friday',
+      'Saturday',
+      'Sunday',
+    ],
+    opens: '00:00',
+    closes: '23:59',
+  },
+  areaServed: SERVICE_AREA.map((name) => ({ '@type': 'Place', name })),
+};
+
+const breadcrumbList = breadcrumbs?.length
+  ? {
+      '@type': 'BreadcrumbList',
+      itemListElement: breadcrumbs.map((crumb, i) => ({
+        '@type': 'ListItem',
+        position: i + 1,
+        name: crumb.name,
+        item: new URL(crumb.url, base).href,
+      })),
+    }
+  : null;
+
+const graph = [
+  organisation ? funeralHome : null,
+  breadcrumbList,
+  ...(Array.isArray(extra) ? extra : extra ? [extra] : []),
+].filter(Boolean);
+
+const jsonLd = { '@context': 'https://schema.org', '@graph': graph };
+---
+
+{
+  graph.length > 0 && (
+    <script is:inline type="application/ld+json" set:html={JSON.stringify(jsonLd)} />
+  )
+}

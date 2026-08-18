@@ -1,0 +1,184 @@
+@import 'tailwindcss';
+
+/*
+  Design tokens.
+
+  The palette is deliberately quiet: warm paper neutrals and a deep ink, with
+  the poppy red from the John Bald logo held back as a single accent. Red is
+  used for emphasis and the at-need call to action only — never as a large
+  field, which would read as alarm rather than warmth.
+
+  Contrast targets: body text meets WCAG AAA against the page background,
+  every interactive element meets AA.
+*/
+@theme {
+  --color-paper: #faf8f5;
+  --color-paper-warm: #f3efe8;
+  --color-paper-deep: #e8e2d8;
+
+  --color-ink: #1f1c1a;
+  --color-ink-soft: #4a4541;
+  --color-ink-muted: #6b6560;
+
+  --color-poppy: #9e2b25;
+  --color-poppy-deep: #7a201c;
+  --color-poppy-tint: #f6ebe9;
+
+  --color-sage: #4a5d52;
+  --color-sage-soft: #ecefec;
+
+  --color-line: #ddd6ca;
+
+  --font-serif: 'Georgia', 'Iowan Old Style', 'Palatino Linotype', serif;
+  --font-sans:
+    system-ui, -apple-system, 'Segoe UI', Roboto, 'Helvetica Neue', Arial, sans-serif;
+
+  /* Body starts at 18px — the audience skews older and often reads in distress. */
+  --text-base: 1.125rem;
+  --text-base--line-height: 1.7;
+  --text-lg: 1.25rem;
+  --text-lg--line-height: 1.65;
+  --text-xl: 1.5rem;
+  --text-xl--line-height: 1.45;
+  --text-2xl: 1.875rem;
+  --text-2xl--line-height: 1.3;
+  --text-3xl: 2.25rem;
+  --text-3xl--line-height: 1.2;
+  --text-4xl: 2.75rem;
+  --text-4xl--line-height: 1.15;
+  --text-5xl: 3.5rem;
+  --text-5xl--line-height: 1.1;
+}
+
+@layer base {
+  html {
+    scroll-behavior: smooth;
+    -webkit-text-size-adjust: 100%;
+  }
+
+  /* Nothing on this site should move for someone who has asked it not to. */
+  @media (prefers-reduced-motion: reduce) {
+    html {
+      scroll-behavior: auto;
+    }
+    *,
+    *::before,
+    *::after {
+      animation-duration: 0.01ms !important;
+      animation-iteration-count: 1 !important;
+      transition-duration: 0.01ms !important;
+    }
+  }
+
+  body {
+    background-color: var(--color-paper);
+    color: var(--color-ink);
+    font-family: var(--font-sans);
+    font-size: var(--text-base);
+    line-height: 1.7;
+    text-rendering: optimizeLegibility;
+  }
+
+  h1,
+  h2,
+  h3,
+  h4 {
+    font-family: var(--font-serif);
+    font-weight: 400;
+    color: var(--color-ink);
+    text-wrap: balance;
+  }
+
+  p {
+    text-wrap: pretty;
+  }
+
+  a {
+    color: var(--color-poppy-deep);
+    text-underline-offset: 0.2em;
+  }
+
+  a:hover {
+    color: var(--color-poppy);
+  }
+
+  :focus-visible {
+    outline: 3px solid var(--color-poppy);
+    outline-offset: 3px;
+    border-radius: 2px;
+  }
+
+  /* Generous tap targets throughout — WCAG 2.2 target size. */
+  a,
+  button {
+    min-height: 24px;
+  }
+}
+
+@layer components {
+  .prose-jb {
+    max-width: 68ch;
+  }
+
+  .prose-jb > * + * {
+    margin-block-start: 1.25em;
+  }
+
+  .prose-jb h2 {
+    font-size: var(--text-2xl);
+    line-height: 1.3;
+    margin-block-start: 2em;
+    margin-block-end: 0.6em;
+  }
+
+  .prose-jb h3 {
+    font-size: var(--text-xl);
+    line-height: 1.4;
+    margin-block-start: 1.6em;
+    margin-block-end: 0.5em;
+  }
+
+  .prose-jb ul,
+  .prose-jb ol {
+    padding-inline-start: 1.5em;
+  }
+
+  .prose-jb ul {
+    list-style: disc;
+  }
+
+  .prose-jb ol {
+    list-style: decimal;
+  }
+
+  .prose-jb li + li {
+    margin-block-start: 0.5em;
+  }
+
+  .prose-jb a {
+    text-decoration: underline;
+  }
+
+  .prose-jb blockquote {
+    border-inline-start: 3px solid var(--color-poppy);
+    padding-inline-start: 1.25em;
+    font-style: italic;
+    color: var(--color-ink-soft);
+  }
+
+  .prose-jb table {
+    width: 100%;
+    border-collapse: collapse;
+  }
+
+  .prose-jb th,
+  .prose-jb td {
+    text-align: left;
+    padding: 0.75em 1em;
+    border-block-end: 1px solid var(--color-line);
+  }
+
+  .prose-jb th {
+    font-weight: 600;
+  }
+}

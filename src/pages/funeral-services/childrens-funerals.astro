@@ -1,0 +1,134 @@
+---
+import Page from '../../layouts/Page.astro';
+import Callout from '../../components/Callout.astro';
+import { CONTACT } from '../../data/site';
+import { CHILDRENS_FUNERAL_SUPPORT } from '../../data/funding';
+
+const breadcrumbs = [
+  { name: 'Funerals we arrange', url: '/funeral-services/' },
+  { name: "Children's funerals", url: '/funeral-services/childrens-funerals/' },
+];
+---
+
+<Page
+  title="Funerals for Babies & Children — East Lothian"
+  heading="When a baby or child dies"
+  description="Funerals for babies and children in East Lothian, including stillbirth. There is no burial or cremation fee for a child in Scotland, and no charge from us."
+  standfirst="There is no charge for this. Not from the council, not from the crematorium, and not from us."
+  breadcrumbs={breadcrumbs}
+>
+  <p>
+    We are very sorry that you are reading this page.
+  </p>
+
+  <p>
+    There is nothing useful anyone can say about why this has happened. What we can do is
+    take every practical thing off you, tell you plainly what your choices are, and give
+    you as much time as you need to make them. There is no hurry at any stage.
+  </p>
+
+  <Callout tone="accent" title="There is no cost">
+    <p>
+      {CHILDRENS_FUNERAL_SUPPORT.summary} <strong>We make no charge either</strong> — no
+      professional fee, no coffin charge, no charge for our cars or our time.
+    </p>
+    <p class="mt-3">
+      Nobody should be making decisions about their child's funeral with one eye on what
+      it costs. If anyone tells you otherwise, please telephone us.
+    </p>
+  </Callout>
+
+  <h2>Take your time</h2>
+  <p>
+    You do not need to decide anything today, or this week. Some families arrange things
+    within days because they want it done; others wait a fortnight or more until family
+    can travel or until they simply feel able. Both are right. We will keep your baby or
+    child safely in our care for as long as you need.
+  </p>
+
+  <h2>Being with them</h2>
+  <p>
+    You can spend as much time with your child as you want, whenever you want, for as
+    long as you want. You can hold them. You can bring brothers and sisters,
+    grandparents, anyone you would like. You can bring a blanket, a toy, a photograph,
+    something you have knitted.
+  </p>
+  <p>
+    Some parents want to wash and dress their child themselves. You can. Some would find
+    that unbearable, and would rather we did it. That is right too, and we will do it
+    with the same care you would.
+  </p>
+  <p>
+    Some families take hand and footprints, or a lock of hair. If you would like that and
+    have not thought to ask, we can arrange it — including afterwards, if it occurs to
+    you later.
+  </p>
+
+  <h2>Stillbirth and very early loss</h2>
+  <p>
+    Everything on this page applies equally to a stillborn baby. The hospital will discuss
+    your options with you, and you are free to use us rather than the hospital's own
+    arrangements if you would prefer — you are entitled to choose, and choosing does not
+    cost you anything.
+  </p>
+  <p>
+    For a pregnancy loss before 24 weeks, hospitals in Lothian and the Borders offer
+    respectful arrangements including cremation and burial. If you would rather make your
+    own, we will help you do that. Please just ask. Nothing about this is too small a
+    loss to arrange a funeral for.
+  </p>
+
+  <h2>The funeral itself</h2>
+  <p>
+    Whatever you would like it to be. Some families want a full service in a church.
+    Some want six people at a graveside. Some want a short blessing and nothing else. We
+    have helped with all of these.
+  </p>
+  <p>Things families often ask about, and the answer is yes to all of them:</p>
+  <ul>
+    <li>Carrying your child yourself, rather than us doing it</li>
+    <li>Brothers and sisters being involved — choosing music, drawing on the coffin</li>
+    <li>Colours instead of black, and asking people not to wear dark clothes</li>
+    <li>A small white coffin, or a woven willow one, or one you decorate yourselves</li>
+    <li>Holding the service somewhere that is not a church or a crematorium</li>
+    <li>Having no service at all, and doing something later instead</li>
+  </ul>
+
+  <h2>Burial or cremation</h2>
+  <p>
+    Both are free for a child in Scotland. Councils in East Lothian and the Scottish
+    Borders set aside particular areas for children's burials, often with different rules
+    about memorials that allow more than a conventional grave would — toys, windmills,
+    ornaments. We will show you where they are.
+  </p>
+  <p>
+    If you choose cremation, ashes from a baby are sometimes very few or none at all,
+    depending on how tiny they were. The crematorium will be honest with you about what
+    to expect, and so will we. It is better to know beforehand.
+  </p>
+
+  <h2>Financial help</h2>
+  <p>
+    Beyond the fees that are already waived, Funeral Support Payment is available in
+    Scotland for the funeral of a baby or child, including a stillborn baby, if you or
+    your partner receive certain benefits. It can be paid straight to us.{' '}
+    <a href="/funeral-costs/help-with-funeral-costs/">More about Funeral Support Payment</a>.
+  </p>
+
+  <h2>Support, whenever you want it</h2>
+  <p>
+    Not now, necessarily. Perhaps in six months, when everyone else has gone back to
+    normal. These organisations are there either way, and we have listed how to reach them
+    on our <a href="/bereavement-support/">bereavement support page</a> — including
+    baby-loss support in Edinburgh and the Lothians, national stillbirth and neonatal
+    charities, and support for bereaved brothers and sisters.
+  </p>
+
+  <Callout tone="accent">
+    <p>
+      Whenever you are ready, telephone{' '}
+      <a href={CONTACT.phoneHref} class="font-semibold">{CONTACT.phone}</a>. You will
+      speak to one of us. There is no charge for anything, including asking.
+    </p>
+  </Callout>
+</Page>

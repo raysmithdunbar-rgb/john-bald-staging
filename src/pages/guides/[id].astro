@@ -1,0 +1,79 @@
+---
+import type { GetStaticPaths } from 'astro';
+import { getCollection, render } from 'astro:content';
+import Page from '../../layouts/Page.astro';
+import Callout from '../../components/Callout.astro';
+import { SITE, CONTACT } from '../../data/site';
+
+export const getStaticPaths = (async () => {
+  const guides = await getCollection('guides');
+  return guides.map((guide) => ({ params: { id: guide.id }, props: { guide } }));
+}) satisfies GetStaticPaths;
+
+const { guide } = Astro.props;
+const { Content } = await render(guide);
+const d = guide.data;
+
+const related = (await getCollection('guides'))
+  .filter((g) => g.id !== guide.id && g.data.topic === d.topic)
+  .slice(0, 3);
+
+const schema = {
+  '@type': 'Article',
+  headline: d.title,
+  description: d.description,
+  datePublished: d.published.toISOString(),
+  dateModified: d.updated.toISOString(),
+  author: { '@type': 'Organization', name: SITE.name },
+  publisher: { '@type': 'Organization', name: SITE.name },
+  inLanguage: 'en-GB',
+};
+
+const fmt = (date: Date) =>
+  date.toLocaleDateString('en-GB', { day: 'numeric', month: 'long', year: 'numeric' });
+---
+
+<Page
+  title={d.seoTitle ?? d.title}
+  heading={d.title}
+  description={d.description}
+  standfirst={d.standfirst}
+  breadcrumbs={[
+    { name: 'Guides', url: '/guides/' },
+    { name: d.title, url: `/guides/${guide.id}/` },
+  ]}
+  schema={schema}
+>
+  <Content />
+
+  <Callout tone="accent">
+    <p>
+      If you would rather ask a person than read a page, telephone{' '}
+      <a href={CONTACT.phoneHref} class="font-semibold">{CONTACT.phone}</a>. Any hour, no
+      charge, and no obligation to use us afterwards.
+    </p>
+  </Callout>
+
+  {
+    related.length > 0 && (
+      <>
+        <h2>Related guides</h2>
+        <ul>
+          {related.map((g) => (
+            <li>
+              <a href={`/guides/${g.id}/`}>{g.data.title}</a>
+            </li>
+          ))}
+        </ul>
+      </>
+    )
+  }
+
+  <p class="text-sm text-ink-muted">
+    Published {fmt(d.published)}
+    {d.updated.getTime() !== d.published.getTime() && <> · Updated {fmt(d.updated)}</>}.
+    We review this guide at least once a year, and sooner when rates or rules change.
+  </p>
+
+  <p><a href="/guides/">← All guides</a></p>
+</Page>

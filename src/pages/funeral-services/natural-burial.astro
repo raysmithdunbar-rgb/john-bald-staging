@@ -1,0 +1,120 @@
+---
+import Page from '../../layouts/Page.astro';
+import Callout from '../../components/Callout.astro';
+import { CONTACT } from '../../data/site';
+
+const breadcrumbs = [
+  { name: 'Funerals we arrange', url: '/funeral-services/' },
+  { name: 'Natural burial', url: '/funeral-services/natural-burial/' },
+];
+---
+
+<Page
+  title="Natural & Woodland Burial in East Lothian"
+  heading="Natural burial"
+  description="Green and woodland burial arranged from Dunbar: biodegradable coffins, no embalming, and burial grounds across East Lothian and the Borders."
+  standfirst="A funeral that leaves nothing behind that will not return to the ground."
+  breadcrumbs={breadcrumbs}
+>
+  <p>
+    Natural burial — also called green or woodland burial — means burial in a way that
+    lets everything break down naturally. No embalming, a fully biodegradable coffin or
+    shroud, no plastics or metals, and usually a tree or a meadow rather than a headstone.
+  </p>
+
+  <p>
+    Families choose it for different reasons. Some feel strongly about the environment.
+    Some simply prefer the idea of a wood or a wildflower meadow to a row of polished
+    granite. Some like that the grave will, in time, become part of the landscape rather
+    than something needing upkeep.
+  </p>
+
+  <h2>What makes a burial natural</h2>
+  <ul>
+    <li>
+      <strong>No embalming.</strong> Embalming fluid is a preservative and does not belong
+      in a natural burial ground. We care for the person by refrigeration instead, which
+      is what we do for most funerals anyway.
+    </li>
+    <li>
+      <strong>A biodegradable coffin.</strong> Willow, bamboo, banana leaf, pandanus,
+      recycled cardboard, or a simple shroud.{' '}
+      <a href="/coffins/">See the range</a>.
+    </li>
+    <li>
+      <strong>Natural clothing.</strong> Cotton, wool or linen rather than synthetics.
+    </li>
+    <li>
+      <strong>A living memorial.</strong> A tree, or wildflowers, or nothing at all —
+      most natural burial grounds do not permit conventional headstones.
+    </li>
+  </ul>
+
+  <h2>The coffins</h2>
+  <p>
+    We supply the full Ecoffins range. They are handwoven from fast-growing renewable
+    materials — willow, bamboo, pandanus and banana leaf — with no plastic, no metal, no
+    screws and no staples. The cardboard coffins are made in the UK from more than 70%
+    recycled material and can be decorated, painted or written on, which some families
+    find helps enormously, particularly children.
+  </p>
+  <p>
+    They are entirely suitable for cremation too, if you want the coffin to be natural
+    without the burial being.{' '}
+    <a href="/coffins/">See the whole range</a>.
+  </p>
+
+  <Callout title="A natural coffin in an ordinary cemetery">
+    <p>
+      You do not have to use a dedicated natural burial ground to have a natural coffin.
+      Many families choose a willow or cardboard coffin for a conventional burial or
+      cremation in their own local cemetery. It is a perfectly ordinary request and we
+      arrange it often.
+    </p>
+  </Callout>
+
+  <h2>Where</h2>
+  <p>
+    There are natural burial grounds within reach of East Lothian and the Borders, and
+    some council cemeteries have areas set aside for green burial. Sites open and change
+    their rules from time to time, so we keep a current list — with what each one allows,
+    what it costs and how to visit — in our{' '}
+    <a href="/directory/cemeteries/">cemetery directory</a>.
+  </p>
+  <p>
+    Every site has its own rules about coffins, memorials, flowers and what may be placed
+    on a grave. We will check the detail with the site before anything is arranged so
+    there are no surprises on the day.
+  </p>
+
+  <h2>What the day is like</h2>
+  <p>
+    Usually simpler and more informal than a conventional burial. Services are often held
+    at the graveside in the open air. Family frequently carry the coffin, and sometimes
+    help to fill the grave — which sounds daunting written down, and which many people
+    find is the part they are most glad they did.
+  </p>
+
+  <h2>What it costs</h2>
+  <p>
+    Natural burial is often comparable to conventional burial, sometimes less. Woven
+    coffins can cost more than a basic wooden one; cardboard costs considerably less.
+    Burial ground fees vary. Our own fee is on our{' '}
+    <a href="/funeral-costs/standardised-price-list/">Standardised Price List</a> and we
+    will give you a full written estimate.
+  </p>
+
+  <Callout tone="accent">
+    <p>
+      To talk about a natural burial, telephone{' '}
+      <a href={CONTACT.phoneHref} class="font-semibold">{CONTACT.phone}</a>.
+    </p>
+  </Callout>
+
+  <h2>Related</h2>
+  <ul>
+    <li><a href="/coffins/">Coffins, including the full eco range</a></li>
+    <li><a href="/guides/natural-and-eco-friendly-funerals/">Guide to eco-friendly funerals</a></li>
+    <li><a href="/funeral-services/burial/">Conventional burial</a></li>
+  </ul>
+</Page>

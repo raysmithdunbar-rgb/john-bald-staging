@@ -1,0 +1,150 @@
+---
+import Page from '../../layouts/Page.astro';
+import Callout from '../../components/Callout.astro';
+import { CONTACT } from '../../data/site';
+
+const breadcrumbs = [
+  { name: 'Funerals we arrange', url: '/funeral-services/' },
+  { name: 'Direct cremation', url: '/funeral-services/direct-cremation/' },
+];
+
+const faq = {
+  '@type': 'FAQPage',
+  mainEntity: [
+    {
+      '@type': 'Question',
+      name: 'What is a direct cremation?',
+      acceptedAnswer: {
+        '@type': 'Answer',
+        text: 'A cremation with no funeral service and nobody present. The person is cared for, cremated at a time arranged by the funeral director, and the ashes are returned to the family afterwards. Families are free to hold their own memorial separately, whenever they wish.',
+      },
+    },
+    {
+      '@type': 'Question',
+      name: 'Is a direct cremation dignified?',
+      acceptedAnswer: {
+        '@type': 'Answer',
+        text: 'Yes. The person who has died is looked after in exactly the same way as for any other funeral. The only difference is that there is no service at the crematorium and no mourners present.',
+      },
+    },
+    {
+      '@type': 'Question',
+      name: 'Can I still see the person before a direct cremation?',
+      acceptedAnswer: {
+        '@type': 'Answer',
+        text: 'Yes. Visiting is not affected by choosing a direct cremation. You are welcome to spend time with the person who has died beforehand, as often and for as long as you wish.',
+      },
+    },
+  ],
+};
+---
+
+<Page
+  title="Direct Cremation in East Lothian — John Bald, Dunbar"
+  heading="Direct cremation"
+  description="Direct cremation arranged locally in Dunbar and East Lothian: a simple cremation with no service, and a funeral director you can actually visit."
+  standfirst="A simple cremation with no service. Chosen more and more often, and for better reasons than people assume."
+  breadcrumbs={breadcrumbs}
+  schema={faq}
+>
+  <p>
+    In a direct cremation, there is no funeral service and nobody attends. We bring the
+    person who has died into our care, look after them, and take them to the crematorium
+    at a time we arrange. The ashes come back to you afterwards.
+  </p>
+
+  <p>
+    It is the fastest-growing choice in the country, and the reasons families give are
+    usually one of three: the person said plainly that they did not want a fuss, the
+    family is scattered and would rather gather properly later, or the cost of a full
+    funeral is simply out of reach. All three are good reasons.
+  </p>
+
+  <h2>Is it dignified?</h2>
+  <p>
+    Yes — and this is the question almost everyone asks, so it is worth answering
+    directly. The person who has died is cared for here exactly as they would be for any
+    other funeral. They are looked after by the same people, in the same place, with the
+    same attention. The only difference is that there is no service at the crematorium
+    and no mourners in the chapel.
+  </p>
+  <p>
+    You are still welcome to come and see them beforehand, as often as you like. Choosing
+    a direct cremation does not mean giving that up.
+  </p>
+
+  <Callout title="You can still have a funeral">
+    <p>
+      A direct cremation and a memorial are not alternatives. Many families have the
+      cremation quietly and then hold something of their own weeks or months later — in a
+      village hall, a garden, a pub, a church — with the ashes present if they want them
+      to be. Often it is a better gathering for not having been arranged in a hurry.
+    </p>
+  </Callout>
+
+  <h2>Why use a local funeral director for it</h2>
+  <p>
+    Direct cremation is sold heavily by national companies advertising online. They can be
+    perfectly good. But it is worth knowing what is different about arranging it here:
+  </p>
+  <ul>
+    <li>
+      <strong>The person stays in Dunbar.</strong> National providers often move people
+      long distances to a central facility and cremate at whichever crematorium is
+      cheapest, which may be a long way from here.
+    </li>
+    <li>
+      <strong>You can visit.</strong> That is usually not possible with a national
+      provider.
+    </li>
+    <li>
+      <strong>You can collect the ashes yourself</strong>, rather than waiting for them to
+      be posted.
+    </li>
+    <li>
+      <strong>You can speak to the person doing the work.</strong> If you telephone us,
+      you will get Bruce or one of us, not a contact centre.
+    </li>
+  </ul>
+
+  <h2>What it costs</h2>
+  <p>
+    Our direct cremation price is set out on our{' '}
+    <a href="/funeral-costs/standardised-price-list/">Standardised Price List</a>, in the
+    same format every UK funeral director must use, so you can compare it like for like.
+  </p>
+
+  <Callout title="One thing to check when comparing">
+    <p>
+      Always ask whether a quoted price <em>includes the cremation fee</em>. Some
+      headline prices are professional fees only, with the crematorium's charge added
+      afterwards — which can be several hundred pounds more. Our price list makes clear
+      what is and is not included, and you should expect the same clarity from anyone
+      else you ask.
+    </p>
+  </Callout>
+
+  <h2>What happens, step by step</h2>
+  <ol>
+    <li>You telephone us and we bring the person into our care.</li>
+    <li>We complete the paperwork and register the cremation.</li>
+    <li>You visit, if and when you would like to.</li>
+    <li>We take them to the crematorium at a time we arrange.</li>
+    <li>We collect the ashes and hold them here until you are ready.</li>
+    <li>You collect them, or we can bury or scatter them for you.</li>
+  </ol>
+
+  <h2>Help with the cost</h2>
+  <p>
+    Funeral Support Payment applies to a direct cremation just as it does to any other
+    funeral, and it can be paid straight to us.{' '}
+    <a href="/funeral-costs/help-with-funeral-costs/">More about help with costs</a>.
+  </p>
+
+  <Callout tone="accent">
+    <p>
+      To arrange a direct cremation, or just to ask what it involves, telephone{' '}
+      <a href={CONTACT.phoneHref} class="font-semibold">{CONTACT.phone}</a>.
+    </p>
+  </Callout>
+</Page>

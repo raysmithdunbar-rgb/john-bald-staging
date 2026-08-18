@@ -1,0 +1,176 @@
+---
+import Page from '../../layouts/Page.astro';
+import Callout from '../../components/Callout.astro';
+import { CONTACT } from '../../data/site';
+
+const breadcrumbs = [
+  { name: 'Someone has died', url: '/someone-has-died/' },
+  { name: 'Registering a death', url: '/someone-has-died/registering-a-death/' },
+];
+
+const faq = {
+  '@type': 'FAQPage',
+  mainEntity: [
+    {
+      '@type': 'Question',
+      name: 'Where can I register a death in East Lothian?',
+      acceptedAnswer: {
+        '@type': 'Answer',
+        text: 'East Lothian Council registrations are handled at John Muir House, Brewery Park, Haddington EH41 3HA, by appointment. You may also register at any other registration office in Scotland — it does not have to be the district where the person lived or died.',
+      },
+    },
+    {
+      '@type': 'Question',
+      name: 'How long do I have to register a death in Scotland?',
+      acceptedAnswer: {
+        '@type': 'Answer',
+        text: 'Eight days from the date of death. This is longer than in England and Wales, where the limit is five days.',
+      },
+    },
+    {
+      '@type': 'Question',
+      name: 'Does it cost anything to register a death?',
+      acceptedAnswer: {
+        '@type': 'Answer',
+        text: 'Registering is free. There is a fee for each extra death certificate, which you will usually need several of for banks, pensions and insurers.',
+      },
+    },
+  ],
+};
+---
+
+<Page
+  title="Registering a Death in East Lothian — What to Do"
+  heading="Registering a death in East Lothian"
+  description="How to register a death in East Lothian: where to go, what to take, how long you have, and what Tell Us Once actually covers."
+  standfirst="You have eight days in Scotland, and you can register at any office in the country. Here is what the appointment actually involves."
+  breadcrumbs={breadcrumbs}
+  schema={faq}
+>
+  <Callout tone="accent" title="The thing most people do not know">
+    <p>
+      In Scotland you may register a death at <strong>any</strong> registration office in
+      the country. It does not have to be where the person died, or where they lived. If
+      it is easier to register near your own home than to travel back to East Lothian,
+      you can.
+    </p>
+  </Callout>
+
+  <h2>Where to go in East Lothian</h2>
+
+  <p>
+    East Lothian Council's registration service operates from:
+  </p>
+
+  <p>
+    <strong>John Muir House</strong><br />
+    Brewery Park, Haddington, EH41 3HA<br />
+    Telephone: <a href="tel:+441620827308">01620 827308</a><br />
+    Email: <a href="mailto:haddingtonregistrars@eastlothian.gov.uk">haddingtonregistrars@eastlothian.gov.uk</a>
+  </p>
+
+  <p>
+    Appointments are required — you cannot turn up. Book by telephone or through the
+    council's online booking service. Appointments are usually available within two or
+    three days, so the eight-day limit is rarely a problem.
+  </p>
+
+  <Callout title="If you live in the Borders">
+    <p>
+      Families in Berwickshire register with Scottish Borders Council instead. We have
+      listed the offices across the region, with contact details and booking
+      arrangements, in our{' '}
+      <a href="/directory/registrars/">registrar directory</a>.
+    </p>
+  </Callout>
+
+  <h2>How long you have</h2>
+  <p>
+    Eight days from the date of death. That is longer than in England and Wales, where
+    the limit is five. If the death has been reported to the Procurator Fiscal, the clock
+    effectively pauses until the Fiscal releases it — you will not be penalised for a
+    delay that is not yours.
+  </p>
+
+  <h2>Who can register</h2>
+  <p>Any of the following, in rough order of who is usually asked:</p>
+  <ul>
+    <li>A relative of the person who died</li>
+    <li>Someone who was present at the death</li>
+    <li>The executor, or the person's solicitor</li>
+    <li>The occupier of the building where the death happened</li>
+    <li>Anyone else who knows the details and is accepting responsibility for the funeral</li>
+  </ul>
+
+  <h2>What to take with you</h2>
+  <p>
+    The Medical Certificate of Cause of Death is usually sent to the registrar
+    electronically now, so you may not need to carry anything. Take what you can find of
+    the following — the registrar will work with whatever you have:
+  </p>
+  <ul>
+    <li>The person's birth certificate</li>
+    <li>Their marriage or civil partnership certificate</li>
+    <li>Their National Insurance number</li>
+    <li>Their NHS medical card, if there is one</li>
+    <li>Any pension or benefit details</li>
+    <li>Your own photo identification</li>
+  </ul>
+  <p>
+    If you cannot find some of it, go anyway. Missing paperwork almost never stops a
+    registration.
+  </p>
+
+  <h2>What the registrar will ask</h2>
+  <p>
+    The full name and any previous names, date and place of birth, occupation, usual
+    address, marital status, and the names and occupations of the person's parents —
+    including their mother's maiden surname. This last one catches people out, so it is
+    worth asking a relative before you go.
+  </p>
+
+  <h2>What you come away with</h2>
+  <ul>
+    <li>
+      <strong>The Certificate of Registration of Death (Form 14).</strong> This is what we
+      need before the funeral can go ahead. It is free.
+    </li>
+    <li>
+      <strong>An abbreviated extract of the death entry.</strong> Also free.
+    </li>
+    <li>
+      <strong>Full extracts — the "death certificates".</strong> These are chargeable, and
+      you will need one for each bank, pension provider, insurer and share registrar.
+      Most families need somewhere between four and eight. Buying them at the appointment
+      is cheaper than ordering them later.
+    </li>
+  </ul>
+
+  <h2>Tell Us Once</h2>
+  <p>
+    The registrar will offer you the Tell Us Once service. It notifies HMRC, the
+    Department for Work and Pensions, the Passport Office, DVLA, and East Lothian
+    Council's own services in a single step, so you do not have to write the same letter
+    a dozen times. It is worth the few extra minutes at the appointment.
+  </p>
+  <p>
+    It does not cover banks, private pensions, insurers or utility companies — those you
+    still have to contact yourself.
+  </p>
+
+  <h2>What we do</h2>
+  <p>
+    We cannot register the death for you — that has to be someone connected to the person
+    who died. But we will tell you when the certificate has reached the registrar, help
+    you work out how many extracts to buy, and take care of everything that follows from
+    it. If you are unsure about any of it, telephone us on{' '}
+    <a href={CONTACT.phoneHref} class="font-semibold">{CONTACT.phone}</a>.
+  </p>
+
+  <h2>Next</h2>
+  <ul>
+    <li><a href="/arranging-a-funeral/">Arranging the funeral</a></li>
+    <li><a href="/directory/registrars/">Registration offices across the east of Scotland</a></li>
+    <li><a href="/funeral-costs/help-with-funeral-costs/">Help with funeral costs</a></li>
+  </ul>
+</Page>

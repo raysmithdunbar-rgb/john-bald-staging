@@ -1,0 +1,121 @@
+---
+import { SITE, ACTIVE_ADDRESS, CONTACT, MEMBERSHIPS } from '../data/site';
+import { PRIMARY_NAV, FOOTER_LEGAL } from '../data/nav';
+
+const verifiedMemberships = MEMBERSHIPS.filter((m) => m.verified);
+const year = new Date().getFullYear();
+---
+
+<footer class="mt-24 border-t border-line bg-paper-warm">
+  <div class="mx-auto max-w-6xl px-5 py-14 sm:px-8">
+    <div class="grid gap-12 md:grid-cols-[1.2fr_1fr_1fr]">
+      <div>
+        <p class="font-serif text-2xl">John Bald Funeral Directors</p>
+        <p class="mt-1 text-sm italic text-ink-muted">{SITE.tagline}</p>
+
+        <address class="mt-6 not-italic text-ink-soft">
+          {ACTIVE_ADDRESS.street}<br />
+          {ACTIVE_ADDRESS.locality}<br />
+          {ACTIVE_ADDRESS.region} {ACTIVE_ADDRESS.postcode}
+        </address>
+
+        <p class="mt-4">
+          <a href={CONTACT.phoneHref} class="text-lg font-semibold no-underline">
+            {CONTACT.phone}
+          </a><br />
+          <span class="text-sm text-ink-muted">{CONTACT.hours}</span>
+        </p>
+
+        <p class="mt-3">
+          <a href={`mailto:${CONTACT.email}`} class="text-sm">{CONTACT.email}</a>
+        </p>
+      </div>
+
+      <nav aria-label="Footer">
+        <h2 class="text-sm font-semibold uppercase tracking-widest text-ink-muted">
+          Pages
+        </h2>
+        <ul class="mt-4 space-y-2">
+          {
+            PRIMARY_NAV.map((item) => (
+              <li>
+                <a href={item.href} class="text-ink-soft no-underline hover:underline">
+                  {item.label}
+                </a>
+              </li>
+            ))
+          }
+        </ul>
+      </nav>
+
+      <div>
+        <h2 class="text-sm font-semibold uppercase tracking-widest text-ink-muted">
+          Prices
+        </h2>
+        <ul class="mt-4 space-y-2">
+          <li>
+            <a
+              href="/funeral-costs/standardised-price-list/"
+              class="text-ink-soft no-underline hover:underline"
+            >
+              Standardised Price List
+            </a>
+          </li>
+          <li>
+            <a
+              href="/funeral-costs/additional-options-price-list/"
+              class="text-ink-soft no-underline hover:underline"
+            >
+              Additional Options Price List
+            </a>
+          </li>
+          <li>
+            <a
+              href="/funeral-costs/help-with-funeral-costs/"
+              class="text-ink-soft no-underline hover:underline"
+            >
+              Help with funeral costs
+            </a>
+          </li>
+        </ul>
+
+        {
+          verifiedMemberships.length > 0 && (
+            <>
+              <h2 class="mt-8 text-sm font-semibold uppercase tracking-widest text-ink-muted">
+                Members of
+              </h2>
+              <ul class="mt-4 space-y-2 text-sm text-ink-soft">
+                {verifiedMemberships.map((m) => (
+                  <li>
+                    {m.name} <span class="text-ink-muted">({m.abbr} {m.number})</span>
+                  </li>
+                ))}
+              </ul>
+            </>
+          )
+        }
+      </div>
+    </div>
+
+    <div
+      class="mt-12 flex flex-col gap-4 border-t border-line pt-8 text-sm text-ink-muted sm:flex-row sm:items-center sm:justify-between"
+    >
+      <p>
+        &copy; {year} John Bald Funeral Directors. Part of the {SITE.parentCompany} family of
+        independent funeral directors.
+      </p>
+      <ul class="flex flex-wrap gap-x-6 gap-y-2">
+        {
+          FOOTER_LEGAL.map((item) => (
+            <li>
+              <a href={item.href} class="text-ink-muted no-underline hover:underline">
+                {item.label}
+              </a>
+            </li>
+          ))
+        }
+      </ul>
+    </div>
+  </div>
+</footer>

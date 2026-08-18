@@ -1,0 +1,20 @@
+---
+interface Props {
+  title?: string;
+  tone?: 'quiet' | 'accent';
+}
+
+const { title, tone = 'quiet' } = Astro.props;
+
+const toneClass =
+  tone === 'accent'
+    ? 'border-poppy bg-poppy-tint'
+    : 'border-sage bg-sage-soft';
+---
+
+<aside class={`my-8 border-l ${toneClass} px-6 py-5`} style="border-left-width:3px">
+  {title && <p class="font-serif text-xl">{title}</p>}
+  <div class={title ? 'mt-2' : ''}>
+    <slot />
+  </div>
+</aside>

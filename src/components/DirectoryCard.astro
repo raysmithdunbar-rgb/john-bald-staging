@@ -1,0 +1,33 @@
+---
+interface Props {
+  href: string;
+  name: string;
+  summary: string;
+  locality: string;
+  region: string;
+  distanceFromDunbarMiles?: number;
+  meta?: string;
+}
+
+const { href, name, summary, locality, region, distanceFromDunbarMiles, meta } =
+  Astro.props;
+---
+
+<li class="flex flex-col border border-line bg-paper-warm p-6">
+  <p class="text-xs uppercase tracking-widest text-ink-muted">
+    {locality}, {region}
+  </p>
+  <h3 class="mt-2 font-serif text-xl">
+    <a href={href} class="no-underline hover:underline">{name}</a>
+  </h3>
+  <p class="mt-3 flex-1 text-ink-soft">{summary}</p>
+  <p class="mt-4 text-sm text-ink-muted">
+    {
+      distanceFromDunbarMiles !== undefined && (
+        <span>About {distanceFromDunbarMiles} miles from Dunbar</span>
+      )
+    }
+    {distanceFromDunbarMiles !== undefined && meta && <span> · </span>}
+    {meta && <span>{meta}</span>}
+  </p>
+</li>

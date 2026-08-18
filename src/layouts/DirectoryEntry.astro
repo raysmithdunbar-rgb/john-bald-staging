@@ -1,0 +1,119 @@
+---
+import Page from './Page.astro';
+import Callout from '../components/Callout.astro';
+import { CONTACT } from '../data/site';
+
+interface Crumb {
+  name: string;
+  url: string;
+}
+
+interface Props {
+  title: string;
+  description: string;
+  standfirst: string;
+  breadcrumbs: Crumb[];
+  /** Rendered as a definition list above the body copy. */
+  facts: { label: string; value: string }[];
+  address: {
+    street: string;
+    locality: string;
+    region: string;
+    postcode?: string;
+  };
+  phone?: string;
+  website?: string;
+  lastVerified: Date;
+  schema: Record<string, unknown>;
+  backHref: string;
+  backLabel: string;
+}
+
+const {
+  title,
+  description,
+  standfirst,
+  breadcrumbs,
+  facts,
+  address,
+  phone,
+  website,
+  lastVerified,
+  schema,
+  backHref,
+  backLabel,
+} = Astro.props;
+
+const heading = breadcrumbs[breadcrumbs.length - 1].name;
+const telHref = phone ? `tel:${phone.replace(/\s+/g, '')}` : undefined;
+---
+
+<Page
+  title={title}
+  heading={heading}
+  description={description}
+  standfirst={standfirst}
+  breadcrumbs={breadcrumbs}
+  schema={schema}
+>
+  <div class="mb-8 border-y border-line py-6">
+    <address class="not-italic">
+      {address.street}<br />
+      {address.locality}, {address.region}
+      {address.postcode && <><br />{address.postcode}</>}
+    </address>
+
+    {
+      (phone || website) && (
+        <p class="mt-4">
+          {phone && (
+            <a href={telHref} class="font-semibold">
+              {phone}
+            </a>
+          )}
+          {phone && website && <span> · </span>}
+          {website && (
+            <a href={website} rel="noopener">
+              Official website
+            </a>
+          )}
+        </p>
+      )
+    }
+
+    {
+      facts.length > 0 && (
+        <dl class="mt-6 grid gap-x-8 gap-y-3 sm:grid-cols-2">
+          {facts.map((fact) => (
+            <div>
+              <dt class="text-sm uppercase tracking-widest text-ink-muted">{fact.label}</dt>
+              <dd class="mt-1">{fact.value}</dd>
+            </div>
+          ))}
+        </dl>
+      )
+    }
+  </div>
+
+  <slot />
+
+  <Callout tone="accent">
+    <p>
+      We arrange funerals here regularly and will handle every booking and form on your
+      behalf. Telephone{' '}
+      <a href={CONTACT.phoneHref} class="font-semibold">{CONTACT.phone}</a>.
+    </p>
+  </Callout>
+
+  <p class="text-sm text-ink-muted">
+    Details last checked on{' '}
+    {lastVerified.toLocaleDateString('en-GB', {
+      day: 'numeric',
+      month: 'long',
+      year: 'numeric',
+    })}. Fees, opening hours and facilities change — please confirm anything critical with
+    the operator directly. If you spot something out of date, do tell us.
+  </p>
+
+  <p><a href={backHref}>← {backLabel}</a></p>
+</Page>

@@ -1,0 +1,91 @@
+---
+import Page from '../../layouts/Page.astro';
+import Callout from '../../components/Callout.astro';
+import { CONTACT } from '../../data/site';
+import { ADDITIONAL_OPTIONS } from '../../data/pricing';
+
+const breadcrumbs = [
+  { name: 'Our prices', url: '/funeral-costs/' },
+  {
+    name: 'Additional Options Price List',
+    url: '/funeral-costs/additional-options-price-list/',
+  },
+];
+---
+
+<Page
+  title="Additional Options Price List — John Bald, Dunbar"
+  heading="Additional Options Price List"
+  description="Everything you might choose beyond the standard funeral, itemised: coffins, cars, flowers, notices, memorials. John Bald Funeral Directors, Dunbar."
+  standfirst="Everything you might want beyond the funeral itself, listed separately so nothing appears on an invoice you were not expecting."
+  breadcrumbs={breadcrumbs}
+>
+  {
+    !ADDITIONAL_OPTIONS.confirmed && (
+      <Callout tone="accent" title="Prices are being confirmed">
+        <p>
+          Individual prices are being finalised and will appear here shortly. Please
+          telephone{' '}
+          <a href={CONTACT.phoneHref} class="font-semibold">{CONTACT.phone}</a> for the
+          cost of anything listed below, or ask when we meet — you will get a full written
+          estimate before committing to anything.
+        </p>
+      </Callout>
+    )
+  }
+
+  <Callout title="None of this is required">
+    <p>
+      You may take the attended or unattended funeral on our{' '}
+      <a href="/funeral-costs/standardised-price-list/">Standardised Price List</a> and
+      nothing else at all. Everything on this page is optional. We will not suggest that
+      any of it is expected, or that leaving it out means less of a funeral.
+    </p>
+  </Callout>
+
+  {
+    ADDITIONAL_OPTIONS.groups.map((group) => (
+      <>
+        <h2>{group.title}</h2>
+        {group.note && <p>{group.note}</p>}
+        <ul>
+          {group.items.map((item) => (
+            <li>{item}</li>
+          ))}
+        </ul>
+      </>
+    ))
+  }
+
+  <h2>Our business interests</h2>
+  <p>
+    The Funerals Market Investigation Order requires us to tell you about any interests we
+    hold that might affect the advice we give you.
+  </p>
+  <p>
+    John Bald Funeral Directors is part of A &amp; A Doyle Ltd, which also trades as
+    A &amp; A Doyle in Galashiels and Herkes Funeral Directors in Gorebridge. We hold no
+    ownership interest in any crematorium, cemetery or burial ground. We receive no
+    payment for referring you to any minister, celebrant, florist, stonemason or
+    solicitor.
+  </p>
+  <p>
+    We arrange funeral plans provided by Golden Charter Limited and receive a commission
+    from them for doing so.{' '}
+    <a href="/funeral-plans/">More about funeral plans, including how that works</a>.
+  </p>
+
+  <h2>What you will be given</h2>
+  <p>
+    Before you commit to anything, a full written estimate itemising every element you
+    have chosen, separating our own fees from money we pay to other people on your behalf.
+    You can take it away, think about it, and change your mind about any of it.
+  </p>
+
+  <Callout tone="accent">
+    <p>
+      To ask about the cost of anything here, telephone{' '}
+      <a href={CONTACT.phoneHref} class="font-semibold">{CONTACT.phone}</a>.
+    </p>
+  </Callout>
+</Page>

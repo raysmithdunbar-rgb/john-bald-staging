@@ -1,0 +1,76 @@
+---
+import { getCollection } from 'astro:content';
+import Page from '../../../layouts/Page.astro';
+import DirectoryCard from '../../../components/DirectoryCard.astro';
+
+const breadcrumbs = [
+  { name: 'Directory', url: '/directory/' },
+  { name: 'Cemeteries', url: '/directory/cemeteries/' },
+];
+
+const cemeteries = (await getCollection('cemeteries')).sort(
+  (a, b) =>
+    (a.data.distanceFromDunbarMiles ?? 999) - (b.data.distanceFromDunbarMiles ?? 999)
+);
+
+const areas = [...new Set(cemeteries.map((c) => c.data.area))];
+---
+
+<Page
+  title="Cemeteries & Burial Grounds — East Lothian"
+  heading="Cemeteries and burial grounds"
+  description="Burial grounds across East Lothian and Berwickshire: who manages each one, how to enquire about a lair, memorial regulations and natural burial options."
+  standfirst="Who manages each ground, how lairs work, and what the memorial rules are."
+  breadcrumbs={breadcrumbs}
+  wide={true}
+>
+  <div class="prose-jb">
+    <p>
+      Burial grounds in East Lothian are managed by East Lothian Council, and those in
+      Berwickshire by Scottish Borders Council. Some churchyards are managed by the church
+      itself. The fees and memorial rules differ between them, so figures quoted for one
+      do not carry across to another.
+    </p>
+    <p>
+      Lairs, interments and memorial permissions are arranged with the council rather than
+      with us — but we deal with them on your behalf as part of arranging the funeral, so
+      you do not have to.
+    </p>
+  </div>
+
+  {
+    areas.map((area) => (
+      <section class="mt-14">
+        <h2 class="font-serif text-2xl">{area}</h2>
+        <ul class="mt-6 grid gap-8 sm:grid-cols-2 lg:grid-cols-3">
+          {cemeteries
+            .filter((c) => c.data.area === area)
+            .map((entry) => (
+              <DirectoryCard
+                href={`/directory/cemeteries/${entry.id}/`}
+                name={entry.data.name}
+                summary={entry.data.summary}
+                locality={entry.data.locality}
+                region={entry.data.region}
+                distanceFromDunbarMiles={entry.data.distanceFromDunbarMiles}
+                meta={entry.data.allowsNaturalBurial ? 'Natural burial available' : undefined}
+              />
+            ))}
+        </ul>
+      </section>
+    ))
+  }
+
+  <div class="prose-jb mt-14">
+    <p>
+      This list covers the burial grounds we attend most often. There are smaller
+      churchyards and rural grounds across both counties — if the one you need is not
+      here, <a href="/contact/">tell us</a> and we will both help you and add it.
+    </p>
+    <p>
+      <a href="/funeral-services/burial/">More about arranging a burial</a> ·{' '}
+      <a href="/funeral-services/natural-burial/">Natural burial</a> ·{' '}
+      <a href="/directory/">Back to the directory</a>
+    </p>
+  </div>
+</Page>

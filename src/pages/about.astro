@@ -1,0 +1,114 @@
+---
+import Page from '../layouts/Page.astro';
+import Callout from '../components/Callout.astro';
+import { SITE, CONTACT, MEMBERSHIPS } from '../data/site';
+
+const breadcrumbs = [{ name: 'About us', url: '/about/' }];
+const verifiedMemberships = MEMBERSHIPS.filter((m) => m.verified);
+---
+
+<Page
+  title="About John Bald Funeral Directors, Dunbar"
+  heading="About us"
+  description="John Bald Funeral Directors has cared for families in Dunbar and East Lothian for over 50 years. Independent, family-run, and part of the A & A Doyle family."
+  standfirst="Over fifty years in Dunbar, three sets of hands, and the same idea running through all of it."
+  breadcrumbs={breadcrumbs}
+>
+  <p>
+    John Bald opened this business in Dunbar more than fifty years ago. When he retired in
+    2001 he passed it to Ian and Elizabeth Torrance, who looked after East Lothian
+    families for another twenty years and built the reputation the name still carries.
+  </p>
+
+  <p>
+    In December 2022 it came to us — Awdri and Allan Doyle. Ian could have sold to one of
+    the national chains. He chose not to. He wanted the business to stay in independent
+    hands, run by people who would answer their own telephone, and we were glad to be
+    asked.
+  </p>
+
+  <h2>Bruce Robertson</h2>
+  <p>
+    Bruce manages our funeral home in Dunbar and looks after families here day to day. If
+    you telephone us or call in, he is most likely the person you will deal with, from the
+    first conversation through to the funeral itself and whatever follows it.
+  </p>
+
+  <h2>Awdri and Allan Doyle</h2>
+  <p>
+    Awdri grew up in it. Her parents were funeral directors in Gorebridge, and although
+    she spent her teens certain she wanted nothing to do with the job, she found her way
+    back to it after starting a family. She trained in 2004 and, with Allan, opened
+    A & A Doyle in Galashiels in 2012. She is also a trained organist, and played at
+    funerals for years before she started arranging them.
+  </p>
+  <p>
+    Allan and Awdri lived and worked in Haddington and North Berwick for many years, and
+    knew John Bald himself before he retired. They are not strangers to this county.
+  </p>
+
+  <h2>How we work</h2>
+  <p>
+    The rule we run the business by is a simple one, and Awdri's: <em>do everything for
+    your families as if they were your own.</em>
+  </p>
+  <p>
+    In practice that means the telephone is answered by one of us, not a call centre.
+    It means we will give you as much time as you want and no more than you want. It
+    means we will tell you what things cost before you ask. And it means we will not
+    push you toward anything — our job is to lay out the options honestly and then do
+    whatever you decide.
+  </p>
+
+  <Callout title="There should be no rules about funerals">
+    <p>
+      Some families want the full traditional funeral. Some want twenty minutes and no
+      fuss. Some want a willow coffin and the Proclaimers. All of it is fine. The only
+      thing we hold to is the dignity of the person who has died — beyond that, it is
+      your funeral to shape.
+    </p>
+  </Callout>
+
+  <h2>Part of a family of independents</h2>
+  <p>
+    John Bald Funeral Directors is part of {SITE.parentCompany}, alongside A & A Doyle in
+    Galashiels and Herkes Funeral Directors in Gorebridge. Three funeral homes, one
+    family, and no shareholders to answer to.
+  </p>
+  <p>
+    Being part of a small group means we can call on each other for cover, share vehicles
+    and staff when a family needs more than one funeral home can provide, and keep our
+    costs lower than we could alone. What it does not mean is head office. Decisions
+    about your funeral are made here in Dunbar.
+  </p>
+
+  {
+    verifiedMemberships.length > 0 && (
+      <>
+        <h2>Our memberships</h2>
+        <ul>
+          {verifiedMemberships.map((m) => (
+            <li>
+              {m.name} — {m.abbr} member number {m.number}
+            </li>
+          ))}
+        </ul>
+      </>
+    )
+  }
+
+  <h2>Where we work</h2>
+  <p>
+    Dunbar and the surrounding villages, across East Lothian to East Linton, Haddington,
+    North Berwick and Gullane, and south into Berwickshire — Eyemouth, Duns, Coldstream
+    and the villages between. If you are outside that and would still like us, ask.
+  </p>
+
+  <Callout tone="accent">
+    <p>
+      Come in whenever you like, or telephone{' '}
+      <a href={CONTACT.phoneHref} class="font-semibold">{CONTACT.phone}</a>. There is
+      never a charge for a conversation.
+    </p>
+  </Callout>
+</Page>

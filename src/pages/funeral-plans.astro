@@ -1,0 +1,182 @@
+---
+import Page from '../layouts/Page.astro';
+import Callout from '../components/Callout.astro';
+import { CONTACT, GOLDEN_CHARTER } from '../data/site';
+
+const breadcrumbs = [{ name: 'Planning ahead', url: '/funeral-plans/' }];
+
+const faq = {
+  '@type': 'FAQPage',
+  mainEntity: [
+    {
+      '@type': 'Question',
+      name: 'Are funeral plans regulated?',
+      acceptedAnswer: {
+        '@type': 'Answer',
+        text: `Yes. Since July 2022 pre-paid funeral plans have been regulated by the Financial Conduct Authority. Golden Charter Limited is authorised and regulated by the FCA under firm reference number ${GOLDEN_CHARTER.fcaNumber}.`,
+      },
+    },
+    {
+      '@type': 'Question',
+      name: 'What happens if the funeral director closes?',
+      acceptedAnswer: {
+        '@type': 'Answer',
+        text: 'Your money is held by the plan provider in a trust separate from the funeral director, not by the funeral director. If we were no longer able to carry out the funeral, Golden Charter would arrange another funeral director from their network.',
+      },
+    },
+    {
+      '@type': 'Question',
+      name: 'Do I have to pay for a funeral plan all at once?',
+      acceptedAnswer: {
+        '@type': 'Answer',
+        text: 'No. Plans can be paid as a single payment, over 12 monthly instalments interest-free, or spread over a longer period of up to 15 years.',
+      },
+    },
+  ],
+};
+---
+
+<Page
+  title="Funeral Plans in Dunbar — Golden Charter | John Bald"
+  heading="Planning ahead"
+  description="Golden Charter funeral plans arranged in Dunbar. Fix the cost of our services now, record your wishes, and take the weight off your family. FCA regulated."
+  standfirst="Two separate things: writing down what you want, and paying for it in advance. The first is free, and it is the one that helps your family most."
+  breadcrumbs={breadcrumbs}
+  schema={faq}
+>
+  <p>
+    People come in to talk about this for all sorts of reasons — a diagnosis, a friend's
+    funeral that went badly, or simply reaching an age where it feels sensible. Whatever
+    brought you here, there is no pressure and there never will be.
+  </p>
+
+  <h2>Start with your wishes, not your wallet</h2>
+  <p>
+    You can come in and record what you would like for your funeral without paying us
+    anything at all. Burial or cremation, which church or crematorium, hymns, readings,
+    who should be told, whether you want flowers or donations, what you absolutely do not
+    want.
+  </p>
+  <p>
+    We keep it on file, and we will give you a copy to keep with your will. It is not a
+    legally binding document. What it is, is an enormous relief to the people left
+    behind, who otherwise spend the worst week of their lives guessing.
+  </p>
+
+  <Callout title="This costs nothing">
+    <p>
+      Recording your wishes with us is free, carries no obligation to buy anything, and
+      does not commit your family to using us. Come in whenever suits.{' '}
+      <a href={CONTACT.phoneHref} class="font-semibold">{CONTACT.phone}</a>.
+    </p>
+  </Callout>
+
+  <h2>Pre-paid funeral plans</h2>
+  <p>
+    A funeral plan lets you pay for your funeral now, at today's prices. We arrange plans
+    provided by <a href={GOLDEN_CHARTER.url} rel="noopener">Golden Charter</a>, who work
+    with around 3,000 independent funeral directors across the UK and have been doing so
+    for more than 35 years.
+  </p>
+
+  <h3>What a plan covers</h3>
+  <p>
+    The funeral director's services are guaranteed — our part will be covered whatever it
+    costs by the time it is needed, however far in the future that is. Third-party costs
+    such as the crematorium fee, the burial fee and the minister's fee work differently:
+    depending on the plan, these are covered by an allowance which may or may not meet
+    the full cost at the time.
+  </p>
+  <p>
+    That distinction is the single most important thing to understand about any funeral
+    plan, from any provider. We will go through exactly what your plan does and does not
+    guarantee before you sign anything, and we will put it in writing.
+  </p>
+
+  <h3>Paying</h3>
+  <ul>
+    <li>A single payment</li>
+    <li>Twelve monthly instalments, interest-free</li>
+    <li>Spread over a longer period, up to 15 years, where interest applies</li>
+  </ul>
+
+  <h3>Your money is protected</h3>
+  <p>
+    Since July 2022, pre-paid funeral plans have been regulated by the Financial Conduct
+    Authority — a significant improvement on the position before, when the sector was
+    largely unregulated and some providers behaved badly.
+  </p>
+  <p>{GOLDEN_CHARTER.regulatoryNote}</p>
+  <p>
+    Your money is held in a trust that is separate from us. We never hold it. If we were
+    no longer able to carry out your funeral for any reason, Golden Charter would arrange
+    another funeral director from their network.
+  </p>
+
+  <Callout title="What we earn from this">
+    <p>
+      We receive a commission from Golden Charter when we arrange a plan. You should know
+      that, and you should factor it into how you weigh our advice — which is why we have
+      put it here rather than in the small print.
+    </p>
+    <p class="mt-3">
+      It is also why we would rather you started with the free wishes conversation. If a
+      plan is right for you, it will still be right after you have thought about it.
+    </p>
+  </Callout>
+
+  <h2>Is a plan right for you?</h2>
+
+  <h3>It may suit you if</h3>
+  <ul>
+    <li>You want the certainty that it is dealt with and paid for</li>
+    <li>You have strong views about your funeral and want them followed</li>
+    <li>You would rather your family did not have to find several thousand pounds</li>
+    <li>You expect to stay in this area, so the same funeral director will carry it out</li>
+  </ul>
+
+  <h3>It may not, if</h3>
+  <ul>
+    <li>
+      You have savings you could simply set aside instead — money in an account remains
+      yours and stays flexible
+    </li>
+    <li>You are likely to move a long way, though plans can transfer</li>
+    <li>
+      You might qualify for{' '}
+      <a href="/funeral-costs/help-with-funeral-costs/">Funeral Support Payment</a> — a
+      fully paid plan substantially reduces what your family can claim
+    </li>
+  </ul>
+  <p>
+    We will tell you honestly if we think a plan is not the right answer for you. It
+    happens, and we would rather say so.
+  </p>
+
+  <h2>How to start</h2>
+  <p>
+    Come in, or telephone, and we will spend as long as you want on it. Bring your
+    partner, or an adult child, or come alone. Nothing is decided on the day, and you will
+    leave with everything in writing.
+  </p>
+
+  <Callout tone="accent">
+    <p>
+      <a href={CONTACT.phoneHref} class="font-semibold">{CONTACT.phone}</a> — or{' '}
+      <a href="/contact/">send us a message</a> and we will telephone you back.
+    </p>
+  </Callout>
+
+  <p class="text-sm text-ink-muted">
+    John Bald Funeral Directors, part of A &amp; A Doyle Ltd, acts as an introducer for
+    Golden Charter Limited. Golden Charter Limited is authorised and regulated by the
+    Financial Conduct Authority, firm reference number {GOLDEN_CHARTER.fcaNumber}. You can
+    check this on the Financial Services Register at register.fca.org.uk.
+  </p>
+</Page>
+
+<!--
+  Before launch: have the client confirm this page against Golden Charter's approved
+  partner wording, and check the plan names and payment terms currently offered.
+  Financial promotions wording is the provider's to approve, not ours to draft.
+-->

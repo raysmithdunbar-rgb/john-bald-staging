@@ -1,0 +1,71 @@
+---
+import type { GetStaticPaths } from 'astro';
+import { getCollection, render } from 'astro:content';
+import DirectoryEntry from '../../../layouts/DirectoryEntry.astro';
+import { clampDescription } from '../../../lib/seo';
+
+export const getStaticPaths = (async () => {
+  const crematoria = await getCollection('crematoria');
+  return crematoria.map((entry) => ({ params: { id: entry.id }, props: { entry } }));
+}) satisfies GetStaticPaths;
+
+const { entry } = Astro.props;
+const { Content } = await render(entry);
+const d = entry.data;
+
+const facts = [
+  { label: 'Operated by', value: d.operator },
+  d.chapelCapacity ? { label: 'Chapel seats', value: `About ${d.chapelCapacity}` } : null,
+  d.serviceLengthMinutes
+    ? { label: 'Service slot', value: `${d.serviceLengthMinutes} minutes` }
+    : null,
+  d.hasLivestream !== undefined
+    ? { label: 'Streaming', value: d.hasLivestream ? 'Available' : 'Not available' }
+    : null,
+  d.hasGardenOfRemembrance
+    ? { label: 'Garden of remembrance', value: 'Yes, open to visitors' }
+    : null,
+].filter((f): f is { label: string; value: string } => f !== null);
+
+const schema = {
+  '@type': 'Place',
+  name: d.name,
+  description: d.summary,
+  address: {
+    '@type': 'PostalAddress',
+    streetAddress: d.street,
+    addressLocality: d.locality,
+    addressRegion: d.region,
+    postalCode: d.postcode,
+    addressCountry: 'GB',
+  },
+  ...(d.phone ? { telephone: d.phone } : {}),
+  ...(d.website ? { url: d.website } : {}),
+};
+---
+
+<DirectoryEntry
+  title={d.name}
+  description={clampDescription(d.summary)}
+  standfirst={d.summary}
+  breadcrumbs={[
+    { name: 'Directory', url: '/directory/' },
+    { name: 'Crematoria', url: '/directory/crematoria/' },
+    { name: d.name, url: `/directory/crematoria/${entry.id}/` },
+  ]}
+  facts={facts}
+  address={{
+    street: d.street,
+    locality: d.locality,
+    region: d.region,
+    postcode: d.postcode,
+  }}
+  phone={d.phone}
+  website={d.website}
+  lastVerified={d.lastVerified}
+  schema={schema}
+  backHref="/directory/crematoria/"
+  backLabel="All crematoria"
+>
+  <Content />
+</DirectoryEntry>

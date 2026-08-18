@@ -1,0 +1,108 @@
+---
+import Page from '../../layouts/Page.astro';
+import Callout from '../../components/Callout.astro';
+import { CONTACT } from '../../data/site';
+
+const breadcrumbs = [
+  { name: 'Funerals we arrange', url: '/funeral-services/' },
+  { name: 'Burial', url: '/funeral-services/burial/' },
+];
+---
+
+<Page
+  title="Burial in Dunbar, East Lothian & Berwickshire"
+  heading="Burial"
+  description="Arranging a burial in East Lothian or Berwickshire: choosing a lair, reopening a family grave, costs and what to expect. John Bald Funeral Directors, Dunbar."
+  standfirst="In a local churchyard, a council cemetery, or a family lair that has been waiting a long time."
+  breadcrumbs={breadcrumbs}
+>
+  <p>
+    Burial is still what many families in this part of Scotland choose, particularly where
+    there is an existing family grave. We arrange burials throughout East Lothian and
+    Berwickshire and know the local cemeteries and their keepers well.
+  </p>
+
+  <h2>Choosing where</h2>
+  <p>
+    In East Lothian, burial grounds are managed by East Lothian Council; in Berwickshire,
+    by Scottish Borders Council. Some churchyards are managed by the church itself. We
+    have set out every burial ground in the region, with who manages it and how to
+    enquire about a lair, in our{' '}
+    <a href="/directory/cemeteries/">cemetery directory</a>.
+  </p>
+
+  <h3>An existing family lair</h3>
+  <p>
+    If the family already holds a lair, it can usually be reopened. We will need to trace
+    the lair certificate — the deed showing who holds the burial rights — and get the
+    written permission of whoever holds them. If nobody can find the certificate, do not
+    panic. The council keeps its own records and we can almost always trace it. Allow a
+    little longer for the funeral if we are working from council records.
+  </p>
+  <p>
+    A grave can be reopened only if there is room and if the depth allows. The council
+    will confirm this before anything is arranged.
+  </p>
+
+  <h3>A new lair</h3>
+  <p>
+    Where a family has no existing grave, we will help you choose and purchase a new lair.
+    You are buying the exclusive right of burial for a set period, not the land itself.
+    That right can be passed on, and it is what allows the grave to be reopened later.
+  </p>
+
+  <Callout title="Worth knowing before you decide">
+    <p>
+      Burial usually costs more than cremation, mostly because of the lair purchase and
+      the interment fee, both of which are council charges rather than ours. If cost is a
+      concern, say so early — it is a completely ordinary thing to weigh, and there is
+      often <a href="/funeral-costs/help-with-funeral-costs/">help available</a>.
+    </p>
+  </Callout>
+
+  <h2>What the day looks like</h2>
+  <p>
+    Most families have a service first — in a church, at our funeral home, or at the
+    graveside itself — and then go to the cemetery for the committal. Some have only the
+    graveside service. Both are entirely usual.
+  </p>
+  <p>
+    We will carry the coffin, or arrange for family to carry if you would like to. A lot
+    of people find that they want to and had not realised it was allowed. It is.
+  </p>
+
+  <h2>What it costs</h2>
+  <p>
+    Our own fee is on our{' '}
+    <a href="/funeral-costs/standardised-price-list/">Standardised Price List</a>. On top
+    of that sit two council charges we pay on your behalf and pass on without markup:
+    the lair purchase, where a new grave is needed, and the interment fee. These vary
+    between East Lothian and Scottish Borders and change each April.
+  </p>
+  <p>
+    There is no interment fee in Scotland for anyone under 18.{' '}
+    <a href="/funeral-services/childrens-funerals/">More about children's funerals</a>.
+  </p>
+
+  <h2>Memorials</h2>
+  <p>
+    A headstone cannot go up straight away — the ground needs several months to settle,
+    usually between six and twelve. Cemeteries also have rules about size, material and
+    inscription. We will tell you what is allowed where, and there is no hurry at all.{' '}
+    <a href="/memorials/">More about memorials</a>.
+  </p>
+
+  <Callout tone="accent">
+    <p>
+      To talk about a burial, telephone{' '}
+      <a href={CONTACT.phoneHref} class="font-semibold">{CONTACT.phone}</a>.
+    </p>
+  </Callout>
+
+  <h2>Related</h2>
+  <ul>
+    <li><a href="/funeral-services/natural-burial/">Natural and woodland burial</a></li>
+    <li><a href="/directory/cemeteries/">Cemeteries across the east of Scotland</a></li>
+    <li><a href="/guides/burial-or-cremation/">Choosing between burial and cremation</a></li>
+  </ul>
+</Page>

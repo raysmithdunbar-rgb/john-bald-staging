@@ -1,0 +1,182 @@
+---
+import Page from '../../layouts/Page.astro';
+import Callout from '../../components/Callout.astro';
+import { CONTACT } from '../../data/site';
+import { FUNERAL_SUPPORT_PAYMENT as FSP } from '../../data/funding';
+
+const breadcrumbs = [
+  { name: 'Our prices', url: '/funeral-costs/' },
+  { name: 'Help with funeral costs', url: '/funeral-costs/help-with-funeral-costs/' },
+];
+
+const money = (n: number) => `£${n.toLocaleString('en-GB', { minimumFractionDigits: 2 })}`;
+
+const faq = {
+  '@type': 'FAQPage',
+  mainEntity: [
+    {
+      '@type': 'Question',
+      name: 'How much is Funeral Support Payment in Scotland?',
+      acceptedAnswer: {
+        '@type': 'Answer',
+        text: `In ${FSP.taxYear}, Funeral Support Payment covers burial or cremation costs in full, plus a flat rate of ${money(FSP.flatRate.withoutPlan)} towards other funeral expenses. Where the person had a fully paid funeral plan, the flat rate is ${money(FSP.flatRate.withPaidPlan)}.`,
+      },
+    },
+    {
+      '@type': 'Question',
+      name: 'Can Funeral Support Payment be paid to the funeral director?',
+      acceptedAnswer: {
+        '@type': 'Answer',
+        text: 'Yes. It can be paid directly to the funeral director, so the money never has to pass through the family. Only one person can receive it for any one funeral.',
+      },
+    },
+    {
+      '@type': 'Question',
+      name: 'How long do I have to apply for Funeral Support Payment?',
+      acceptedAnswer: {
+        '@type': 'Answer',
+        text: 'You can apply from the date of death up to six months after the funeral takes place. You do not have to wait until the funeral has happened.',
+      },
+    },
+  ],
+};
+---
+
+<Page
+  title="Help With Funeral Costs in Scotland"
+  heading="Help with funeral costs"
+  description={`Funeral Support Payment in Scotland ${FSP.taxYear}: who can claim, how much you get, and how to apply. We can apply on your behalf and be paid directly.`}
+  standfirst="If money is a worry, say so at the start. There is usually more help available than people expect, and we can apply for it on your behalf."
+  breadcrumbs={breadcrumbs}
+  schema={faq}
+>
+  <p>
+    Nobody should be arranging a funeral while frightened of the bill. Please tell us
+    early if cost is a concern — it is an ordinary thing to say, we hear it every week,
+    and it changes what we suggest rather than what we think of you.
+  </p>
+
+  <h2>Funeral Support Payment</h2>
+  <p>
+    This is the main help available in Scotland. It is paid by Social Security Scotland
+    and, unlike a loan, it does not have to be repaid.
+  </p>
+
+  <h3>Who can claim</h3>
+  <p>
+    You may be able to claim if you live in Scotland, you are responsible for the funeral,
+    and you or your partner receive one of the qualifying benefits — Universal Credit,
+    Pension Credit, Income Support, income-based Jobseeker's Allowance,
+    income-related Employment and Support Allowance, Housing Benefit, Child Tax Credit or
+    Working Tax Credit with a disability element.
+  </p>
+  <p>
+    There are rules about your relationship to the person who died, and about whether
+    another relative might be expected to pay instead. They are not always obvious.
+    Ask us — we deal with this constantly and can usually tell you straight away whether
+    it is worth applying.
+  </p>
+
+  <h3>How much you get</h3>
+  <p>The payment has more than one part.</p>
+  <ul>
+    {
+      FSP.covers.map((part) => (
+        <li>
+          <strong>{part.title}.</strong> {part.detail}
+        </li>
+      ))
+    }
+  </ul>
+
+  <p>The flat-rate part for {FSP.taxYear} is:</p>
+  <ul>
+    <li>
+      <strong>{money(FSP.flatRate.withoutPlan)}</strong> where there was no funeral plan
+    </li>
+    <li>
+      <strong>{money(FSP.flatRate.withPaidPlan)}</strong> where the person had a fully
+      paid funeral plan
+    </li>
+  </ul>
+
+  <Callout title="Things worth knowing">
+    <ul>
+      {FSP.keyFacts.map((fact) => <li>{fact}</li>)}
+    </ul>
+  </Callout>
+
+  <h3>How to apply</h3>
+  <p>
+    Online at{' '}
+    <a href={FSP.source} rel="noopener">mygov.scot</a>, by telephone to Social Security
+    Scotland on 0800 182 2222, or on paper. You will need the death certificate details
+    and our invoice or estimate.
+  </p>
+  <p>
+    <strong>We will help you do it.</strong> Bring what you have to our funeral home and
+    we will go through the form with you. We can also give Social Security Scotland our
+    details so the money comes straight to us and never has to sit in your account.
+  </p>
+
+  <h2>If the person had a funeral plan</h2>
+  <p>
+    Tell us as early as you can, whoever the provider is. A plan changes what is already
+    paid for and reduces what you can claim, so it matters. If you are not sure whether
+    there was one, we can help you find out.
+  </p>
+
+  <h2>Children's funerals</h2>
+  <p>
+    There is no burial or cremation fee for anyone under 18 in Scotland, including a
+    stillborn baby, and we make no charge of our own for a child's funeral.{' '}
+    <a href="/funeral-services/childrens-funerals/">More about children's funerals</a>.
+  </p>
+
+  <h2>Other help</h2>
+  <ul>
+    <li>
+      <strong>The person's estate.</strong> Funeral costs are usually the first thing paid
+      from an estate, and banks will often release money for a funeral bill before probate
+      is settled. We can invoice the estate directly.
+    </li>
+    <li>
+      <strong>Employer and pension schemes.</strong> Many pay a death-in-service or
+      funeral benefit. Worth asking, and easily forgotten.
+    </li>
+    <li>
+      <strong>Trade unions and armed forces charities.</strong> Both frequently help with
+      funeral costs for members and veterans.
+    </li>
+    <li>
+      <strong>A simpler funeral.</strong> A{' '}
+      <a href="/funeral-services/direct-cremation/">direct cremation</a> costs
+      considerably less, and a gathering can be held later, in your own time, for very
+      little.
+    </li>
+  </ul>
+
+  <h2>If none of that is enough</h2>
+  <p>
+    Telephone us anyway. We would far rather have the conversation than have a family go
+    without a funeral they can bear, or take on a debt they cannot manage. There is
+    almost always something that can be worked out.
+  </p>
+
+  <Callout tone="accent">
+    <p>
+      <a href={CONTACT.phoneHref} class="font-semibold">{CONTACT.phone}</a> — any hour, no
+      charge for asking.
+    </p>
+  </Callout>
+
+  <p class="text-sm text-ink-muted">
+    Figures shown are for the {FSP.taxYear} tax year and were last checked on{' '}
+    {new Date(FSP.lastVerified).toLocaleDateString('en-GB', {
+      day: 'numeric',
+      month: 'long',
+      year: 'numeric',
+    })}. Rates are reviewed by the Scottish Government each April. For the current
+    official position, see <a href={FSP.source} rel="noopener">mygov.scot</a>.
+  </p>
+</Page>

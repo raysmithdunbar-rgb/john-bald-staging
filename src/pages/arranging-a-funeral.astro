@@ -1,0 +1,127 @@
+---
+import Page from '../layouts/Page.astro';
+import Callout from '../components/Callout.astro';
+import { CONTACT } from '../data/site';
+
+const breadcrumbs = [{ name: 'Arranging a funeral', url: '/arranging-a-funeral/' }];
+---
+
+<Page
+  title="Arranging a Funeral in Dunbar & East Lothian"
+  heading="Arranging the funeral"
+  description="What happens when you sit down with us to arrange a funeral in Dunbar: the decisions involved, how long it takes, and what you will be asked."
+  standfirst="One conversation, at your pace. Twenty minutes or two hours — both are fine, and we have no timetable."
+  breadcrumbs={breadcrumbs}
+>
+  <p>
+    Arranging a funeral is mostly a conversation. We will ask what the person was like,
+    what they would have wanted, and what matters to you. Everything practical follows
+    from that. You do not need to arrive having decided anything.
+  </p>
+
+  <h2>Where we meet</h2>
+  <p>
+    At our funeral home in Dunbar, or at your own home if you would rather not go
+    anywhere. A lot of families find it easier at their own kitchen table, and we are
+    happy to come to you anywhere in East Lothian or Berwickshire.
+  </p>
+
+  <h2>What we will talk about</h2>
+
+  <h3>Burial or cremation</h3>
+  <p>
+    If the person left no instruction, this is usually the first decision. Neither is more
+    correct than the other, and cost is a legitimate part of the decision.{' '}
+    <a href="/funeral-services/burial/">Burial</a> and{' '}
+    <a href="/funeral-services/cremation/">cremation</a> are both explained in more
+    detail, along with{' '}
+    <a href="/funeral-services/natural-burial/">natural burial</a> and{' '}
+    <a href="/funeral-services/direct-cremation/">direct cremation</a> if you would like
+    something simpler.
+  </p>
+
+  <h3>Where and when</h3>
+  <p>
+    A church, the crematorium chapel, a graveside, our own funeral home, or somewhere
+    that meant something to them. We will check what is available and work around family
+    who need to travel. We have written up{' '}
+    <a href="/directory/crematoria/">what to expect at each of the local crematoria</a>{' '}
+    if it helps to picture it.
+  </p>
+
+  <h3>Who will lead the service</h3>
+  <p>
+    A minister, a priest, a humanist or independent celebrant, or a member of the family.
+    We know the local ministers and celebrants well and will suggest someone we think
+    will suit you. There is no obligation to have anyone at all.
+  </p>
+
+  <h3>The coffin</h3>
+  <p>
+    We carry the full range from Ecoffins — willow, bamboo, banana leaf, pandanus, and
+    fully recycled cardboard — alongside traditional wooden coffins. You can{' '}
+    <a href="/coffins/">see the whole range</a> before you come in, so it is not a
+    decision made cold in front of a catalogue.
+  </p>
+
+  <h3>Everything else</h3>
+  <p>
+    Cars, flowers, notices in the local papers, orders of service, music, donations in
+    lieu, a reception afterwards, and what happens to the ashes. Some families want all
+    of it and some want none. Both are perfectly normal.
+  </p>
+
+  <Callout title="What you will not be asked to do">
+    <ul>
+      <li>Decide anything on the spot</li>
+      <li>Sign anything at the first meeting</li>
+      <li>Justify a budget</li>
+      <li>Explain why you do or do not want something</li>
+    </ul>
+  </Callout>
+
+  <h2>Costs</h2>
+  <p>
+    We will give you a written estimate covering everything discussed, itemised, before
+    you commit to anything. You are welcome to take it home and think about it, or to
+    compare it with another funeral director — we would rather you were sure.
+  </p>
+  <p>
+    Our{' '}
+    <a href="/funeral-costs/standardised-price-list/">Standardised Price List</a> is
+    published here, displayed in our window and available in print. If money is a worry,
+    say so early — there is often{' '}
+    <a href="/funeral-costs/help-with-funeral-costs/">more help available</a> than people
+    expect, and we can apply for it on your behalf.
+  </p>
+
+  <h2>Seeing the person who has died</h2>
+  <p>
+    You can visit whenever you would like, for as long as you would like, and as often as
+    you would like. If you want to help dress them or place something in the coffin, you
+    can. If you would rather remember them as they were, that is right too. Nobody will
+    think anything of either choice.
+  </p>
+
+  <h2>On the day</h2>
+  <p>
+    We will be there from the start and will stay until everyone has gone. Our job is to
+    take every practical worry off you so that you can be present with your family
+    instead of managing the arrangements.
+  </p>
+
+  <h2>Afterwards</h2>
+  <p>
+    We will help with ashes, memorials, headstones and the paperwork that keeps arriving
+    for months. And if you simply want to come in for a blether some weeks later, the
+    door is open — a lot of people do, and it is never an imposition.
+  </p>
+
+  <Callout tone="accent">
+    <p>
+      To arrange a time to meet, telephone{' '}
+      <a href={CONTACT.phoneHref} class="font-semibold">{CONTACT.phone}</a> or{' '}
+      <a href="/contact/">send us a message</a>.
+    </p>
+  </Callout>
+</Page>

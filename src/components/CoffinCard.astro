@@ -1,0 +1,50 @@
+---
+import { Image } from 'astro:assets';
+import type { CollectionEntry } from 'astro:content';
+
+interface Props {
+  coffin: CollectionEntry<'coffins'>;
+}
+
+const { coffin } = Astro.props;
+const d = coffin.data;
+---
+
+<li class="flex flex-col border border-line bg-paper-warm">
+  {
+    d.image ? (
+      <Image
+        src={d.image}
+        alt={d.imageAlt!}
+        widths={[300, 600]}
+        sizes="(min-width: 1024px) 300px, (min-width: 640px) 50vw, 100vw"
+        class="aspect-[4/3] w-full object-cover"
+        loading="lazy"
+      />
+    ) : (
+      /* Placeholder keeps the grid even until photography arrives, without
+         pretending to be an image or looking like a broken one. */
+      <div
+        class="flex aspect-[4/3] w-full items-center justify-center border-b border-line bg-paper-deep"
+        aria-hidden="true"
+      >
+        <span class="text-sm uppercase tracking-widest text-ink-muted">
+          {d.material}
+        </span>
+      </div>
+    )
+  }
+
+  <div class="flex flex-1 flex-col p-6">
+    <p class="text-xs uppercase tracking-widest text-ink-muted">{d.material}</p>
+    <h3 class="mt-2 font-serif text-xl">
+      <a href={`/coffins/${coffin.id}/`} class="no-underline hover:underline">
+        {d.name}
+      </a>
+    </h3>
+    <p class="mt-3 flex-1 text-ink-soft">{d.summary}</p>
+    <p class="mt-4 text-sm text-ink-muted">
+      Suitable for {d.suitableFor.join(', ').toLowerCase()}
+    </p>
+  </div>
+</li>

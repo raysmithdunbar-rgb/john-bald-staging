@@ -1,0 +1,104 @@
+---
+import { getCollection } from 'astro:content';
+import Page from '../../layouts/Page.astro';
+import Callout from '../../components/Callout.astro';
+import CoffinCard from '../../components/CoffinCard.astro';
+import { CONTACT } from '../../data/site';
+
+const breadcrumbs = [{ name: 'Coffins', url: '/coffins/' }];
+
+const coffins = (await getCollection('coffins')).sort(
+  (a, b) => a.data.order - b.data.order
+);
+
+const ecoMaterials = ['Willow', 'Bamboo', 'Pandanus', 'Banana leaf', 'Cardboard', 'Shroud'];
+const eco = coffins.filter((c) => ecoMaterials.includes(c.data.material));
+const other = coffins.filter((c) => !ecoMaterials.includes(c.data.material));
+---
+
+<Page
+  title="Coffins — Eco, Willow, Bamboo & Traditional | John Bald"
+  heading="Coffins"
+  description="The full Ecoffins range in Dunbar: willow, bamboo, pandanus, banana leaf and recycled cardboard, alongside traditional wooden coffins. Fully biodegradable options."
+  standfirst="The full Ecoffins range, alongside traditional wooden coffins. Have a look before you come in, so it is not a decision made cold across a desk."
+  breadcrumbs={breadcrumbs}
+  wide={true}
+>
+  <div class="prose-jb">
+    <p>
+      Choosing a coffin is one of the few decisions in a funeral that is genuinely about
+      taste rather than logistics, and it is the one families most often feel rushed
+      through. These pages are here so you can think about it in your own time.
+    </p>
+    <p>
+      We supply the complete range from <a href="https://www.ecoffins.co.uk/" rel="noopener">Ecoffins</a>,
+      who have been making handwoven natural coffins for over twenty years, as well as
+      conventional wooden coffins. Every coffin here is suitable for cremation as well as
+      burial unless the page says otherwise.
+    </p>
+  </div>
+
+  <h2 class="mt-14 font-serif text-3xl">Natural and eco coffins</h2>
+  <p class="mt-3 max-w-2xl text-ink-soft">
+    Handwoven from fast-growing renewable materials, or made from recycled board.
+    No plastic, no metal, no screws and no staples.
+  </p>
+
+  <ul class="mt-8 grid gap-8 sm:grid-cols-2 lg:grid-cols-3">
+    {eco.map((coffin) => <CoffinCard coffin={coffin} />)}
+  </ul>
+
+  <h2 class="mt-16 font-serif text-3xl">Traditional coffins, urns and keepsakes</h2>
+
+  <ul class="mt-8 grid gap-8 sm:grid-cols-2 lg:grid-cols-3">
+    {other.map((coffin) => <CoffinCard coffin={coffin} />)}
+  </ul>
+
+  <div class="prose-jb mt-16">
+    <Callout tone="accent" title="How to order one">
+      <p>
+        Coffins are supplied through us rather than bought directly — Ecoffins sell only
+        to funeral directors, which is true of every coffin maker in the UK. Tell us which
+        one you would like and we will arrange it, usually within two working days.
+      </p>
+      <p class="mt-3">
+        Telephone <a href={CONTACT.phoneHref} class="font-semibold">{CONTACT.phone}</a>{' '}
+        or <a href="/contact/">send us a message</a> and we will tell you the cost of any
+        coffin here, with no obligation.
+      </p>
+    </Callout>
+
+    <h2>A few things worth knowing</h2>
+    <ul>
+      <li>
+        <strong>Eco does not mean flimsy.</strong> Every coffin here is tested to carry
+        safely and is used routinely for burial and cremation.
+      </li>
+      <li>
+        <strong>You can use a natural coffin anywhere.</strong> You do not need a natural
+        burial ground to choose willow or cardboard — they are perfectly usual in an
+        ordinary cemetery or crematorium.
+      </li>
+      <li>
+        <strong>Price varies more than you would expect.</strong> Cardboard is the least
+        expensive by some margin; solid hardwood the most. The woven coffins sit between.
+      </li>
+      <li>
+        <strong>You may buy a coffin elsewhere.</strong> If you would rather source your
+        own, or make one, we will use it. Just tell us, and we will check the dimensions
+        with the crematorium or cemetery beforehand.
+      </li>
+    </ul>
+
+    <p>
+      <a href="/funeral-services/natural-burial/">More about natural burial</a> ·{' '}
+      <a href="/funeral-costs/">What a funeral costs</a>
+    </p>
+  </div>
+</Page>
+
+<!--
+  Photography: each coffin needs a real image before launch. Confirm with Ecoffins
+  which trade images may be used publicly, and confirm indicative pricing the client
+  is willing to publish — `indicativePrice` is null across the range until then.
+-->

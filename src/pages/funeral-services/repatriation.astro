@@ -1,0 +1,97 @@
+---
+import Page from '../../layouts/Page.astro';
+import Callout from '../../components/Callout.astro';
+import { CONTACT } from '../../data/site';
+
+const breadcrumbs = [
+  { name: 'Funerals we arrange', url: '/funeral-services/' },
+  { name: 'Repatriation', url: '/funeral-services/repatriation/' },
+];
+---
+
+<Page
+  title="Repatriation — Bringing Someone Home"
+  heading="Repatriation"
+  description="Bringing someone home to East Lothian from elsewhere in the UK or from abroad, or arranging for them to travel onward. John Bald Funeral Directors, Dunbar."
+  standfirst="Whether they need to come home to Dunbar, or to go somewhere else entirely."
+  breadcrumbs={breadcrumbs}
+>
+  <p>
+    When someone dies away from home, the practical side becomes considerably more
+    complicated at exactly the moment you have least capacity for it. We handle all of it.
+  </p>
+
+  <h2>Bringing someone home</h2>
+
+  <h3>From elsewhere in the UK</h3>
+  <p>
+    Straightforward. We will liaise with the funeral director, hospital or coroner where
+    the person died and bring them back to Dunbar, usually within a few days. There are
+    no special documents needed for travel within the UK, though a death in England or
+    Wales is registered under different rules from Scotland and we will explain what that
+    means for you.
+  </p>
+
+  <h3>From abroad</h3>
+  <p>
+    More involved, and it takes longer — typically one to three weeks, depending on the
+    country. We work with agents in most countries and will manage the whole process:
+  </p>
+  <ul>
+    <li>Registering the death in the country where it happened</li>
+    <li>Obtaining the local death certificate and having it translated</li>
+    <li>Arranging embalming, which most airlines require for repatriation</li>
+    <li>A zinc-lined coffin, also usually required</li>
+    <li>Consular paperwork and the certificate authorising removal</li>
+    <li>Airline arrangements and customs clearance at this end</li>
+    <li>Collecting the person from the airport and bringing them here</li>
+  </ul>
+
+  <Callout title="If you are dealing with this right now">
+    <p>
+      Telephone us before you agree anything with anyone abroad. Local funeral directors
+      overseas sometimes quote very high prices to families in distress, and we can often
+      arrange the same thing for considerably less through our own agents. There is no
+      charge for that conversation.
+    </p>
+    <p class="mt-3">
+      If the person had travel insurance, check it first — repatriation is frequently
+      covered, and the insurer may want to appoint their own agent.
+    </p>
+  </Callout>
+
+  <h3>The Foreign Office</h3>
+  <p>
+    The FCDO can help with registering a death abroad and can put you in touch with local
+    authorities, though they cannot pay any costs. If a death abroad has just been
+    reported to you, they are usually the right first call after us.
+  </p>
+
+  <h2>Taking someone from here to elsewhere</h2>
+  <p>
+    We also arrange the journey the other way — for someone who has died here but whose
+    family, faith or wishes mean they should be buried somewhere else, in another part of
+    the UK or another country. The paperwork is different in each direction, and we
+    handle it either way.
+  </p>
+  <p>
+    Where a faith requires burial within a particular time, tell us at the very first
+    call. It changes the order things need to happen in, and we will work to it.
+  </p>
+
+  <h2>What it costs</h2>
+  <p>
+    Repatriation costs depend almost entirely on the country and the airline, so we cannot
+    put a single figure on this page honestly. What we will do is get you a full written
+    breakdown before anything is committed to, showing what is our fee and what is being
+    paid to third parties. We do not add a markup to third-party costs.
+  </p>
+
+  <Callout tone="accent">
+    <p>
+      Telephone{' '}
+      <a href={CONTACT.phoneHref} class="font-semibold">{CONTACT.phone}</a> at any hour.
+      If you are calling from abroad, the number is +44 1368 863636.
+    </p>
+  </Callout>
+</Page>

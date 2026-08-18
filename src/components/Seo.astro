@@ -1,0 +1,43 @@
+---
+import { SITE } from '../data/site';
+
+interface Props {
+  title: string;
+  description: string;
+  /** Omit trailing slash handling — Astro.url.pathname is used for canonical. */
+  noindex?: boolean;
+  ogImage?: string;
+}
+
+const { title, description, noindex = false, ogImage = '/og-default.jpg' } = Astro.props;
+
+// Staging builds (STAGING=1) are held out of every search index, site-wide.
+// A crawlable copy of this site on a temporary host would compete with the
+// real domain for its own brand terms and could put a bereaved family in
+// front of unconfirmed prices. Production builds are unaffected.
+const isStaging = import.meta.env.STAGING === '1';
+const blockIndexing = noindex || isStaging;
+
+const canonical = new URL(Astro.url.pathname, Astro.site ?? SITE.url).href;
+// Append the short brand, not the full company name — the full name costs 30
+// characters and pushes almost every title past the ~60 search engines display.
+const fullTitle = title.includes(SITE.shortName) ? title : `${title} | ${SITE.shortName}`;
+const ogImageUrl = new URL(ogImage, Astro.site ?? SITE.url).href;
+---
+
+<title>{fullTitle}</title>
+<meta name="description" content={description} />
+<link rel="canonical" href={canonical} />
+{blockIndexing && <meta name="robots" content="noindex, nofollow" />}
+
+<meta property="og:type" content="website" />
+<meta property="og:site_name" content={SITE.name} />
+<meta property="og:title" content={fullTitle} />
+<meta property="og:description" content={description} />
+<meta property="og:url" content={canonical} />
+<meta property="og:image" content={ogImageUrl} />
+<meta property="og:locale" content="en_GB" />
+
+<meta name="twitter:card" content="summary_large_image" />
+<meta name="twitter:title" content={fullTitle} />
+<meta name="twitter:description" content={description} />

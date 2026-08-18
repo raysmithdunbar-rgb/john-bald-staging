@@ -1,0 +1,20 @@
+---
+import Page from '../../layouts/Page.astro';
+import { CONTACT } from '../../data/site';
+---
+
+<Page
+  title="Thank you — your message has been sent"
+  heading="Thank you"
+  description="Your message has been sent to John Bald Funeral Directors in Dunbar. We will come back to you within one working day, or sooner if you telephone us."
+  noindex={true}
+>
+  <p>We have your message and will come back to you within one working day.</p>
+
+  <p>
+    If your circumstances change and you need us sooner, telephone{' '}
+    <a href={CONTACT.phoneHref} class="font-semibold">{CONTACT.phone}</a> at any hour.
+  </p>
+
+  <p><a href="/">Back to the homepage</a></p>
+</Page>

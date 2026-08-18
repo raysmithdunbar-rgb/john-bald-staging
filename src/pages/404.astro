@@ -1,0 +1,30 @@
+---
+import Page from '../layouts/Page.astro';
+import { CONTACT } from '../data/site';
+---
+
+<Page
+  title="Page not found"
+  heading="We cannot find that page"
+  description="That page does not exist. Here is where to find what you were looking for."
+  standfirst="Something has moved, or a link is wrong. Here is where to go instead."
+  noindex={true}
+>
+  <p>
+    If you were looking for something urgent, telephone{' '}
+    <a href={CONTACT.phoneHref} class="font-semibold">{CONTACT.phone}</a> — any hour, and
+    one of us will answer.
+  </p>
+
+  <h2>The pages people usually want</h2>
+  <ul>
+    <li><a href="/someone-has-died/">Someone has died — what to do now</a></li>
+    <li><a href="/funeral-costs/standardised-price-list/">Our prices</a></li>
+    <li><a href="/funeral-plans/">Funeral plans</a></li>
+    <li><a href="/guides/">Guides to funerals in Scotland</a></li>
+    <li><a href="/directory/">Crematoria, cemeteries and registrars</a></li>
+    <li><a href="/contact/">Contact us</a></li>
+  </ul>
+
+  <p><a href="/">Back to the homepage</a></p>
+</Page>

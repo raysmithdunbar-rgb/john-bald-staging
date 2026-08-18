@@ -1,0 +1,77 @@
+---
+import { getCollection } from 'astro:content';
+import Page from '../../../layouts/Page.astro';
+import Callout from '../../../components/Callout.astro';
+import DirectoryCard from '../../../components/DirectoryCard.astro';
+
+const breadcrumbs = [
+  { name: 'Directory', url: '/directory/' },
+  { name: 'Registration offices', url: '/directory/registrars/' },
+];
+
+const registrars = (await getCollection('registrars')).sort(
+  (a, b) =>
+    (a.data.distanceFromDunbarMiles ?? 999) - (b.data.distanceFromDunbarMiles ?? 999)
+);
+---
+
+<Page
+  title="Where to Register a Death in Scotland"
+  heading="Registration offices"
+  description="Where to register a death across East Lothian, Midlothian, Edinburgh and the Scottish Borders: addresses, booking arrangements and what to take."
+  standfirst="You have eight days in Scotland — and you may use any office in the country, not only your own."
+  breadcrumbs={breadcrumbs}
+  wide={true}
+>
+  <div class="prose-jb">
+    <Callout tone="accent" title="The rule that surprises people">
+      <p>
+        In Scotland a death may be registered at <strong>any</strong> registration office
+        in the country. It does not have to be the district where the person lived, or
+        where they died. If another office can see you sooner, or is simply easier to get
+        to, you are entitled to use it.
+      </p>
+    </Callout>
+  </div>
+
+  <ul class="mt-10 grid gap-8 sm:grid-cols-2">
+    {
+      registrars.map((entry) => (
+        <DirectoryCard
+          href={`/directory/registrars/${entry.id}/`}
+          name={entry.data.name}
+          summary={entry.data.summary}
+          locality={entry.data.locality}
+          region={entry.data.region}
+          distanceFromDunbarMiles={entry.data.distanceFromDunbarMiles}
+          meta={entry.data.appointmentOnly ? 'Appointment required' : undefined}
+        />
+      ))
+    }
+  </ul>
+
+  <div class="prose-jb mt-14">
+    <h2>What to take, wherever you go</h2>
+    <p>
+      The Medical Certificate of Cause of Death is usually sent to the registrar
+      electronically, so you may not need to carry anything at all. Take what you can find
+      of the person's birth certificate, marriage or civil partnership certificate,
+      National Insurance number and pension details, plus your own photo identification.
+    </p>
+    <p>Missing paperwork almost never stops a registration. Go anyway.</p>
+
+    <h2>Buy enough certificates</h2>
+    <p>
+      The Certificate of Registration of Death, which we need for the funeral, is free.
+      The full extracts — what people call death certificates — are chargeable, and you
+      will need one for each bank, pension provider and insurer. Most families need
+      between four and eight. Buying them at the appointment costs less than ordering
+      them later.
+    </p>
+
+    <p>
+      <a href="/someone-has-died/registering-a-death/">Our full guide to registering a death</a>{' '}
+      · <a href="/directory/">Back to the directory</a>
+    </p>
+  </div>
+</Page>

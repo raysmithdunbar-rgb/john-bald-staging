@@ -1,0 +1,140 @@
+---
+import Page from '../../layouts/Page.astro';
+import Callout from '../../components/Callout.astro';
+import { CONTACT } from '../../data/site';
+import { PRICING } from '../../data/pricing';
+
+const breadcrumbs = [
+  { name: 'Our prices', url: '/funeral-costs/' },
+  { name: 'Standardised Price List', url: '/funeral-costs/standardised-price-list/' },
+];
+
+const money = (value: number | null) =>
+  value === null ? null : `£${value.toLocaleString('en-GB', { minimumFractionDigits: 2 })}`;
+---
+
+<Page
+  title="Standardised Price List — John Bald, Dunbar"
+  heading="Standardised Price List"
+  description="Our Standardised Price List, published in the format required of every UK funeral director so you can compare like with like. John Bald Funeral Directors, Dunbar."
+  standfirst="Published in the format every funeral director in the UK must use, so that you can compare us against anyone else, line for line."
+  breadcrumbs={breadcrumbs}
+>
+  {
+    !PRICING.confirmed && (
+      <Callout tone="accent" title="Prices are being confirmed">
+        <p>
+          Our current figures are being finalised ahead of our move to Countess Crescent
+          and will appear here shortly. In the meantime, please telephone{' '}
+          <a href={CONTACT.phoneHref} class="font-semibold">{CONTACT.phone}</a> and we
+          will tell you exactly what anything costs. A printed copy of this list is
+          available at our funeral home and displayed in our window.
+        </p>
+      </Callout>
+    )
+  }
+
+  <p>
+    The Competition and Markets Authority requires every funeral director in the United
+    Kingdom to publish this list, in this order, using these headings. That is deliberate:
+    it means you can put our list beside anyone else's and compare them properly, rather
+    than trying to work out whether two different quotes cover the same things.
+  </p>
+
+  <h2>Attended funeral</h2>
+  <p>
+    A funeral where family and friends are present, whether that is at a crematorium, a
+    cemetery, a church or here at our funeral home.
+  </p>
+
+  {
+    PRICING.attended.total !== null ? (
+      <p class="text-2xl font-semibold">{money(PRICING.attended.total)}</p>
+    ) : (
+      <p class="text-xl text-ink-muted">Price to be confirmed — please telephone us.</p>
+    )
+  }
+
+  <h3>This includes</h3>
+  <ul>
+    {PRICING.attended.includes.map((item) => <li>{item}</li>)}
+  </ul>
+
+  <h3>This does not include</h3>
+  <ul>
+    {PRICING.attended.excludes.map((item) => <li>{item}</li>)}
+  </ul>
+
+  <h2>Unattended funeral</h2>
+  <p>
+    A funeral where nobody attends — usually a direct cremation. We take the person who
+    has died to the crematorium at a time we arrange, and return the ashes to you
+    afterwards.{' '}
+    <a href="/funeral-services/direct-cremation/">More about direct cremation</a>.
+  </p>
+
+  {
+    PRICING.unattended.total !== null ? (
+      <p class="text-2xl font-semibold">{money(PRICING.unattended.total)}</p>
+    ) : (
+      <p class="text-xl text-ink-muted">Price to be confirmed — please telephone us.</p>
+    )
+  }
+
+  <h3>This includes</h3>
+  <ul>
+    {PRICING.unattended.includes.map((item) => <li>{item}</li>)}
+  </ul>
+
+  <h3>This does not include</h3>
+  <ul>
+    {PRICING.unattended.excludes.map((item) => <li>{item}</li>)}
+  </ul>
+
+  <h2>Fees we pay on your behalf</h2>
+  <p>
+    These are set by other people — councils, crematoria, ministers — not by us. We pay
+    them for you and pass them on exactly as charged, with nothing added.
+  </p>
+  <ul>
+    {
+      PRICING.thirdParty.map((fee) => (
+        <li>
+          <strong>{fee.name}</strong> — {fee.note}
+        </li>
+      ))
+    }
+  </ul>
+
+  <Callout title="You are not obliged to buy anything else">
+    <p>
+      You may buy only the attended or unattended funeral above, and nothing more. You are
+      under no obligation to take any additional item we offer, and we will not press you
+      to. Anything else you might want is set out separately on our{' '}
+      <a href="/funeral-costs/additional-options-price-list/">
+        Additional Options Price List
+      </a>.
+    </p>
+  </Callout>
+
+  <h2>Help with paying</h2>
+  <p>
+    If money is a worry, please say so at the start rather than at the end. Funeral
+    Support Payment is available in Scotland and can be paid straight to us, so it never
+    has to pass through your hands.{' '}
+    <a href="/funeral-costs/help-with-funeral-costs/">More about help with funeral costs</a>.
+  </p>
+
+  <h2>Where else you can see this list</h2>
+  <p>
+    Displayed in the window of our funeral home, available in print to take away, and
+    given to you before you commit to anything. You will also receive a full written
+    estimate covering everything you have chosen.
+  </p>
+
+  <p class="text-sm text-ink-muted">
+    {PRICING.confirmed
+      ? `Effective from ${PRICING.effectiveFrom}. Last reviewed ${PRICING.lastReviewed}.`
+      : 'This list is published in accordance with the Funerals Market Investigation Order 2021.'}
+  </p>
+</Page>

@@ -1,0 +1,103 @@
+---
+import { getCollection } from 'astro:content';
+import Page from '../../layouts/Page.astro';
+import { CONTACT } from '../../data/site';
+
+const breadcrumbs = [{ name: 'Guides', url: '/guides/' }];
+
+const guides = (await getCollection('guides')).sort((a, b) => a.data.order - b.data.order);
+const featured = guides.filter((g) => g.data.featured);
+
+const topics = [
+  'When someone dies',
+  'Money and paperwork',
+  'Choosing a funeral',
+  'Planning ahead',
+  'Grief and support',
+] as const;
+---
+
+<Page
+  title="Guides to Funerals in Scotland — John Bald, Dunbar"
+  heading="Guides"
+  description="Plain-language guides to funerals in Scotland: what to do when someone dies, registering a death, funeral costs, Funeral Support Payment, funeral plans and more."
+  standfirst="Written for families in the east of Scotland, and free for anyone to use — including if you are arranging a funeral with someone else."
+  breadcrumbs={breadcrumbs}
+  wide={true}
+>
+  <div class="prose-jb">
+    <p>
+      Most of what families need is not really about funerals. It is about which office,
+      which form, which fee, and who to telephone. Scotland does several of these things
+      differently from England and Wales, and generic advice written for England is a
+      common source of confusion here.
+    </p>
+    <p>
+      So these are specific to Scotland, and where it matters, specific to East Lothian
+      and the Borders.
+    </p>
+  </div>
+
+  <section class="mt-14">
+    <h2 class="font-serif text-2xl">Start here</h2>
+    <ul class="mt-6 grid gap-8 sm:grid-cols-2">
+      {
+        featured.map((guide) => (
+          <li class="flex flex-col border border-poppy bg-poppy-tint p-6">
+            <p class="text-xs uppercase tracking-widest text-ink-muted">
+              {guide.data.topic}
+            </p>
+            <h3 class="mt-2 font-serif text-xl">
+              <a href={`/guides/${guide.id}/`} class="no-underline hover:underline">
+                {guide.data.title}
+              </a>
+            </h3>
+            <p class="mt-3 flex-1 text-ink-soft">{guide.data.standfirst}</p>
+          </li>
+        ))
+      }
+    </ul>
+  </section>
+
+  {
+    topics.map((topic) => {
+      const inTopic = guides.filter((g) => g.data.topic === topic);
+      if (inTopic.length === 0) return null;
+      return (
+        <section class="mt-14">
+          <h2 class="font-serif text-2xl">{topic}</h2>
+          <ul class="mt-6 grid gap-x-10 gap-y-6 sm:grid-cols-2">
+            {inTopic.map((guide) => (
+              <li class="border-b border-line pb-5">
+                <h3 class="font-serif text-xl">
+                  <a href={`/guides/${guide.id}/`} class="no-underline hover:underline">
+                    {guide.data.title}
+                  </a>
+                </h3>
+                <p class="mt-2 text-ink-soft">{guide.data.standfirst}</p>
+              </li>
+            ))}
+          </ul>
+        </section>
+      );
+    })
+  }
+
+  <div class="prose-jb mt-16">
+    <h2>Looking for something specific?</h2>
+    <ul>
+      <li>
+        <a href="/directory/">Crematoria, cemeteries and registrars</a> across the east of
+        Scotland
+      </li>
+      <li><a href="/bereavement-support/">Bereavement support and helplines</a></li>
+      <li><a href="/funeral-costs/">Our own prices</a></li>
+    </ul>
+    <p>
+      If what you need is not here, telephone{' '}
+      <a href={CONTACT.phoneHref} class="font-semibold">{CONTACT.phone}</a> and ask. We
+      would rather answer the question than have you not find it — and if it comes up
+      more than once, we will write it up.
+    </p>
+  </div>
+</Page>

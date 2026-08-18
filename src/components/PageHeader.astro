@@ -1,0 +1,47 @@
+---
+interface Crumb {
+  name: string;
+  url: string;
+}
+
+interface Props {
+  title: string;
+  standfirst?: string;
+  breadcrumbs?: Crumb[];
+}
+
+const { title, standfirst, breadcrumbs } = Astro.props;
+---
+
+<div class="border-b border-line bg-paper-warm">
+  <div class="mx-auto max-w-6xl px-5 py-12 sm:px-8 sm:py-16">
+    {
+      breadcrumbs && breadcrumbs.length > 0 && (
+        <nav aria-label="Breadcrumb" class="mb-6">
+          <ol class="flex flex-wrap items-center gap-x-2 text-sm text-ink-muted">
+            {breadcrumbs.map((crumb, i) => (
+              <li class="flex items-center gap-2">
+                {i > 0 && <span aria-hidden="true">/</span>}
+                {i === breadcrumbs.length - 1 ? (
+                  <span aria-current="page">{crumb.name}</span>
+                ) : (
+                  <a href={crumb.url} class="text-ink-muted no-underline hover:underline">
+                    {crumb.name}
+                  </a>
+                )}
+              </li>
+            ))}
+          </ol>
+        </nav>
+      )
+    }
+
+    <h1 class="max-w-3xl text-3xl sm:text-4xl">{title}</h1>
+
+    {
+      standfirst && (
+        <p class="mt-5 max-w-2xl text-lg text-ink-soft sm:text-xl">{standfirst}</p>
+      )
+    }
+  </div>
+</div>

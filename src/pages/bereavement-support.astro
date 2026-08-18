@@ -1,0 +1,186 @@
+---
+import Page from '../layouts/Page.astro';
+import Callout from '../components/Callout.astro';
+import { CONTACT } from '../data/site';
+
+const breadcrumbs = [{ name: 'Bereavement support', url: '/bereavement-support/' }];
+
+/**
+ * Helpline numbers verified 2026-08-18 against each organisation's own site.
+ * Re-check annually — a wrong number on this page is worse than no page.
+ */
+const support = [
+  {
+    group: 'General bereavement support',
+    orgs: [
+      {
+        name: 'Cruse Scotland',
+        detail:
+          'Free bereavement helpline and one-to-one counselling across Scotland, including for children and young people.',
+        phone: '0808 802 6161',
+        phoneHref: 'tel:08088026161',
+        email: 'support@crusescotland.org.uk',
+        url: 'https://www.crusescotland.org.uk/',
+      },
+      {
+        name: 'Samaritans',
+        detail:
+          'Any hour of any day, for anyone struggling to cope. You do not have to be suicidal to call.',
+        phone: '116 123',
+        phoneHref: 'tel:116123',
+        url: 'https://www.samaritans.org/',
+      },
+      {
+        name: 'Marie Curie',
+        detail:
+          'Practical and emotional support after a death, and information about terminal illness.',
+        url: 'https://www.mariecurie.org.uk/',
+      },
+    ],
+  },
+  {
+    group: 'When a baby or child dies',
+    orgs: [
+      {
+        name: 'Held In Our Hearts',
+        detail:
+          'Edinburgh-based baby loss charity offering counselling and befriending across the Lothians and beyond. Support from people who have been through it themselves.',
+        url: 'https://heldinourhearts.org.uk/',
+      },
+      {
+        name: 'Sands',
+        detail:
+          'The stillbirth and neonatal death charity. Support whether your baby died recently or many years ago.',
+        phone: '0808 164 3332',
+        phoneHref: 'tel:08081643332',
+        email: 'helpline@sands.org.uk',
+        url: 'https://www.sands.org.uk/',
+      },
+      {
+        name: 'Child Bereavement UK',
+        detail:
+          'For families when a child of any age dies, and for children who are grieving someone else.',
+        phone: '0800 02 888 40',
+        phoneHref: 'tel:08000288840',
+        url: 'https://www.childbereavementuk.org/',
+      },
+    ],
+  },
+  {
+    group: 'Particular circumstances',
+    orgs: [
+      {
+        name: 'WAY Widowed and Young',
+        detail: 'For anyone widowed under the age of 50.',
+        url: 'https://www.widowedandyoung.org.uk/',
+      },
+      {
+        name: 'Age Scotland',
+        detail:
+          'Practical help for older people, including after the death of a partner — benefits, housing and isolation.',
+        url: 'https://www.agescotland.org.uk/',
+      },
+      {
+        name: 'SAMH',
+        detail: 'Scottish Association for Mental Health, if grief is affecting your health.',
+        url: 'https://www.samh.org.uk/',
+      },
+    ],
+  },
+];
+---
+
+<Page
+  title="Bereavement Support in the East of Scotland"
+  heading="Bereavement support"
+  description="Bereavement support across East Lothian, the Lothians and the Borders: helplines, counselling, baby loss support and practical help. Verified contact details."
+  standfirst="Grief does not run to the funeral's timetable. These are here whenever you want them, including a year from now."
+  breadcrumbs={breadcrumbs}
+>
+  <p>
+    The weeks after a funeral are often harder than the week before it. Everyone else
+    goes back to normal, the cards stop arriving, and you are left with it. That is not a
+    sign anything is wrong with you — it is simply what happens, and it catches almost
+    everybody by surprise.
+  </p>
+
+  <Callout title="Our door stays open">
+    <p>
+      A lot of people come back in months later, sometimes years, just for a blether. It
+      is never an imposition and there is never a charge. If you would rather speak to
+      someone who was there at the time than to a stranger, telephone{' '}
+      <a href={CONTACT.phoneHref} class="font-semibold">{CONTACT.phone}</a> or call in.
+    </p>
+  </Callout>
+
+  {
+    support.map((section) => (
+      <>
+        <h2>{section.group}</h2>
+        {section.orgs.map((org) => (
+          <div class="mb-7">
+            <h3 class="mb-1">
+              <a href={org.url} rel="noopener">{org.name}</a>
+            </h3>
+            <p class="mt-0">{org.detail}</p>
+            {org.phone && (
+              <p class="mt-1">
+                <a href={org.phoneHref} class="font-semibold">{org.phone}</a>
+                {org.email && (
+                  <>
+                    {' · '}
+                    <a href={`mailto:${org.email}`}>{org.email}</a>
+                  </>
+                )}
+              </p>
+            )}
+            {!org.phone && org.email && (
+              <p class="mt-1">
+                <a href={`mailto:${org.email}`}>{org.email}</a>
+              </p>
+            )}
+          </div>
+        ))}
+      </>
+    ))
+  }
+
+  <h2>Practical things, afterwards</h2>
+  <p>
+    Grief and paperwork arrive together, which is unfair but unavoidable. A few things
+    that catch people out:
+  </p>
+  <ul>
+    <li>
+      <strong>Tell Us Once</strong> covers government departments but not banks, private
+      pensions, insurers or utilities. Those still need doing individually.
+    </li>
+    <li>
+      <strong>Bereavement Support Payment</strong> is a separate thing from Funeral
+      Support Payment, and is for people whose husband, wife or civil partner has died.
+      It is not means-tested.
+    </li>
+    <li>
+      <strong>Confirmation</strong> is the Scottish equivalent of probate. A solicitor is
+      not always needed for a small estate.
+    </li>
+    <li>
+      <strong>Anniversaries.</strong> The first one is hard, and so is the second, which
+      nobody warns you about.
+    </li>
+  </ul>
+
+  <h2>Locally</h2>
+  <p>
+    NHS Lothian and NHS Borders both run bereavement services attached to their hospitals,
+    and your GP can refer you for counselling. Churches across East Lothian and
+    Berwickshire run bereavement groups that are open to anyone, whether or not you
+    attend. If you would like us to point you at something near Dunbar, ask — we know
+    what is running locally and who is good.
+  </p>
+
+  <p class="text-sm text-ink-muted">
+    Contact details on this page were last checked on 18 August 2026. If you find
+    something out of date, please tell us and we will correct it.
+  </p>
+</Page>

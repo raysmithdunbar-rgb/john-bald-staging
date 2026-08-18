@@ -1,0 +1,107 @@
+---
+import Page from '../layouts/Page.astro';
+import Callout from '../components/Callout.astro';
+import { SITE, CONTACT } from '../data/site';
+
+const breadcrumbs = [{ name: 'Terms of business', url: '/terms/' }];
+---
+
+<Page
+  title="Terms of Business — John Bald Funeral Directors"
+  heading="Terms of business"
+  description="Our terms of business, estimates, payment terms, complaints procedure and regulatory disclosures."
+  standfirst="How we work, what you will be given in writing, and what to do if something goes wrong."
+  breadcrumbs={breadcrumbs}
+>
+  <Callout tone="accent">
+    <p>
+      This page summarises how we work. Your own written estimate and confirmation of
+      instructions are the documents that apply to your funeral, and they take precedence
+      over anything here.
+    </p>
+  </Callout>
+
+  <h2>Who we are</h2>
+  <p>
+    John Bald Funeral Directors is a trading name of {SITE.parentCompany}, which also
+    trades as A &amp; A Doyle in Galashiels and Herkes Funeral Directors in Gorebridge.
+  </p>
+
+  <h2>Prices and estimates</h2>
+  <p>
+    Our <a href="/funeral-costs/standardised-price-list/">Standardised Price List</a> and{' '}
+    <a href="/funeral-costs/additional-options-price-list/">Additional Options Price List</a>{' '}
+    are published on this website, displayed in our window, and available in print, as
+    required by the Funerals Market Investigation Order 2021.
+  </p>
+  <p>
+    Before you commit to anything you will receive a written estimate itemising everything
+    discussed, separating our own fees from money we pay to third parties on your behalf.
+    You may take it away and think about it, and you may change your mind about any
+    element.
+  </p>
+  <p>
+    We do not add a markup to third-party fees. Where those change between the estimate
+    and the funeral — a crematorium fee rising, for example — we will tell you before the
+    funeral rather than after.
+  </p>
+
+  <h2>Payment</h2>
+  <p>
+    Our invoice is normally due within 30 days of the funeral. Where the estate is
+    settling it, we will invoice the estate and wait; banks will usually release funds for
+    a funeral bill ahead of anything else.
+  </p>
+  <p>
+    If you need longer, tell us. We would far rather agree something workable than have a
+    family avoid answering the telephone.
+  </p>
+
+  <h2>Cancelling or changing arrangements</h2>
+  <p>
+    You may change your arrangements or move to another funeral director at any point. We
+    will charge only for work already done and for third-party costs already committed,
+    and we will transfer everything promptly and without obstruction.
+  </p>
+
+  <h2>Funeral plans</h2>
+  <p>
+    We act as an introducer for Golden Charter Limited, who are authorised and regulated
+    by the Financial Conduct Authority. We receive a commission for arranging a plan.{' '}
+    <a href="/funeral-plans/">More about funeral plans</a>.
+  </p>
+
+  <h2>Our business interests</h2>
+  <p>
+    We hold no ownership interest in any crematorium, cemetery or burial ground. We
+    receive no payment for referring you to any minister, celebrant, florist, stonemason
+    or solicitor.
+  </p>
+
+  <h2>Complaints</h2>
+  <p>
+    Please tell us first, by telephoning{' '}
+    <a href={CONTACT.phoneHref} class="font-semibold">{CONTACT.phone}</a>, emailing{' '}
+    <a href={`mailto:${CONTACT.email}`}>{CONTACT.email}</a>, or asking to speak to the
+    funeral director who looked after you. Most things can be put right quickly.
+  </p>
+  <p>
+    If we cannot resolve it, funeral directors in Scotland operate under a statutory Code
+    of Practice made under the Burial and Cremation (Scotland) Act 2016, and complaints
+    may be raised with the Inspector of Funeral Directors for Scotland.
+  </p>
+
+  <h2>This website</h2>
+  <p>
+    We take care to keep the information here accurate, and every guide and directory
+    entry carries the date it was last checked. Fees and regulations set by councils,
+    crematoria and government change, sometimes without notice — please confirm anything
+    critical with us or with the relevant authority rather than relying on a web page.
+  </p>
+</Page>
+
+<!--
+  Before launch: have these terms reviewed against the client's actual contractual
+  terms and their NAFD/SAIF obligations. This page is a faithful summary of how the
+  business says it works — it is not a substitute for a solicitor's review.
+-->

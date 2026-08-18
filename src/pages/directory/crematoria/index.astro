@@ -1,0 +1,56 @@
+---
+import { getCollection } from 'astro:content';
+import Page from '../../../layouts/Page.astro';
+import DirectoryCard from '../../../components/DirectoryCard.astro';
+
+const breadcrumbs = [
+  { name: 'Directory', url: '/directory/' },
+  { name: 'Crematoria', url: '/directory/crematoria/' },
+];
+
+const crematoria = (await getCollection('crematoria')).sort(
+  (a, b) =>
+    (a.data.distanceFromDunbarMiles ?? 999) - (b.data.distanceFromDunbarMiles ?? 999)
+);
+---
+
+<Page
+  title="Crematoria in East Lothian & the Borders"
+  heading="Crematoria"
+  description="Every crematorium serving East Lothian, Edinburgh and the Scottish Borders: chapel capacity, streaming, parking, gardens of remembrance and what each one is like."
+  standfirst="Nearest to Dunbar first. What the chapel is like, how long you get, and whether you can stream the service."
+  breadcrumbs={breadcrumbs}
+  wide={true}
+>
+  <div class="prose-jb">
+    <p>
+      You are not tied to the nearest crematorium. Families choose one for all sorts of
+      reasons — where a spouse was cremated, where the gardens are, which one a parent
+      liked. These pages are here so the choice can be made on something better than a
+      postcode.
+    </p>
+  </div>
+
+  <ul class="mt-10 grid gap-8 sm:grid-cols-2 lg:grid-cols-3">
+    {
+      crematoria.map((entry) => (
+        <DirectoryCard
+          href={`/directory/crematoria/${entry.id}/`}
+          name={entry.data.name}
+          summary={entry.data.summary}
+          locality={entry.data.locality}
+          region={entry.data.region}
+          distanceFromDunbarMiles={entry.data.distanceFromDunbarMiles}
+          meta={entry.data.hasLivestream ? 'Services can be streamed' : undefined}
+        />
+      ))
+    }
+  </ul>
+
+  <div class="prose-jb mt-14">
+    <p>
+      <a href="/funeral-services/cremation/">More about arranging a cremation</a> ·{' '}
+      <a href="/directory/">Back to the directory</a>
+    </p>
+  </div>
+</Page>

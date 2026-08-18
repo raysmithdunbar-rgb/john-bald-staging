@@ -1,0 +1,123 @@
+---
+import Page from '../../layouts/Page.astro';
+import Callout from '../../components/Callout.astro';
+import { CONTACT } from '../../data/site';
+
+const breadcrumbs = [
+  { name: 'Funerals we arrange', url: '/funeral-services/' },
+  { name: 'Cremation', url: '/funeral-services/cremation/' },
+];
+---
+
+<Page
+  title="Cremation Funerals in Dunbar & East Lothian"
+  heading="Cremation"
+  description="Arranging a cremation from Dunbar: which crematorium, how long the service lasts, what happens to the ashes, and what it costs."
+  standfirst="With a full service at the crematorium, at a church beforehand, or somewhere that meant something to them."
+  breadcrumbs={breadcrumbs}
+>
+  <p>
+    Cremation is now the choice of around three quarters of families in Scotland. It does
+    not mean a smaller or lesser funeral — the service can be exactly as full as you want
+    it to be, and it opens up more choice about when and where to hold it.
+  </p>
+
+  <h2>Which crematorium</h2>
+  <p>
+    Houndwood, in Berwickshire, is the closest to Dunbar — a converted 1830s church about
+    twenty-five minutes down the A1, and quite unlike a conventional crematorium. Its one
+    real drawback is access: it stands on a hill and is difficult for anyone with mobility
+    problems, so it does not suit every family.
+  </p>
+  <p>
+    East Lothian Crematorium at Musselburgh is level throughout and about forty minutes
+    away, and is the one most families here use. Some choose an Edinburgh crematorium, and
+    families further into Berwickshire sometimes prefer Borders Crematorium near Melrose.
+    You are not tied to the nearest one.
+  </p>
+  <p>
+    We have written up each of them — the chapel, how many people it seats, the parking,
+    the music systems, how long you get, and what the surroundings are actually like — in
+    our <a href="/directory/crematoria/">crematorium directory</a>. It is worth a look if
+    you are trying to picture the day.
+  </p>
+
+  <h2>How the service works</h2>
+  <p>
+    Crematoria allocate a fixed time slot, usually 30 or 45 minutes including arriving and
+    leaving. That is enough for a full service with music, readings and a eulogy, but it
+    is a real limit and it is worth knowing about in advance.
+  </p>
+  <p>
+    If you want more time, there are two straightforward answers: book a double slot,
+    which most crematoria allow, or hold the main service at a church or at our funeral
+    home and go to the crematorium afterwards for a short committal. Plenty of families
+    in East Lothian do the second.
+  </p>
+
+  <Callout title="You do not have to go at all">
+    <p>
+      Some families hold the service somewhere else entirely and let us take the person to
+      the crematorium separately, with nobody present. It is a perfectly dignified choice
+      and more common than people think.{' '}
+      <a href="/funeral-services/direct-cremation/">More about direct cremation</a>.
+    </p>
+  </Callout>
+
+  <h2>Music, words and photographs</h2>
+  <p>
+    Every local crematorium can play recorded music, and most have a visual system for
+    photographs or a slideshow. Some can record or livestream the service for family who
+    cannot travel — worth asking about if relatives are abroad. We will handle the
+    booking and get your music to them in the right format well beforehand.
+  </p>
+
+  <h2>The paperwork</h2>
+  <p>
+    Cremation requires more forms than burial, and we complete all of them. If the death
+    has been reported to the Procurator Fiscal, we will need their clearance first, which
+    can add a few days. We will keep you posted rather than leave you wondering.
+  </p>
+
+  <h2>The ashes</h2>
+  <p>
+    The ashes are usually ready within a few days. We will collect them and keep them
+    here for as long as you need — there is no time limit and no charge for holding them.
+    Some families collect them the same week; some take a year to decide.
+  </p>
+  <p>You can then:</p>
+  <ul>
+    <li>Take them home</li>
+    <li>Bury them in a family lair or a garden of remembrance</li>
+    <li>Scatter them somewhere that mattered to the person</li>
+    <li>Divide them between family members</li>
+    <li>Have some kept in jewellery or set in glass</li>
+  </ul>
+  <p>
+    If you want to scatter on land you do not own, ask the landowner first. For the John
+    Muir Way, the beaches or the country parks, we can tell you who to speak to.
+  </p>
+
+  <h2>What it costs</h2>
+  <p>
+    Our fee is on our{' '}
+    <a href="/funeral-costs/standardised-price-list/">Standardised Price List</a>. The
+    crematorium's own fee sits on top and is paid to them, not to us — we pass it on
+    exactly as charged. Crematorium fees vary and are usually reviewed each April.
+  </p>
+  <p>There is no cremation fee in Scotland for anyone under 18.</p>
+
+  <Callout tone="accent">
+    <p>
+      To talk it through, telephone{' '}
+      <a href={CONTACT.phoneHref} class="font-semibold">{CONTACT.phone}</a>.
+    </p>
+  </Callout>
+
+  <h2>Related</h2>
+  <ul>
+    <li><a href="/directory/crematoria/">Crematoria across the east of Scotland</a></li>
+    <li><a href="/funeral-services/direct-cremation/">Direct cremation</a></li>
+    <li><a href="/guides/burial-or-cremation/">Choosing between burial and cremation</a></li>
+  </ul>
+</Page>

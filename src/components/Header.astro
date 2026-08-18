@@ -1,0 +1,104 @@
+---
+import { Image } from 'astro:assets';
+import logo from '../assets/brand/john-bald-logo-poppies.png';
+import { SITE, CONTACT } from '../data/site';
+import { PRIMARY_NAV } from '../data/nav';
+
+const path = Astro.url.pathname;
+const isCurrent = (href: string) =>
+  href === '/' ? path === '/' : path.startsWith(href);
+---
+
+<header class="border-b border-line bg-paper">
+  <a
+    href="#main"
+    class="sr-only focus:not-sr-only focus:absolute focus:left-4 focus:top-4 focus:z-50 focus:rounded focus:bg-ink focus:px-4 focus:py-3 focus:text-paper"
+  >
+    Skip to content
+  </a>
+
+  <div class="mx-auto flex max-w-6xl items-center justify-between gap-6 px-5 py-5 sm:px-8">
+    <!--
+      The logo is a full lockup — it already carries "John Bald / Funeral
+      Directors", so there is no text wordmark beside it to duplicate. The alt
+      text supplies that wording to screen readers and to anyone browsing with
+      images off.
+    -->
+    <a href="/" class="no-underline" aria-label={`${SITE.name} — home`}>
+      <Image
+        src={logo}
+        alt={SITE.name}
+        widths={[180, 260, 360]}
+        sizes="(min-width: 640px) 130px, 96px"
+        class="h-auto w-24 sm:w-32"
+        loading="eager"
+        fetchpriority="high"
+      />
+    </a>
+
+    <div class="flex items-center gap-5">
+      <div class="hidden text-right sm:block">
+        <a
+          href={CONTACT.phoneHref}
+          class="block font-serif text-xl text-poppy-deep no-underline hover:text-poppy"
+        >
+          {CONTACT.phone}
+        </a>
+        <span class="block text-xs text-ink-muted">Day or night, any day</span>
+      </div>
+
+      <!-- Native disclosure: no JavaScript, keyboard and screen-reader accessible by default. -->
+      <details class="jb-menu lg:hidden">
+        <summary
+          class="flex cursor-pointer list-none items-center gap-2 rounded border border-line px-3 py-2 text-sm"
+        >
+          <span aria-hidden="true">☰</span> Menu
+        </summary>
+        <nav
+          aria-label="Main"
+          class="absolute inset-x-0 z-40 mt-4 border-y border-line bg-paper-warm px-5 py-4 shadow-lg sm:px-8"
+        >
+          <ul class="mx-auto max-w-6xl">
+            {
+              PRIMARY_NAV.map((item) => (
+                <li class="border-b border-line last:border-0">
+                  <a
+                    href={item.href}
+                    aria-current={isCurrent(item.href) ? 'page' : undefined}
+                    class="block py-3 text-lg no-underline aria-[current=page]:font-semibold"
+                  >
+                    {item.label}
+                  </a>
+                </li>
+              ))
+            }
+          </ul>
+        </nav>
+      </details>
+    </div>
+  </div>
+
+  <nav aria-label="Main" class="hidden border-t border-line lg:block">
+    <ul class="mx-auto flex max-w-6xl flex-wrap gap-x-8 px-8">
+      {
+        PRIMARY_NAV.map((item) => (
+          <li>
+            <a
+              href={item.href}
+              aria-current={isCurrent(item.href) ? 'page' : undefined}
+              class="-mb-px block border-b-2 border-transparent py-3 text-[0.95rem] text-ink-soft no-underline hover:border-poppy hover:text-ink aria-[current=page]:border-poppy aria-[current=page]:text-ink"
+            >
+              {item.label}
+            </a>
+          </li>
+        ))
+      }
+    </ul>
+  </nav>
+</header>
+
+<style>
+  .jb-menu > summary::-webkit-details-marker {
+    display: none;
+  }
+</style>

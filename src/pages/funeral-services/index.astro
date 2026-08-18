@@ -1,0 +1,104 @@
+---
+import Page from '../../layouts/Page.astro';
+import { CONTACT } from '../../data/site';
+
+const breadcrumbs = [{ name: 'Funerals we arrange', url: '/funeral-services/' }];
+
+const services = [
+  {
+    title: 'Burial',
+    href: '/funeral-services/burial/',
+    blurb:
+      'In your local churchyard or cemetery, anywhere across East Lothian and Berwickshire, including reopening an existing family lair.',
+  },
+  {
+    title: 'Cremation',
+    href: '/funeral-services/cremation/',
+    blurb:
+      'With a service at the crematorium, at a church, or here at our funeral home beforehand.',
+  },
+  {
+    title: 'Direct cremation',
+    href: '/funeral-services/direct-cremation/',
+    blurb:
+      'A simple cremation with no service and nobody present, at a time we arrange. The ashes come back to you afterwards.',
+  },
+  {
+    title: 'Natural burial',
+    href: '/funeral-services/natural-burial/',
+    blurb:
+      'Woodland and green burial in a fully biodegradable coffin, with no embalming and nothing left behind that will not return to the ground.',
+  },
+  {
+    title: "Children's funerals",
+    href: '/funeral-services/childrens-funerals/',
+    blurb:
+      'For babies and children, including stillbirth. There is no charge for burial or cremation for anyone under 18 in Scotland, and we do not charge our own fee.',
+  },
+  {
+    title: 'Repatriation',
+    href: '/funeral-services/repatriation/',
+    blurb:
+      'Bringing someone home from elsewhere in the UK or from abroad, or arranging for them to travel onward.',
+  },
+];
+---
+
+<Page
+  title="Funeral Services in Dunbar & East Lothian"
+  heading="The funerals we arrange"
+  description="Burial, cremation, direct cremation, natural burial, children's funerals and repatriation across Dunbar, East Lothian and Berwickshire."
+  standfirst="Anything is possible, so long as it keeps the dignity of the person who has died. If what you have in mind is not here, ask us anyway."
+  breadcrumbs={breadcrumbs}
+  wide={true}
+>
+  <div class="prose-jb">
+    <p>
+      Most families arrive without a fixed idea of what they want, which is entirely
+      normal. These pages set out what each kind of funeral involves so you can think it
+      through before you sit down with us, rather than deciding cold across a desk.
+    </p>
+  </div>
+
+  <ul class="mt-12 grid gap-8 sm:grid-cols-2">
+    {
+      services.map((service) => (
+        <li class="border border-line bg-paper-warm p-7">
+          <h2 class="font-serif text-2xl">
+            <a href={service.href} class="no-underline hover:underline">
+              {service.title}
+            </a>
+          </h2>
+          <p class="mt-3 text-ink-soft">{service.blurb}</p>
+        </li>
+      ))
+    }
+  </ul>
+
+  <div class="prose-jb mt-16">
+    <h2>Things that go with any of them</h2>
+    <ul>
+      <li>
+        <a href="/coffins/">Coffins</a> — the full Ecoffins range in willow, bamboo,
+        banana leaf, pandanus and recycled cardboard, alongside traditional wooden
+        coffins.
+      </li>
+      <li>
+        <a href="/memorials/">Memorials</a> — headstones, plaques, and smaller keepsakes.
+      </li>
+      <li>
+        <a href="/funeral-costs/">What it costs</a> — our full price list, published in
+        the format every UK funeral director must use.
+      </li>
+    </ul>
+
+    <h2>Not sure which?</h2>
+    <p>
+      Telephone us on{' '}
+      <a href={CONTACT.phoneHref} class="font-semibold">{CONTACT.phone}</a> and we will
+      talk it through. There is no charge for that conversation and no obligation
+      afterwards. If you would rather read first, our{' '}
+      <a href="/guides/">guides</a> cover the decisions in more depth.
+    </p>
+  </div>
+</Page>

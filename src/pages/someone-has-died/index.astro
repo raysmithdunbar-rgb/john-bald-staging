@@ -1,0 +1,140 @@
+---
+import Page from '../../layouts/Page.astro';
+import Callout from '../../components/Callout.astro';
+import { CONTACT } from '../../data/site';
+
+const breadcrumbs = [{ name: 'Someone has died', url: '/someone-has-died/' }];
+---
+
+<Page
+  title="Someone Has Died — What to Do Now"
+  heading="Someone has died"
+  description="What to do first when someone dies in East Lothian or Berwickshire: practical steps, who to call, and what happens next. Available day or night."
+  standfirst="There is no hurry. Almost nothing has to be done in the next few hours, and we can help with all of it."
+  breadcrumbs={breadcrumbs}
+>
+  <Callout tone="accent" title="Call us whenever you are ready">
+    <p>
+      <a href={CONTACT.phoneHref} class="text-xl font-semibold">{CONTACT.phone}</a><br />
+      One of us will answer, at any hour. There is no charge for the call and no
+      obligation to use us afterwards.
+    </p>
+  </Callout>
+
+  <p>
+    If someone has just died, the first thing worth saying is this: you have more time
+    than you think. Unless you have been told otherwise, nothing needs to happen tonight.
+    You do not have to decide anything about the funeral yet. You do not have to have
+    chosen a funeral director to ring us and ask a question.
+  </p>
+
+  <h2>What has to happen first</h2>
+
+  <p>
+    Before anything else, a doctor needs to confirm the death and complete a Medical
+    Certificate of Cause of Death. What that involves depends on where the person died.
+  </p>
+
+  <h3>At home</h3>
+  <p>
+    Telephone the GP practice during surgery hours, or NHS 24 on 111 out of hours. A
+    doctor or nurse will come. If the death was expected, there is no emergency — you do
+    not need to call 999. When you are ready, ring us and we will come to bring the
+    person who has died into our care, at whatever hour suits you.
+  </p>
+
+  <h3>In hospital</h3>
+  <p>
+    The ward staff will guide you and will contact the hospital bereavement office. For
+    the Royal Infirmary of Edinburgh and the other Lothian hospitals, that office will
+    telephone you to arrange collection of the certificate. The person who has died will
+    stay in the hospital mortuary until we collect them, so there is no rush at all.
+  </p>
+
+  <h3>In a care home</h3>
+  <p>
+    The home will contact the GP and will usually contact us on your behalf if you have
+    told them who you would like to use. You are welcome to spend as long as you want
+    with the person before they are moved.
+  </p>
+
+  <h3>Suddenly, or unexpectedly</h3>
+  <p>
+    If a death is sudden, unexplained or accidental, it is reported to the Procurator
+    Fiscal. This is routine and does not mean anything is wrong. The Fiscal may ask for
+    further examination before the death can be registered, which can add a few days.
+    We deal with the Fiscal's office regularly and will keep you informed throughout.
+  </p>
+
+  <Callout title="What we do when you call">
+    <p>
+      We will ask a small number of practical questions — where the person is, whether a
+      doctor has been, and whether there is anything we should know. Then we will arrange
+      to bring them into our care. We do not discuss money on that first call unless you
+      want to.
+    </p>
+  </Callout>
+
+  <h2>Then, in the following days</h2>
+
+  <ol>
+    <li>
+      <strong>Register the death.</strong> This must be done within eight days in
+      Scotland. You can do it at any registration office in the country — it does not
+      have to be where the person lived or died.{' '}
+      <a href="/someone-has-died/registering-a-death/">How to register a death</a>.
+    </li>
+    <li>
+      <strong>Meet us to arrange the funeral.</strong> At our funeral home, or at your
+      own kitchen table if you would rather.{' '}
+      <a href="/arranging-a-funeral/">What happens at that meeting</a>.
+    </li>
+    <li>
+      <strong>Tell the organisations that need to know.</strong> The registrar will offer
+      you Tell Us Once, which notifies most government departments in a single step.
+    </li>
+    <li>
+      <strong>Check whether help with the cost is available.</strong> Funeral Support
+      Payment can be paid straight to us, so the money never has to pass through your
+      hands.{' '}
+      <a href="/funeral-costs/help-with-funeral-costs/">Help with funeral costs</a>.
+    </li>
+  </ol>
+
+  <h2>Questions people ask us first</h2>
+
+  <h3>Do I have to decide on a funeral director straight away?</h3>
+  <p>
+    No. And if you have already asked someone to bring the person into their care, you are
+    still free to change your mind afterwards. You are never locked in.
+  </p>
+
+  <h3>Can I see the person who has died?</h3>
+  <p>
+    Yes, whenever you would like, for as long as you would like. Some families come every
+    day, some come once, some would rather not — all of that is normal. Just tell us and
+    we will make the arrangements.
+  </p>
+
+  <h3>What does it cost to bring someone into your care?</h3>
+  <p>
+    Nothing, at that point. Our full prices are published{' '}
+    <a href="/funeral-costs/standardised-price-list/">on our price list</a> and we will
+    give you a written estimate before you commit to anything.
+  </p>
+
+  <h3>I am not in Dunbar. Can you still help?</h3>
+  <p>
+    Yes. We look after families across East Lothian and Berwickshire, and we can bring
+    someone home from anywhere in the country or from abroad.{' '}
+    <a href="/funeral-services/repatriation/">More about repatriation</a>.
+  </p>
+
+  <h2>If you would rather read than telephone</h2>
+  <ul>
+    <li><a href="/someone-has-died/first-24-hours/">The first 24 hours, step by step</a></li>
+    <li><a href="/someone-has-died/registering-a-death/">Registering a death in East Lothian</a></li>
+    <li><a href="/arranging-a-funeral/">Arranging the funeral</a></li>
+    <li><a href="/bereavement-support/">Bereavement support in the east of Scotland</a></li>
+  </ul>
+</Page>

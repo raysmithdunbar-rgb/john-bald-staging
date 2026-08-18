@@ -1,0 +1,134 @@
+---
+import Page from '../../layouts/Page.astro';
+import Callout from '../../components/Callout.astro';
+import { CONTACT } from '../../data/site';
+
+const breadcrumbs = [
+  { name: 'Someone has died', url: '/someone-has-died/' },
+  { name: 'The first 24 hours', url: '/someone-has-died/first-24-hours/' },
+];
+
+const faq = {
+  '@type': 'FAQPage',
+  mainEntity: [
+    {
+      '@type': 'Question',
+      name: 'Do I need to call 999 when someone dies at home?',
+      acceptedAnswer: {
+        '@type': 'Answer',
+        text: 'Not if the death was expected. Telephone the GP practice in surgery hours, or NHS 24 on 111 out of hours. Only call 999 if the death was sudden or unexpected.',
+      },
+    },
+    {
+      '@type': 'Question',
+      name: 'How long do I have to register a death in Scotland?',
+      acceptedAnswer: {
+        '@type': 'Answer',
+        text: 'Eight days from the date of death. You can register at any registration office in Scotland, not only the one where the person lived or died.',
+      },
+    },
+    {
+      '@type': 'Question',
+      name: 'Can the person who has died stay at home overnight?',
+      acceptedAnswer: {
+        '@type': 'Answer',
+        text: 'Yes. There is no legal requirement to move someone straight away, and many families choose to keep their person at home for a time. We will come whenever you are ready.',
+      },
+    },
+  ],
+};
+---
+
+<Page
+  title="The First 24 Hours After a Death"
+  heading="The first 24 hours"
+  description="A calm, step-by-step guide to the first day after someone dies in Scotland: who to call, what has to happen, and what can safely wait."
+  standfirst="Most of what feels urgent is not. Here is what genuinely needs doing today, and what can wait until you have slept."
+  breadcrumbs={breadcrumbs}
+  schema={faq}
+>
+  <Callout tone="accent">
+    <p>
+      If you would rather just talk to someone, telephone us on{' '}
+      <a href={CONTACT.phoneHref} class="font-semibold">{CONTACT.phone}</a>. Any hour.
+    </p>
+  </Callout>
+
+  <h2>Straight away</h2>
+
+  <h3>1. A doctor confirms the death</h3>
+  <p>
+    Nothing else can proceed until this happens. If the person died at home and the death
+    was expected, telephone the GP surgery, or NHS 24 on 111 outside surgery hours. There
+    is no need to dial 999 — an ambulance cannot change anything and the arrival of blue
+    lights makes a hard moment harder.
+  </p>
+  <p>
+    If the death was sudden or unexpected, do dial 999.
+  </p>
+
+  <h3>2. Take whatever time you want</h3>
+  <p>
+    There is no rule that says the person who has died must be moved within any particular
+    time. If you want to sit with them, do. If family are travelling and want to see them
+    at home first, that is entirely possible. Tell us what you would like and we will work
+    around it.
+  </p>
+
+  <h3>3. Telephone us when you are ready</h3>
+  <p>
+    We will come and bring the person into our care. We cover Dunbar, East Linton,
+    Haddington, North Berwick and the whole of East Lothian and Berwickshire, at any hour.
+  </p>
+
+  <Callout title="Things that do not need doing today">
+    <ul>
+      <li>Choosing a coffin</li>
+      <li>Deciding on burial or cremation</li>
+      <li>Setting a date</li>
+      <li>Telling anyone other than close family</li>
+      <li>Cancelling anything, or contacting any bank</li>
+      <li>Deciding anything at all about money</li>
+    </ul>
+  </Callout>
+
+  <h2>Within the first day or so</h2>
+
+  <h3>Collect the Medical Certificate of Cause of Death</h3>
+  <p>
+    The doctor or the hospital bereavement office will tell you where and when to collect
+    it. In Scotland this certificate is often sent electronically to the registrar, in
+    which case you will not need to handle it at all — the registrar will confirm when
+    you book your appointment.
+  </p>
+
+  <h3>Find the person's papers, if you can</h3>
+  <p>
+    It helps to know whether there is a will, whether there was a funeral plan, and
+    whether they ever wrote down what they wanted. None of it is essential today, but it
+    saves questions later. If there is a funeral plan with any provider, tell us — it
+    changes what you are entitled to claim.
+  </p>
+
+  <h3>Book the registrar</h3>
+  <p>
+    You have eight days, and appointments in East Lothian are usually available within
+    two or three.{' '}
+    <a href="/someone-has-died/registering-a-death/">How registering works</a>.
+  </p>
+
+  <h2>What we will have done by then</h2>
+  <p>
+    By the time you come to see us, the person who has died will be in our care at our
+    funeral home in Dunbar. We will have made no decisions on your behalf and spent none
+    of your money. When we meet, we will go through everything properly, give you a
+    written estimate, and you can take it away and think about it.
+  </p>
+
+  <h2>Next</h2>
+  <ul>
+    <li><a href="/someone-has-died/registering-a-death/">Registering a death in East Lothian</a></li>
+    <li><a href="/arranging-a-funeral/">What happens when we meet</a></li>
+    <li><a href="/funeral-costs/help-with-funeral-costs/">Help with funeral costs</a></li>
+  </ul>
+</Page>

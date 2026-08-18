@@ -1,0 +1,93 @@
+---
+import Page from '../../layouts/Page.astro';
+import Callout from '../../components/Callout.astro';
+import { CONTACT } from '../../data/site';
+
+const breadcrumbs = [{ name: 'Our prices', url: '/funeral-costs/' }];
+---
+
+<Page
+  title="Funeral Costs in Dunbar & East Lothian"
+  heading="What a funeral costs"
+  description="Our funeral prices, published in full: Standardised Price List, Additional Options Price List, and help available with funeral costs in Scotland."
+  standfirst="You should never have to ask twice what something costs, or find out at the end."
+  breadcrumbs={breadcrumbs}
+>
+  <p>
+    Money is the thing families are most reluctant to raise and most anxious about. So we
+    publish everything, we say it out loud before you ask, and we give you a written
+    estimate before you commit to anything at all.
+  </p>
+
+  <h2>The three lists</h2>
+
+  <h3><a href="/funeral-costs/standardised-price-list/">Standardised Price List</a></h3>
+  <p>
+    The headline prices for an attended and an unattended funeral, in the format every UK
+    funeral director is required to use. This is the one to compare against other funeral
+    directors, because the format is fixed and the same things are included.
+  </p>
+
+  <h3>
+    <a href="/funeral-costs/additional-options-price-list/">Additional Options Price List</a>
+  </h3>
+  <p>
+    Everything else you might choose — coffins, cars, flowers, notices, memorials —
+    itemised. All of it optional.
+  </p>
+
+  <h3>
+    <a href="/funeral-costs/help-with-funeral-costs/">Help with funeral costs</a>
+  </h3>
+  <p>
+    Funeral Support Payment and other help available in Scotland. We can apply on your
+    behalf and be paid directly, so the money never has to pass through your hands.
+  </p>
+
+  <Callout title="One thing to watch when you compare">
+    <p>
+      Always ask whether a quoted price <em>includes the crematorium or burial fee</em>.
+      Some advertised prices are the funeral director's own charges only, with several
+      hundred pounds of third-party fees added afterwards. Our lists make plain which is
+      which, and you are entitled to that clarity from anyone you ask.
+    </p>
+  </Callout>
+
+  <h2>What drives the cost</h2>
+  <ul>
+    <li>
+      <strong>Burial or cremation.</strong> Burial usually costs more, mainly because of
+      the lair purchase and interment fee, both of which are council charges rather than
+      ours.
+    </li>
+    <li>
+      <strong>Whether anyone attends.</strong> A{' '}
+      <a href="/funeral-services/direct-cremation/">direct cremation</a> costs
+      considerably less than an attended funeral.
+    </li>
+    <li>
+      <strong>The coffin.</strong> The range is wide. Recycled cardboard is the least
+      expensive, solid hardwood the most, with the woven eco coffins in between.
+    </li>
+    <li>
+      <strong>Cars, flowers and printing.</strong> All optional, and easily the part
+      families most often decide they do not need.
+    </li>
+  </ul>
+
+  <h2>Paying</h2>
+  <p>
+    Our invoice is normally due within 30 days of the funeral. Where the estate is
+    settling it, we will invoice the estate and wait — banks will usually release funds
+    for a funeral bill before anything else is resolved. If you need longer, ask. We
+    would rather agree something workable than have a family avoid the telephone.
+  </p>
+
+  <Callout tone="accent">
+    <p>
+      To ask what anything costs, telephone{' '}
+      <a href={CONTACT.phoneHref} class="font-semibold">{CONTACT.phone}</a>. Nobody will
+      try to sell you anything.
+    </p>
+  </Callout>
+</Page>

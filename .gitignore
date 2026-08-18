@@ -1,0 +1,7 @@
+node_modules/
+dist/
+.astro/
+*.log
+
+# Client handover notes — kept out of the public staging repo on purpose.
+HANDOVER.md

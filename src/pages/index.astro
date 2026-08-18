@@ -1,0 +1,262 @@
+---
+import Base from '../layouts/Base.astro';
+import { CONTACT, ACTIVE_ADDRESS, ADDRESS } from '../data/site';
+
+const title = 'Funeral Directors in Dunbar, East Lothian — John Bald';
+const description =
+  'Independent funeral directors in Dunbar caring for families across East Lothian and Berwickshire for over 50 years. Available day or night. Call 01368 863636.';
+---
+
+<Base title={title} description={description} organisationSchema={true}>
+  <!--
+    Two doors, deliberately. Someone bereaved needs the phone number and nothing
+    else in the way. Someone planning ahead needs time, information and no urgency.
+    Treating them identically is the single biggest conversion mistake this
+    sector makes.
+  -->
+  <section class="border-b border-line">
+    <div class="mx-auto max-w-6xl px-5 py-16 sm:px-8 sm:py-24">
+      <p class="text-sm uppercase tracking-[0.2em] text-ink-muted">
+        Dunbar &middot; East Lothian &middot; Berwickshire
+      </p>
+      <h1 class="mt-5 max-w-3xl text-4xl leading-tight sm:text-5xl">
+        Caring for Dunbar families for over fifty years.
+      </h1>
+      <p class="mt-6 max-w-2xl text-lg text-ink-soft sm:text-xl">
+        We are an independent, family-run funeral director. Whatever has brought you
+        here, there is someone to talk to — at any hour, with no obligation and no cost.
+      </p>
+
+      <div class="mt-12 grid gap-6 md:grid-cols-2">
+        <div class="border border-poppy bg-poppy-tint p-7 sm:p-9">
+          <h2 class="font-serif text-2xl">Someone has died</h2>
+          <p class="mt-3 text-ink-soft">
+            Please call us. We will talk you through what needs to happen next, and we
+            can bring the person who has died into our care straight away.
+          </p>
+          <a
+            href={CONTACT.phoneHref}
+            class="mt-6 inline-block bg-poppy px-7 py-4 text-lg font-semibold text-white no-underline hover:bg-poppy-deep"
+          >
+            Call {CONTACT.phone}
+          </a>
+          <p class="mt-4 text-sm text-ink-muted">
+            Answered by one of us, day or night, every day of the year.
+          </p>
+          <p class="mt-4">
+            <a href="/someone-has-died/">What to do first &rarr;</a>
+          </p>
+        </div>
+
+        <div class="border border-line bg-paper-warm p-7 sm:p-9">
+          <h2 class="font-serif text-2xl">Planning ahead</h2>
+          <p class="mt-3 text-ink-soft">
+            Putting your wishes down takes the weight off the people you love. We
+            arrange Golden Charter funeral plans, and we will happily just talk it
+            through with no commitment.
+          </p>
+          <a
+            href="/funeral-plans/"
+            class="mt-6 inline-block border border-ink px-7 py-4 text-lg font-semibold text-ink no-underline hover:bg-ink hover:text-paper"
+          >
+            About funeral plans
+          </a>
+          <p class="mt-4 text-sm text-ink-muted">
+            Come in for a cup of tea and a chat. No appointment needed.
+          </p>
+          <p class="mt-4">
+            <a href="/guides/">Read our guides &rarr;</a>
+          </p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  {
+    !ADDRESS.moveComplete && (
+      <section class="border-b border-line bg-sage-soft">
+        <div class="mx-auto max-w-6xl px-5 py-8 sm:px-8">
+          <p class="text-ink-soft">
+            <strong class="text-ink">We are moving.</strong> Our new funeral
+            home on Countess Crescent, Dunbar will open shortly. Until then you will
+            find us at {ACTIVE_ADDRESS.street}, and our phone number is not changing.{' '}
+            <a href="/our-funeral-home/">More about the move</a>.
+          </p>
+        </div>
+      </section>
+    )
+  }
+
+  <!-- Prices in plain sight, not two clicks deep. The audit's clearest finding. -->
+  <section class="border-b border-line">
+    <div class="mx-auto max-w-6xl px-5 py-16 sm:px-8 sm:py-20">
+      <h2 class="text-3xl">Our prices, in plain sight</h2>
+      <p class="mt-4 max-w-2xl text-ink-soft">
+        You should never have to ask twice what a funeral costs. Our full price list is
+        one click away, displayed in our window, and available in print to take home.
+      </p>
+
+      <div class="mt-10 grid gap-6 sm:grid-cols-3">
+        <a
+          href="/funeral-costs/standardised-price-list/"
+          class="block border border-line bg-paper-warm p-7 no-underline hover:border-ink"
+        >
+          <span class="block font-serif text-xl text-ink">
+            Standardised Price List
+          </span>
+          <span class="mt-2 block text-ink-soft">
+            The same format every UK funeral director must publish, so you can compare
+            like with like.
+          </span>
+        </a>
+
+        <a
+          href="/funeral-costs/additional-options-price-list/"
+          class="block border border-line bg-paper-warm p-7 no-underline hover:border-ink"
+        >
+          <span class="block font-serif text-xl text-ink">
+            Additional options
+          </span>
+          <span class="mt-2 block text-ink-soft">
+            Everything else you might choose, itemised — cars, flowers, orders of
+            service, memorials.
+          </span>
+        </a>
+
+        <a
+          href="/funeral-costs/help-with-funeral-costs/"
+          class="block border border-line bg-paper-warm p-7 no-underline hover:border-ink"
+        >
+          <span class="block font-serif text-xl text-ink">
+            Help with the cost
+          </span>
+          <span class="mt-2 block text-ink-soft">
+            Funeral Support Payment and other help available in Scotland. We can apply
+            on your behalf.
+          </span>
+        </a>
+      </div>
+    </div>
+  </section>
+
+  <section class="border-b border-line bg-paper-warm">
+    <div class="mx-auto max-w-6xl px-5 py-16 sm:px-8 sm:py-20">
+      <h2 class="text-3xl">The funerals we arrange</h2>
+      <p class="mt-4 max-w-2xl text-ink-soft">
+        Anything is possible, so long as it keeps the dignity of the person who has
+        died. If what you want is not listed here, ask us anyway.
+      </p>
+
+      <ul class="mt-10 grid gap-x-8 gap-y-6 sm:grid-cols-2 lg:grid-cols-3">
+        {
+          [
+            ['Burial', '/funeral-services/burial/', 'In your local churchyard or cemetery across East Lothian and Berwickshire.'],
+            ['Cremation', '/funeral-services/cremation/', 'With a full service at the crematorium, a church, or here at our funeral home.'],
+            ['Direct cremation', '/funeral-services/direct-cremation/', 'A simple cremation with no service, at a time of our arranging.'],
+            ['Natural burial', '/funeral-services/natural-burial/', 'Woodland and green burial, with fully biodegradable coffins.'],
+            ["Children's funerals", '/funeral-services/childrens-funerals/', 'There is no charge for burial or cremation for a child in Scotland.'],
+            ['Repatriation', '/funeral-services/repatriation/', 'Bringing someone home, from anywhere, or taking them onward.'],
+          ].map(([label, href, blurb]) => (
+            <li>
+              <a href={href} class="font-serif text-xl no-underline hover:underline">
+                {label}
+              </a>
+              <p class="mt-1 text-ink-soft">{blurb}</p>
+            </li>
+          ))
+        }
+      </ul>
+    </div>
+  </section>
+
+  <section class="border-b border-line">
+    <div class="mx-auto max-w-6xl px-5 py-16 sm:px-8 sm:py-20">
+      <div class="grid gap-12 lg:grid-cols-2">
+        <div>
+          <h2 class="text-3xl">Answers, when you need them</h2>
+          <p class="mt-4 text-ink-soft">
+            Most of what families ask us is not really about funerals. It is about
+            forms, offices, fees and who to telephone. We have written it all down,
+            for the whole of the east of Scotland — the crematoria, the cemeteries,
+            the registrars, and what actually happens at each one.
+          </p>
+          <p class="mt-6">
+            <a href="/guides/" class="font-semibold">Read the guides &rarr;</a>
+          </p>
+          <p class="mt-2">
+            <a href="/directory/" class="font-semibold">
+              Crematoria, cemeteries and registrars &rarr;
+            </a>
+          </p>
+        </div>
+
+        <ul class="space-y-4">
+          {
+            [
+              ['What to do when someone dies in Scotland', '/guides/what-to-do-when-someone-dies-in-scotland/'],
+              ['Registering a death in East Lothian', '/guides/registering-a-death-in-east-lothian/'],
+              ['Funeral Support Payment explained', '/guides/funeral-support-payment-explained/'],
+              ['How much does a funeral cost in Scotland?', '/guides/how-much-does-a-funeral-cost-in-scotland/'],
+              ['When a baby or child dies', '/guides/when-a-baby-or-child-dies/'],
+            ].map(([label, href]) => (
+              <li class="border-b border-line pb-4">
+                <a href={href} class="text-lg no-underline hover:underline">
+                  {label}
+                </a>
+              </li>
+            ))
+          }
+        </ul>
+      </div>
+    </div>
+  </section>
+
+  <section>
+    <div class="mx-auto max-w-6xl px-5 py-16 sm:px-8 sm:py-20">
+      <div class="grid gap-12 lg:grid-cols-2">
+        <div>
+          <h2 class="text-3xl">Independent, and staying that way</h2>
+          <div class="prose-jb mt-5 text-ink-soft">
+            <p>
+              John Bald opened these doors in Dunbar over fifty years ago. When he
+              retired, the business passed to Ian and Elizabeth Torrance, who ran it
+              with the same care for another twenty years. In 2022 it came to us —
+              Awdri and Allan Doyle — because Ian wanted it to stay in independent
+              hands rather than go to one of the national chains.
+            </p>
+            <p>
+              Bruce Robertson manages the funeral home and looks after families here day
+              to day. Three sets of hands have held this business in fifty years, and the
+              one thing that has never changed is how it is run — independently, from
+              Dunbar, answering its own telephone.
+            </p>
+          </div>
+          <p class="mt-6">
+            <a href="/about/" class="font-semibold">More about us &rarr;</a>
+          </p>
+        </div>
+
+        <div class="border border-line bg-paper-warm p-7 sm:p-9">
+          <h2 class="font-serif text-2xl">Come and find us</h2>
+          <address class="mt-4 not-italic text-ink-soft">
+            {ACTIVE_ADDRESS.street}<br />
+            {ACTIVE_ADDRESS.locality}, {ACTIVE_ADDRESS.region}<br />
+            {ACTIVE_ADDRESS.postcode}
+          </address>
+          <p class="mt-6">
+            <a href={CONTACT.phoneHref} class="text-xl font-semibold no-underline">
+              {CONTACT.phone}
+            </a><br />
+            <span class="text-sm text-ink-muted">{CONTACT.hours}</span>
+          </p>
+          <p class="mt-4">
+            <a href={`mailto:${CONTACT.email}`}>{CONTACT.email}</a>
+          </p>
+          <p class="mt-6">
+            <a href="/contact/" class="font-semibold">Contact us &rarr;</a>
+          </p>
+        </div>
+      </div>
+    </div>
+  </section>
+</Base>

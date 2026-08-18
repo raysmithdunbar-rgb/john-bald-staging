@@ -1,0 +1,52 @@
+---
+import '../styles/global.css';
+import Seo from '../components/Seo.astro';
+import SchemaOrg from '../components/SchemaOrg.astro';
+import Header from '../components/Header.astro';
+import Footer from '../components/Footer.astro';
+import CallBar from '../components/CallBar.astro';
+
+interface Crumb {
+  name: string;
+  url: string;
+}
+
+interface Props {
+  title: string;
+  description: string;
+  noindex?: boolean;
+  organisationSchema?: boolean;
+  breadcrumbs?: Crumb[];
+  schema?: Record<string, unknown> | Record<string, unknown>[];
+}
+
+const {
+  title,
+  description,
+  noindex,
+  organisationSchema = false,
+  breadcrumbs,
+  schema,
+} = Astro.props;
+---
+
+<!doctype html>
+<html lang="en-GB">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <link rel="icon" href="/favicon.svg" type="image/svg+xml" />
+    <link rel="sitemap" href="/sitemap-index.xml" />
+    <Seo title={title} description={description} noindex={noindex} />
+    <SchemaOrg organisation={organisationSchema} breadcrumbs={breadcrumbs} extra={schema} />
+  </head>
+
+  <body class="flex min-h-screen flex-col">
+    <Header />
+    <main id="main" class="flex-1">
+      <slot />
+    </main>
+    <Footer />
+    <CallBar />
+  </body>
+</html>
