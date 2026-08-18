@@ -13,7 +13,7 @@ interface Props {
 const { title, standfirst, breadcrumbs } = Astro.props;
 ---
 
-<div class="border-b border-line bg-paper-warm">
+<div class="border-b border-line bg-cream">
   <div class="mx-auto max-w-6xl px-5 py-12 sm:px-8 sm:py-16">
     {
       breadcrumbs && breadcrumbs.length > 0 && (
@@ -37,6 +37,7 @@ const { title, standfirst, breadcrumbs } = Astro.props;
     }
 
     <h1 class="max-w-3xl text-3xl sm:text-4xl">{title}</h1>
+    <div class="mt-5 h-px w-24 bg-gold" aria-hidden="true"></div>
 
     {
       standfirst && (

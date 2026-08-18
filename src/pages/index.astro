@@ -1,6 +1,6 @@
 ---
 import Base from '../layouts/Base.astro';
-import { CONTACT, ACTIVE_ADDRESS, ADDRESS } from '../data/site';
+import { SITE, CONTACT, ACTIVE_ADDRESS, ADDRESS } from '../data/site';
 
 const title = 'Funeral Directors in Dunbar, East Lothian — John Bald';
 const description =
@@ -18,6 +18,9 @@ const description =
     <div class="mx-auto max-w-6xl px-5 py-16 sm:px-8 sm:py-24">
       <p class="text-sm uppercase tracking-[0.2em] text-ink-muted">
         Dunbar &middot; East Lothian &middot; Berwickshire
+      </p>
+      <p class="mt-6 font-display text-5xl leading-none text-gold-text sm:text-6xl">
+        {SITE.tagline}
       </p>
       <h1 class="mt-5 max-w-3xl text-4xl leading-tight sm:text-5xl">
         Caring for Dunbar families for over fifty years.
@@ -48,7 +51,7 @@ const description =
           </p>
         </div>
 
-        <div class="border border-line bg-paper-warm p-7 sm:p-9">
+        <div class="border border-line bg-cream p-7 sm:p-9">
           <h2 class="font-serif text-2xl">Planning ahead</h2>
           <p class="mt-3 text-ink-soft">
             Putting your wishes down takes the weight off the people you love. We
@@ -99,7 +102,7 @@ const description =
       <div class="mt-10 grid gap-6 sm:grid-cols-3">
         <a
           href="/funeral-costs/standardised-price-list/"
-          class="block border border-line bg-paper-warm p-7 no-underline hover:border-ink"
+          class="block border border-line bg-cream p-7 no-underline hover:border-ink"
         >
           <span class="block font-serif text-xl text-ink">
             Standardised Price List
@@ -112,7 +115,7 @@ const description =
 
         <a
           href="/funeral-costs/additional-options-price-list/"
-          class="block border border-line bg-paper-warm p-7 no-underline hover:border-ink"
+          class="block border border-line bg-cream p-7 no-underline hover:border-ink"
         >
           <span class="block font-serif text-xl text-ink">
             Additional options
@@ -125,7 +128,7 @@ const description =
 
         <a
           href="/funeral-costs/help-with-funeral-costs/"
-          class="block border border-line bg-paper-warm p-7 no-underline hover:border-ink"
+          class="block border border-line bg-cream p-7 no-underline hover:border-ink"
         >
           <span class="block font-serif text-xl text-ink">
             Help with the cost
@@ -139,7 +142,7 @@ const description =
     </div>
   </section>
 
-  <section class="border-b border-line bg-paper-warm">
+  <section class="border-b border-line bg-cream">
     <div class="mx-auto max-w-6xl px-5 py-16 sm:px-8 sm:py-20">
       <h2 class="text-3xl">The funerals we arrange</h2>
       <p class="mt-4 max-w-2xl text-ink-soft">
@@ -236,7 +239,7 @@ const description =
           </p>
         </div>
 
-        <div class="border border-line bg-paper-warm p-7 sm:p-9">
+        <div class="border border-line bg-cream p-7 sm:p-9">
           <h2 class="font-serif text-2xl">Come and find us</h2>
           <address class="mt-4 not-italic text-ink-soft">
             {ACTIVE_ADDRESS.street}<br />

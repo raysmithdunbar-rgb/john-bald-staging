@@ -64,13 +64,13 @@ for await (const file of walk(DIST)) {
 
   if (ext === '.html') {
     // href/src single URLs
-    out = out.replace(/(\b(?:href|src)=")([^"]*)"/g, (m, attr, value) => {
+    out = out.replace(/(\b(?:href|src)=")([^"]*)"/g, (_m, attr, value) => {
       const next = addPrefix(value);
       if (next !== value) rewrites++;
       return `${attr}${next}"`;
     });
     // srcset lists
-    out = out.replace(/(\bsrcset=")([^"]*)"/g, (m, attr, value) => {
+    out = out.replace(/(\bsrcset=")([^"]*)"/g, (_m, attr, value) => {
       const next = rewriteSrcset(value);
       if (next !== value) rewrites++;
       return `${attr}${next}"`;
@@ -78,7 +78,7 @@ for await (const file of walk(DIST)) {
     if (out !== original) htmlFiles++;
   } else {
     // url(/_astro/font.woff2) inside stylesheets
-    out = out.replace(/url\((['"]?)(\/[^)'"]*)\1\)/g, (m, q, value) => {
+    out = out.replace(/url\((['"]?)(\/[^)'"]*)\1\)/g, (_m, q, value) => {
       const next = addPrefix(value);
       if (next !== value) rewrites++;
       return `url(${q}${next}${q})`;
