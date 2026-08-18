@@ -17,40 +17,53 @@ const isCurrent = (href: string) =>
     Skip to content
   </a>
 
-  <div class="mx-auto flex max-w-6xl items-center justify-between gap-6 px-5 py-5 sm:px-8">
+  <!--
+    Stacked and centred, following the parent site: logo on its own row, then
+    the navigation beneath. Doyle carries no telephone number in the header at
+    all — their only tel: link sits in the footer. That is not copied here.
+    This site leads with an at-need journey, and the number staying visible
+    above the fold is the point of it.
+  -->
+  <div class="mx-auto max-w-6xl px-5 py-6 sm:px-8">
     <!--
       The logo is a full lockup — it already carries "John Bald / Funeral
       Directors", so there is no text wordmark beside it to duplicate. The alt
       text supplies that wording to screen readers and to anyone browsing with
       images off.
     -->
-    <a href="/" class="no-underline" aria-label={`${SITE.name} — home`}>
+    <a href="/" class="mx-auto block w-fit no-underline" aria-label={`${SITE.name} — home`}>
       <Image
         src={logo}
         alt={SITE.name}
-        widths={[180, 260, 360]}
-        sizes="(min-width: 640px) 130px, 96px"
-        class="h-auto w-24 sm:w-32"
+        widths={[200, 320, 480]}
+        sizes="(min-width: 640px) 240px, 160px"
+        class="h-auto w-32 sm:w-60"
         loading="eager"
         fetchpriority="high"
       />
     </a>
 
-    <div class="flex items-center gap-5">
-      <div class="hidden text-right sm:block">
-        <a
-          href={CONTACT.phoneHref}
-          class="block font-serif text-xl text-poppy-deep no-underline hover:text-poppy"
-        >
-          {CONTACT.phone}
-        </a>
-        <span class="block text-xs text-ink-muted">Day or night, any day</span>
-      </div>
+    <!--
+      Hidden on the smallest screens only. The fixed call bar already pins the
+      same number to the bottom of every phone viewport, and a centred stack
+      that repeats it was pushing the "someone has died" card off the first
+      screen — the one thing on this site that must not need scrolling to find.
+    -->
+    <div class="mt-5 hidden text-center sm:block">
+      <a
+        href={CONTACT.phoneHref}
+        class="font-serif text-xl font-semibold text-poppy-deep no-underline hover:text-poppy sm:text-2xl"
+      >
+        {CONTACT.phone}
+      </a>
+      <span class="mt-1 block text-xs text-ink-muted">Day or night, any day</span>
+    </div>
 
+    <div class="mt-5 flex justify-center lg:hidden">
       <!-- Native disclosure: no JavaScript, keyboard and screen-reader accessible by default. -->
-      <details class="jb-menu lg:hidden">
+      <details class="jb-menu">
         <summary
-          class="flex cursor-pointer list-none items-center gap-2 rounded border border-line px-3 py-2 text-sm"
+          class="flex cursor-pointer list-none items-center gap-2 rounded border border-line px-4 py-2 text-sm"
         >
           <span aria-hidden="true">☰</span> Menu
         </summary>
@@ -79,7 +92,7 @@ const isCurrent = (href: string) =>
   </div>
 
   <nav aria-label="Main" class="hidden border-t border-line lg:block">
-    <ul class="mx-auto flex max-w-6xl flex-wrap gap-x-8 px-8">
+    <ul class="mx-auto flex max-w-6xl flex-wrap justify-center gap-x-8 px-8">
       {
         PRIMARY_NAV.map((item) => (
           <li>
