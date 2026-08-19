@@ -36,6 +36,26 @@ trade body verification, plan wording, form handler, photography, domain and
 legal review — are listed in `HANDOVER.md`, which is deliberately not
 committed to this repository.
 
+## Working across sessions — use one clone
+
+The canonical local clone is **`C:\Code\J-Bald\site`**. Always work there, not a fresh
+`gh repo clone` into a temp or scratchpad directory — `HANDOVER.md` lives only in that
+clone (it's gitignored, see above), and so does any work that's been committed locally
+but deliberately held back from `git push`.
+
+On 2026-08-19, two separate sessions ended up with two different local clones of this
+repo. One had committed accessibility and compliance work locally and was holding it
+back from `origin` on request. A later session, unaware it existed, cloned fresh from
+`origin` — which didn't have that commit yet — made unrelated fixes on that stale base,
+and pushed, which silently undid part of the held work (a deliberately unlinked outbound
+link got re-linked). It was caught and reconciled by rebasing, but it could as easily
+have shipped wrong. Full account in `HANDOVER.md`.
+
+If you're picking this project up in a new session: check `C:\Code\J-Bald\site` for
+uncommitted or unpushed work before cloning anything, and if you're asked to hold work
+locally rather than push it, say so explicitly, by path, so the next session knows to
+look there first.
+
 ## Ecoffins
 
 Ecoffins supply only to funeral professionals — there is no trade-permitted public checkout. `/coffins/` is therefore an illustrated catalogue with an enquiry action, not a shop. Built as a content collection, so pricing and checkout could be layered on later if Ecoffins permit it.
