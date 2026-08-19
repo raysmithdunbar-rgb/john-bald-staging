@@ -21,7 +21,7 @@ You may qualify if all of these apply:
 - You are responsible for the funeral
 - You apply in time
 
-The qualifying benefits are Universal Credit, Pension Credit, Income Support, income-based Jobseeker's Allowance, income-related Employment and Support Allowance, Housing Benefit, Child Tax Credit, and Working Tax Credit with a disability element.
+The qualifying benefits are Universal Credit, Income Support, Pension Credit, Housing Benefit, income-based Jobseeker's Allowance, and income-related Employment and Support Allowance.
 
 There are also rules about your relationship to the person who died, and about whether a closer relative might be expected to pay instead. These are not obvious, and plenty of people who would qualify assume they would not. Ask.
 
@@ -46,6 +46,10 @@ It is not meant to. It is a substantial contribution rather than the whole bill,
 Online at mygov.scot, by telephone to Social Security Scotland on 0800 182 2222, or on paper.
 
 You can apply **from the date of death up to six months after the funeral**. You do not have to wait until the funeral has happened, which matters, because knowing the money is coming changes what you feel able to arrange.
+
+If you couldn't apply within that six months because of disruption caused by coronavirus, Social Security Scotland will still accept a late application as if it were on time — explain the circumstances when you apply.
+
+The application itself has to come from you or your partner. A funeral director cannot submit it for you, though they can go through it with you and, once you've applied, take payment directly instead of you.
 
 ## Have it paid to the funeral director
 

@@ -45,8 +45,8 @@ const faq = {
 <Page
   title="Help With Funeral Costs in Scotland"
   heading="Help with funeral costs"
-  description={`Funeral Support Payment in Scotland ${FSP.taxYear}: who can claim, how much you get, and how to apply. We can apply on your behalf and be paid directly.`}
-  standfirst="If money is a worry, say so at the start. There is usually more help available than people expect, and we can apply for it on your behalf."
+  description={`Funeral Support Payment in Scotland ${FSP.taxYear}: who can claim, how much you get, and how to apply. We can help you apply, and it can be paid straight to us.`}
+  standfirst="If money is a worry, say so at the start. There is usually more help available than people expect, and we will help you get it."
   breadcrumbs={breadcrumbs}
   schema={faq}
 >
@@ -65,11 +65,11 @@ const faq = {
   <h3>Who can claim</h3>
   <p>
     You may be able to claim if you live in Scotland, you are responsible for the funeral,
-    and you or your partner receive one of the qualifying benefits — Universal Credit,
-    Pension Credit, Income Support, income-based Jobseeker's Allowance,
-    income-related Employment and Support Allowance, Housing Benefit, Child Tax Credit or
-    Working Tax Credit with a disability element.
+    and you or your partner receive one of the qualifying benefits:
   </p>
+  <ul>
+    {FSP.qualifyingBenefits.map((benefit) => <li>{benefit}</li>)}
+  </ul>
   <p>
     There are rules about your relationship to the person who died, and about whether
     another relative might be expected to pay instead. They are not always obvious.
@@ -114,10 +114,13 @@ const faq = {
     and our invoice or estimate.
   </p>
   <p>
-    <strong>We will help you do it.</strong> Bring what you have to our funeral home and
-    we will go through the form with you. We can also give Social Security Scotland our
-    details so the money comes straight to us and never has to sit in your account.
+    <strong>The application has to be made by you or your partner</strong> — as your
+    funeral director, we're not able to apply on your behalf. But bring what you have to
+    our funeral home and we will go through the form with you, and we can give Social
+    Security Scotland our details so the money comes straight to us once you've applied,
+    rather than sitting in your account.
   </p>
+  <p>{FSP.covidBackdatingNote}</p>
 
   <h2>If the person had a funeral plan</h2>
   <p>

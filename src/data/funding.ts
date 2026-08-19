@@ -4,12 +4,33 @@
  * Uprated by the Scottish Government each April — update `taxYear`, the rates
  * and `lastVerified` together. Flat rates verified against
  * socialsecurity.gov.scot/funeral-support-payment/flat-rate-payment
+ *
+ * `qualifyingBenefits` verified directly against Social Security Scotland's own
+ * caseworker eligibility guidance (not mygov.scot's consumer summary, which can lag):
+ * socialsecurity.gov.scot/funeral-support-payment/eligibility-for-funeral-support-payment
+ * Legacy tax credits (Child Tax Credit, Working Tax Credit) are NOT on that list —
+ * they wound down as claimants migrated to Universal Credit and should not be quoted
+ * as qualifying benefits. Re-check this list alongside the rates each April.
  */
 
 export const FUNERAL_SUPPORT_PAYMENT = {
   taxYear: '2026/27',
   lastVerified: '2026-08-18',
   source: 'https://www.mygov.scot/funeral-support-payment',
+  eligibilitySource:
+    'https://www.socialsecurity.gov.scot/funeral-support-payment/eligibility-for-funeral-support-payment',
+
+  qualifyingBenefits: [
+    'Universal Credit',
+    'Income Support',
+    'Pension Credit',
+    'Housing Benefit',
+    "income-based Jobseeker's Allowance",
+    'income-related Employment and Support Allowance',
+  ],
+
+  covidBackdatingNote:
+    "If you couldn't apply within six months of the funeral because of disruption caused by coronavirus, Social Security Scotland will still accept a late application as if it were on time — explain the circumstances when you apply, or call us and we'll help you explain it.",
 
   flatRate: {
     withoutPlan: 1327.75,
