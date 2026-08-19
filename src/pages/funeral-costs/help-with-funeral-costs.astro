@@ -89,17 +89,6 @@ const faq = {
     }
   </ul>
 
-  <p>The flat-rate part for {FSP.taxYear} is:</p>
-  <ul>
-    <li>
-      <strong>{money(FSP.flatRate.withoutPlan)}</strong> where there was no funeral plan
-    </li>
-    <li>
-      <strong>{money(FSP.flatRate.withPaidPlan)}</strong> where the person had a fully
-      paid funeral plan
-    </li>
-  </ul>
-
   <Callout title="Things worth knowing">
     <ul>
       {FSP.keyFacts.map((fact) => <li>{fact}</li>)}
