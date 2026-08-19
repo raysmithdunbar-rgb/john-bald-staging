@@ -1,7 +1,7 @@
 ---
 import Page from '../layouts/Page.astro';
 import Callout from '../components/Callout.astro';
-import { SITE, CONTACT } from '../data/site';
+import { SITE, CONTACT, COMPANY, GOLDEN_CHARTER } from '../data/site';
 
 const breadcrumbs = [{ name: 'Terms of business', url: '/terms/' }];
 ---
@@ -23,8 +23,13 @@ const breadcrumbs = [{ name: 'Terms of business', url: '/terms/' }];
 
   <h2>Who we are</h2>
   <p>
-    John Bald Funeral Directors is a trading name of {SITE.parentCompany}, which also
+    John Bald Funeral Directors is a trading name of {COMPANY.registeredName}, which also
     trades as A &amp; A Doyle in Galashiels and Herkes Funeral Directors in Gorebridge.
+  </p>
+  <p>
+    {COMPANY.registeredName} is a private limited company registered in{' '}
+    {COMPANY.placeOfRegistration}, company number {COMPANY.number}. Its registered office
+    is at {COMPANY.registeredOffice}.
   </p>
 
   <h2>Prices and estimates</h2>
@@ -66,8 +71,8 @@ const breadcrumbs = [{ name: 'Terms of business', url: '/terms/' }];
 
   <h2>Funeral plans</h2>
   <p>
-    We act as an introducer for Golden Charter Limited, who are authorised and regulated
-    by the Financial Conduct Authority. We receive a commission for arranging a plan.{' '}
+    {GOLDEN_CHARTER.appointedRepresentativeStatement} We receive a commission for
+    arranging a plan.{' '}
     <a href="/funeral-plans/">More about funeral plans</a>.
   </p>
 

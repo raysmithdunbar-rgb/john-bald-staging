@@ -1,5 +1,5 @@
 ---
-import { SITE, ACTIVE_ADDRESS, CONTACT, MEMBERSHIPS, SOCIAL } from '../data/site';
+import { SITE, ACTIVE_ADDRESS, CONTACT, MEMBERSHIPS, SOCIAL, COMPANY } from '../data/site';
 import { PRIMARY_NAV, FOOTER_LEGAL } from '../data/nav';
 
 const verifiedMemberships = MEMBERSHIPS.filter((m) => m.verified);
@@ -147,5 +147,17 @@ const year = new Date().getFullYear();
         }
       </ul>
     </div>
+
+    <!--
+      Statutory trading disclosure — Companies Act 2006 s.82 and the Company, LLP and
+      Business (Names and Trading Disclosures) Regulations 2015 require the registered
+      name, company number, place of registration and registered office on the company's
+      websites. Rendering it in the footer puts it on every page.
+    -->
+    <p class="mt-6 text-xs leading-relaxed text-paper/60">
+      John Bald Funeral Directors is a trading name of {COMPANY.registeredName}, registered
+      in {COMPANY.placeOfRegistration}, company number {COMPANY.number}. Registered office:{' '}
+      {COMPANY.registeredOffice}.
+    </p>
   </div>
 </footer>

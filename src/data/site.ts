@@ -4,6 +4,22 @@
  * move is a one-file change rather than a site-wide find-and-replace.
  */
 
+/**
+ * Statutory trading disclosure. The Companies Act 2006 and the Company, LLP and
+ * Business (Names and Trading Disclosures) Regulations 2015 require the registered
+ * name, company number, place of registration and registered office to appear on
+ * the company's websites. Rendered in the footer, so it is on every page.
+ *
+ * Company number and registered office verified against the Companies House
+ * register and the group's own published Terms of Business (August 2026).
+ */
+export const COMPANY = {
+  registeredName: 'A & A Doyle Limited',
+  number: 'SC407218',
+  placeOfRegistration: 'Scotland',
+  registeredOffice: 'Beechwood, Lawyers Brae, Galashiels TD1 3JQ',
+} as const;
+
 export const SITE = {
   name: 'John Bald Funeral Directors',
   /** Brand token used to detect whether a page title already carries the name. */
@@ -113,6 +129,23 @@ export const GOLDEN_CHARTER = {
    */
   url: 'https://www.goldencharter.co.uk/',
   fcaNumber: '965279',
+
+  /**
+   * REGULATORY STATUS — DO NOT REWORD.
+   *
+   * A & A Doyle Limited is an APPOINTED REPRESENTATIVE of Golden Charter, not an
+   * introducer. The two are distinct FCA statuses with different permissions: an
+   * introducer may only pass a customer on, whereas an appointed representative may
+   * advise on and arrange plans — which is what this business actually does.
+   *
+   * This is Golden Charter's own approved partner wording, reproduced verbatim from
+   * the disclosure published on doylefunerals.co.uk/funeral-planning/, which names
+   * John Bald Funeral Directors explicitly. Financial promotion wording is the
+   * provider's to approve, so any change must come from Golden Charter — not from us.
+   */
+  appointedRepresentativeStatement:
+    'A & A Doyle Limited, trading as A & A Doyle Limited, Herkes Funeral Directors and John Bald Funeral Directors, is an appointed representative of Golden Charter Limited trading as Golden Charter Funeral Plans which is authorised and regulated by the Financial Conduct Authority (FRN: 965279).',
+
   /** Golden Charter is the FCA-regulated plan provider; John Bald is the funeral director who carries out the funeral. */
   regulatoryNote:
     'Golden Charter Limited is authorised and regulated by the Financial Conduct Authority (Firm Reference Number 965279). You can check this on the Financial Services Register at register.fca.org.uk.',
