@@ -73,7 +73,7 @@ const telHref = phone ? `tel:${phone.replace(/\s+/g, '')}` : undefined;
           )}
           {phone && website && <span> · </span>}
           {website && (
-            <a href={website} rel="noopener">
+            <a href={website} target="_blank" rel="noopener noreferrer">
               Official website
             </a>
           )}
