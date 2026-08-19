@@ -73,4 +73,4 @@ You can ask for a redetermination, and then appeal. Citizens Advice Scotland wil
 
 ---
 
-*Figures are for the 2026/27 tax year and were checked in August 2026. Rates are uprated each April — check <a href="https://www.mygov.scot/funeral-support-payment" target="_blank" rel="noopener noreferrer">mygov.scot</a> for the current position.*
+*Figures are for the 2026/27 tax year and were checked in August 2026. Rates are uprated each April — check <a href="https://www.mygov.scot/funeral-support-payment" target="_blank" rel="noopener">mygov.scot<span class="sr-only"> (opens in a new tab)</span></a> for the current position.*

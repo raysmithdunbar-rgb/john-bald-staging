@@ -56,6 +56,20 @@ export const CONTACT = {
 } as const;
 
 /**
+ * Supplied August 2026. The profile.php?id= form is the page's canonical
+ * address — Facebook only issues a vanity /name URL once a page passes its
+ * follower threshold, so this is the stable one to cite. Also emitted as
+ * `sameAs` in the FuneralHome schema, which is what ties the page to the
+ * business as an entity rather than leaving it an unattached profile.
+ */
+export const SOCIAL = [
+  {
+    name: 'Facebook',
+    url: 'https://www.facebook.com/profile.php?id=100063864257057',
+  },
+] as const;
+
+/**
  * Approximate centre of Dunbar. Replace with the exact Countess Crescent
  * coordinates once the address is confirmed — these feed LocalBusiness schema
  * and the local pack.
@@ -91,6 +105,12 @@ export const MEMBERSHIPS = [
 
 export const GOLDEN_CHARTER = {
   name: 'Golden Charter',
+  /**
+   * Deliberately not linked from the site. Golden Charter sells plans direct
+   * to the public as well as through its funeral directors, so an outbound
+   * link hands them the enquiry. Kept here because the schema and the FCA
+   * wording still need to identify the provider. Do not re-link.
+   */
   url: 'https://www.goldencharter.co.uk/',
   fcaNumber: '965279',
   /** Golden Charter is the FCA-regulated plan provider; John Bald is the funeral director who carries out the funeral. */

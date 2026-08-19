@@ -1,5 +1,5 @@
 ---
-import { SITE, ACTIVE_ADDRESS, CONTACT, GEO, SERVICE_AREA } from '../data/site';
+import { SITE, ACTIVE_ADDRESS, CONTACT, GEO, SERVICE_AREA, SOCIAL } from '../data/site';
 
 interface Crumb {
   name: string;
@@ -27,6 +27,7 @@ const funeralHome = {
   telephone: CONTACT.phone,
   email: CONTACT.email,
   parentOrganization: { '@type': 'Organization', name: SITE.parentCompany },
+  sameAs: SOCIAL.map((profile) => profile.url),
   address: {
     '@type': 'PostalAddress',
     streetAddress: ACTIVE_ADDRESS.street,
