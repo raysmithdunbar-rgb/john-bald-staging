@@ -143,35 +143,48 @@ const fill = (label: string) =>
       </h3>
 
       <div class="mt-4 border-t border-line pt-3">
-        <p class="m-0 text-ink-soft">
-          {PRICING.feesYouMustPay.burial.label}
-          <sup>{PRICING.feesYouMustPay.burial.footnote}</sup>
-        </p>
-        <div class="mt-1 flex flex-col gap-1 sm:flex-row sm:items-baseline sm:justify-between sm:gap-x-6">
+        <div class="flex flex-col gap-1 sm:flex-row sm:items-baseline sm:justify-between sm:gap-x-6">
+          <span class="text-ink-soft sm:flex-1">
+            {PRICING.feesYouMustPay.burial.label}
+            <sup>{PRICING.feesYouMustPay.burial.footnote}</sup>
+          </span>
+          <span class="font-semibold text-ink">
+            {range(
+              PRICING.feesYouMustPay.burial.rangeLow,
+              PRICING.feesYouMustPay.burial.rangeHigh,
+            )}
+          </span>
+        </div>
+        <div class="mt-2 flex flex-col gap-1 sm:flex-row sm:items-baseline sm:justify-between sm:gap-x-6">
           <span class="text-ink-soft sm:flex-1">
             {PRICING.feesYouMustPay.burial.localLabel}
           </span>
           <span class="font-semibold text-ink">
-            {range(PRICING.feesYouMustPay.burial.low, PRICING.feesYouMustPay.burial.high)}
+            {price(PRICING.feesYouMustPay.burial.typical)}
           </span>
         </div>
         <p class="mt-2 mb-0 text-sm text-ink-muted">{PRICING.feesYouMustPay.burial.note}</p>
       </div>
 
       <div class="mt-4 border-t border-line pt-3">
-        <p class="m-0 text-ink-soft">
-          {PRICING.feesYouMustPay.cremation.label}
-          <sup>{PRICING.feesYouMustPay.cremation.footnote}</sup>
-        </p>
-        <div class="mt-1 flex flex-col gap-1 sm:flex-row sm:items-baseline sm:justify-between sm:gap-x-6">
+        <div class="flex flex-col gap-1 sm:flex-row sm:items-baseline sm:justify-between sm:gap-x-6">
+          <span class="text-ink-soft sm:flex-1">
+            {PRICING.feesYouMustPay.cremation.label}
+            <sup>{PRICING.feesYouMustPay.cremation.footnote}</sup>
+          </span>
+          <span class="font-semibold text-ink">
+            {range(
+              PRICING.feesYouMustPay.cremation.rangeLow,
+              PRICING.feesYouMustPay.cremation.rangeHigh,
+            )}
+          </span>
+        </div>
+        <div class="mt-2 flex flex-col gap-1 sm:flex-row sm:items-baseline sm:justify-between sm:gap-x-6">
           <span class="text-ink-soft sm:flex-1">
             {PRICING.feesYouMustPay.cremation.localLabel}
           </span>
           <span class="font-semibold text-ink">
-            {range(
-              PRICING.feesYouMustPay.cremation.low,
-              PRICING.feesYouMustPay.cremation.high,
-            )}
+            {price(PRICING.feesYouMustPay.cremation.typical)}
           </span>
         </div>
       </div>
@@ -204,9 +217,13 @@ const fill = (label: string) =>
             <li class="flex flex-col gap-1 sm:flex-row sm:items-baseline sm:justify-between sm:gap-x-6 border-t border-line py-3">
               <span class="text-ink-soft sm:flex-1">{item.label}</span>
               <span class="font-semibold text-ink">
-                {item.mode === 'onRequest' && PRICING.confirmed
-                  ? 'Prices on request'
-                  : price(item.price)}
+                {!PRICING.confirmed
+                  ? 'To be confirmed'
+                  : item.mode === 'onRequest'
+                    ? 'Prices on request'
+                    : item.mode === 'text'
+                      ? item.display
+                      : price(item.price)}
               </span>
             </li>
           ))

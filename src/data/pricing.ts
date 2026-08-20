@@ -19,25 +19,41 @@
  * (gov.uk, updated 21 January 2025).
  * ─────────────────────────────────────────────────────────────────────────────
  *
- * `confirmed` stays false until John Bald's own figures are supplied and signed
- * off. While false, the page renders a "prices being confirmed" notice instead of
- * numbers, so placeholder figures can never be published by accident.
+ * ── Provenance of these figures ──────────────────────────────────────────────
  *
- * These must be John Bald's DUNBAR prices — not A & A Doyle's Galashiels prices.
- * Herkes currently publishes figures identical to Galashiels; Dunbar must not
- * inherit that. Publishing another branch's figures would breach the Order.
+ * Sourced from the A & A Doyle Standardised Price List
+ * (doylefunerals.co.uk/standardised-price-list/, read August 2026).
  *
- * The Order also requires that the individual attended-funeral item prices ADD UP
- * to the attended-funeral total, and that every item is greater than £0. There is
- * a build-time assertion for this at the foot of the file.
+ * CLIENT-CONFIRMED, AUGUST 2026: A & A Doyle Ltd operates uniform pricing across
+ * all three branches — Galashiels, Gorebridge (Herkes) and Dunbar (John Bald).
+ * These are therefore John Bald's own prices, not another branch's, and publishing
+ * them here is correct. The Order requires each branch's list to reflect what that
+ * branch actually charges: identical figures are compliant where pricing genuinely
+ * is uniform, and a breach only where a branch differs. If Dunbar ever diverges —
+ * after the move to Countess Crescent, for instance — this file must be updated
+ * independently of the other two branches.
+ *
+ * KNOWN ISSUE IN THE SOURCE LIST: Doyle's published headline for the attended
+ * funeral is £2,800, but their six itemised prices sum to £2,801. The Order
+ * requires the items to add up to the total, so one or the other has to give.
+ * Client decision, August 2026: keep all six item prices exactly as published and
+ * carry the £1 into the total, so the headline here is £2,801. The £1 viewing fee
+ * is Doyle's device for satisfying the Order's "every item greater than £0" rule.
+ * The same discrepancy is live on the Doyle and Herkes lists and should be
+ * corrected at source.
+ *
+ * The Order requires the individual attended-funeral item prices to ADD UP to the
+ * attended-funeral total, and every item to be greater than £0. Both are asserted
+ * at the foot of this file. The assertion throws during `npm run build`, so a
+ * non-compliant list cannot reach the deployed site.
  */
 
 type Money = number | null;
 
 export const PRICING = {
-  confirmed: false,
-  effectiveFrom: 'TBC',
-  lastReviewed: 'TBC',
+  confirmed: true,
+  effectiveFrom: 'August 2026',
+  lastReviewed: 'August 2026',
 
   /**
    * PRESCRIBED — the standing preamble that heads the list.
@@ -55,8 +71,12 @@ export const PRICING = {
       'This is a funeral where family and friends have a ceremony, event or service for ' +
       'the deceased person at the same time as they attend their burial or cremation.',
 
-    /** Headline figure. Must equal the sum of `items` below. */
-    total: null as Money,
+    /**
+     * Headline figure. Must equal the sum of `items` below — asserted at build time.
+     * £2,801 rather than Doyle's published £2,800: see "KNOWN ISSUE" in the file
+     * header. All six item prices are exactly as Doyle publishes them.
+     */
+    total: 2801 as Money,
 
     /**
      * PRESCRIBED — six items, this wording, this order. Each price must be > £0.
@@ -70,7 +90,7 @@ export const PRICING = {
       {
         id: 'arrangements',
         label: 'Taking care of all necessary legal and administrative arrangements',
-        price: null as Money,
+        price: 1550 as Money,
       },
       {
         id: 'collection',
@@ -78,26 +98,26 @@ export const PRICING = {
           'Collecting and transporting the deceased person from the place of death ' +
           "(normally within 15 miles of the funeral director's premises) into the funeral " +
           "director's care",
-        price: null as Money,
+        price: 300 as Money,
       },
       {
         id: 'care',
         label:
           'Care of the deceased person before the funeral in appropriate facilities. ' +
           'The deceased person will be kept at {care}',
-        price: null as Money,
+        price: 250 as Money,
       },
       {
         id: 'coffin',
         label: 'Providing a suitable coffin – this will be made from {coffin}',
-        price: null as Money,
+        price: 375 as Money,
       },
       {
         id: 'viewing',
         label:
           'Viewing of the deceased person for family and friends, by appointment with ' +
           'the funeral director (where viewing is requested by the customer)',
-        price: null as Money,
+        price: 1 as Money,
       },
       {
         id: 'hearse',
@@ -105,7 +125,7 @@ export const PRICING = {
           'At a date and time you agree with the funeral director, taking the deceased ' +
           'person direct to the agreed cemetery or crematorium (normally within 20 miles ' +
           "of the funeral director's premises) in a hearse or other appropriate vehicle",
-        price: null as Money,
+        price: 325 as Money,
       },
     ],
   },
@@ -116,7 +136,7 @@ export const PRICING = {
    */
   variables: {
     care: "the funeral director's branch premises",
-    coffin: 'veneered chipboard with a fabric interior',
+    coffin: 'engineered wood or enviro-board',
   },
 
   unattended: {
@@ -130,28 +150,33 @@ export const PRICING = {
     /** PRESCRIBED line labels. `null` price renders as "Not offered" once confirmed. */
     burial: {
       label: "Burial (funeral director's charges only)",
-      price: null as Money,
+      price: 1200 as Money,
     },
     cremation: {
       label: "Cremation (funeral director's charges plus the cremation fee)",
       footnote: 2,
-      price: null as Money,
+      price: 1495 as Money,
     },
   },
 
   /**
-   * PRESCRIBED — "Fees you must pay". These are third-party fees, shown as the
-   * typical local range rather than a single figure.
+   * PRESCRIBED — "Fees you must pay". Third-party fees, not ours.
+   *
+   * The template carries TWO figures per fee, on two separate lines:
+   *   - a range across the area served, against the label line
+   *   - a single typical figure for local residents, against the localLabel line
+   * Both must be populated; they are not the same number.
    */
   feesYouMustPay: {
     heading: 'Fees you must pay',
     burial: {
       label: 'For an Attended or Unattended burial funeral, the burial fee.',
       footnote: 1,
+      rangeLow: 1147 as Money,
+      rangeHigh: 2779.5 as Money,
       localLabel:
         'In this local area, the typical cost of the burial fee for local residents is:',
-      low: null as Money,
-      high: null as Money,
+      typical: 1495 as Money,
       note:
         'For a new grave, you will also need to pay for the plot; for an existing grave ' +
         'with a memorial in place, you may need to pay a removal/replacement fee. In ' +
@@ -160,10 +185,11 @@ export const PRICING = {
     cremation: {
       label: 'For an Attended cremation funeral, the cremation fee.',
       footnote: 2,
+      rangeLow: 795 as Money,
+      rangeHigh: 1750 as Money,
       localLabel:
         'In this local area, the typical cost of a cremation for local residents is:',
-      low: null as Money,
-      high: null as Money,
+      typical: 1295 as Money,
     },
   },
 
@@ -195,8 +221,12 @@ export const PRICING = {
    * Options Price List, which is a separate document on its own page.
    *
    * `mode` controls how the price renders:
-   *   'money'    — a monetary value
-   *   'onRequest' — the Order permits "Prices on request" for these two items
+   *   'money'     — a fixed monetary value, from `price`
+   *   'onRequest' — renders "Prices on request", which the Order permits here
+   *   'text'      — a literal string in `display`, for ranges such as "Nil to £300"
+   *
+   * Unlike the attended-funeral breakdown, the Order does not require these to be
+   * single fixed values, so ranges and "on request" are legitimate.
    */
   additionalProductsServices: {
     heading: 'Additional Funeral Director Products and Services',
@@ -205,25 +235,43 @@ export const PRICING = {
       'products and services, or to arrange (on your behalf) for a third party to ' +
       'supply them. Examples include:',
     items: [
-      { label: 'Additional mileage (price per mile)', mode: 'money', price: null as Money },
+      {
+        label: 'Additional mileage (price per mile)',
+        mode: 'money' as const,
+        price: 2 as Money,
+        display: '',
+      },
       {
         label:
           "Additional transfers of the deceased person's body (e.g. to their home, to a " +
           'place of worship etc.) (price per transfer)',
-        mode: 'money',
-        price: null as Money,
+        mode: 'money' as const,
+        price: 195 as Money,
+        display: '',
       },
-      { label: 'Collection and delivery of ashes', mode: 'money', price: null as Money },
-      { label: 'Embalming', mode: 'money', price: null as Money },
+      {
+        label: 'Collection and delivery of ashes',
+        mode: 'onRequest' as const,
+        price: null as Money,
+        display: '',
+      },
+      {
+        label: 'Embalming',
+        mode: 'money' as const,
+        price: 150 as Money,
+        display: '',
+      },
       {
         label: 'Funeral officiant (e.g. celebrant, minister of religion etc.)',
-        mode: 'onRequest',
+        mode: 'text' as const,
         price: null as Money,
+        display: 'Nil to £300',
       },
       {
         label: 'Services supplied outside of normal office hours',
-        mode: 'onRequest',
+        mode: 'text' as const,
         price: null as Money,
+        display: 'Nil to £250',
       },
     ],
     outro:
