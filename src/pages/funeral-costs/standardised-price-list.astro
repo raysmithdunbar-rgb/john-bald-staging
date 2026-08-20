@@ -1,4 +1,19 @@
 ---
+/**
+ * CMA Standardised Price List.
+ *
+ * The block inside <section class="spl"> reproduces the CMA's prescribed template
+ * verbatim: same wording, same items, same order, same footnotes. The Order does
+ * not permit changes to it ("No changes to the format of the Standardised Price
+ * List are permitted, except those allowed in Part B of Schedule 1 to this Order").
+ *
+ * Our own plain-English commentary sits OUTSIDE that block — above it and below
+ * it — so families still get an explanation without the prescribed list being
+ * paraphrased. If you are tempted to reword something inside the block: don't.
+ * Change the commentary instead.
+ *
+ * The Order permits own branding, colour and font, which is what the styling here is.
+ */
 import Page from '../../layouts/Page.astro';
 import Callout from '../../components/Callout.astro';
 import { CONTACT } from '../../data/site';
@@ -9,8 +24,25 @@ const breadcrumbs = [
   { name: 'Standardised Price List', url: '/funeral-costs/standardised-price-list/' },
 ];
 
-const money = (value: number | null) =>
-  value === null ? null : `£${value.toLocaleString('en-GB', { minimumFractionDigits: 2 })}`;
+const money = (v: number | null) =>
+  v === null ? null : `£${v.toLocaleString('en-GB', { minimumFractionDigits: 2 })}`;
+
+/** Before prices are signed off we show a neutral placeholder, never "Not offered". */
+const price = (v: number | null) =>
+  !PRICING.confirmed ? 'To be confirmed' : (money(v) ?? 'Not offered');
+
+const range = (low: number | null, high: number | null) => {
+  if (!PRICING.confirmed) return 'To be confirmed';
+  if (low === null && high === null) return 'Not offered';
+  if (low !== null && high !== null && low !== high) return `${money(low)}–${money(high)}`;
+  return money(low ?? high) as string;
+};
+
+/** Fills the two slots the Order lets the funeral director complete. */
+const fill = (label: string) =>
+  label
+    .replace('{care}', PRICING.variables.care)
+    .replace('{coffin}', PRICING.variables.coffin);
 ---
 
 <Page
@@ -36,88 +68,192 @@ const money = (value: number | null) =>
 
   <p>
     The Competition and Markets Authority requires every funeral director in the United
-    Kingdom to publish this list, in this order, using these headings. That is deliberate:
-    it means you can put our list beside anyone else's and compare them properly, rather
-    than trying to work out whether two different quotes cover the same things.
+    Kingdom to publish the list below, using its wording, its items and its order. That is
+    deliberate: it means you can put our list beside anyone else's and compare them
+    properly, rather than trying to work out whether two different quotes cover the same
+    things.
   </p>
-
-  <h2>Attended funeral</h2>
   <p>
-    A funeral where family and friends are present, whether that is at a crematorium, a
-    cemetery, a church or here at our funeral home.
+    Because the format is fixed by law, the list itself is worded by the CMA rather than
+    by us. Our own explanation of what it all means follows underneath it.
   </p>
 
-  {
-    PRICING.attended.total !== null ? (
-      <p class="text-2xl font-semibold">{money(PRICING.attended.total)}</p>
-    ) : (
-      <p class="text-xl text-ink-muted">Price to be confirmed — please telephone us.</p>
-    )
-  }
+  <!-- ══════════ BEGIN PRESCRIBED CMA TEMPLATE — DO NOT REWORD ══════════ -->
+  <section class="spl not-prose mt-10 border border-line" aria-label="Standardised Price List">
+    <h2 class="m-0 bg-ink px-5 py-4 font-serif text-xl text-paper sm:text-2xl">
+      Standardised Price List
+    </h2>
 
-  <h3>This includes</h3>
-  <ul>
-    {PRICING.attended.includes.map((item) => <li>{item}</li>)}
-  </ul>
+    <div class="border-b border-line px-5 py-4">
+      <p class="m-0 text-ink-soft">{PRICING.preamble}</p>
+    </div>
 
-  <h3>This does not include</h3>
-  <ul>
-    {PRICING.attended.excludes.map((item) => <li>{item}</li>)}
-  </ul>
+    <!-- Attended funeral -->
+    <div class="border-b border-line px-5 py-5">
+      <div class="flex flex-col gap-1 sm:flex-row sm:items-baseline sm:justify-between sm:gap-x-6">
+        <h3 class="m-0 font-serif text-lg text-ink sm:text-xl">
+          {PRICING.attended.heading}
+        </h3>
+        <p class="m-0 text-lg font-semibold text-ink">{price(PRICING.attended.total)}</p>
+      </div>
+      <p class="mt-2 mb-0 text-ink-soft">{PRICING.attended.description}</p>
 
-  <h2>Unattended funeral</h2>
-  <p>
-    A funeral where nobody attends — usually a direct cremation. We take the person who
-    has died to the crematorium at a time we arrange, and return the ashes to you
-    afterwards.{' '}
-    <a href="/funeral-services/direct-cremation/">More about direct cremation</a>.
-  </p>
+      <ul class="mt-5 list-none space-y-0 p-0">
+        {
+          PRICING.attended.items.map((item) => (
+            <li class="flex flex-col gap-1 sm:flex-row sm:items-baseline sm:justify-between sm:gap-x-6 border-t border-line py-3">
+              <span class="text-ink-soft sm:flex-1">{fill(item.label)}</span>
+              <span class="font-semibold text-ink">{price(item.price)}</span>
+            </li>
+          ))
+        }
+      </ul>
+    </div>
 
-  {
-    PRICING.unattended.total !== null ? (
-      <p class="text-2xl font-semibold">{money(PRICING.unattended.total)}</p>
-    ) : (
-      <p class="text-xl text-ink-muted">Price to be confirmed — please telephone us.</p>
-    )
-  }
+    <!-- Unattended funeral -->
+    <div class="border-b border-line px-5 py-5">
+      <h3 class="m-0 font-serif text-lg text-ink sm:text-xl">
+        {PRICING.unattended.heading}
+      </h3>
+      <p class="mt-2 mb-0 text-ink-soft">{PRICING.unattended.description}</p>
 
-  <h3>This includes</h3>
-  <ul>
-    {PRICING.unattended.includes.map((item) => <li>{item}</li>)}
-  </ul>
-
-  <h3>This does not include</h3>
-  <ul>
-    {PRICING.unattended.excludes.map((item) => <li>{item}</li>)}
-  </ul>
-
-  <h2>Fees we pay on your behalf</h2>
-  <p>
-    These are set by other people — councils, crematoria, ministers — not by us. We pay
-    them for you and pass them on exactly as charged, with nothing added.
-  </p>
-  <ul>
-    {
-      PRICING.thirdParty.map((fee) => (
-        <li>
-          <strong>{fee.name}</strong> — {fee.note}
+      <ul class="mt-5 list-none space-y-0 p-0">
+        <li class="flex flex-col gap-1 sm:flex-row sm:items-baseline sm:justify-between sm:gap-x-6 border-t border-line py-3">
+          <span class="text-ink-soft sm:flex-1">
+            {PRICING.unattended.burial.label}
+          </span>
+          <span class="font-semibold text-ink">{price(PRICING.unattended.burial.price)}</span>
         </li>
-      ))
+        <li class="flex flex-col gap-1 sm:flex-row sm:items-baseline sm:justify-between sm:gap-x-6 border-t border-line py-3">
+          <span class="text-ink-soft sm:flex-1">
+            {PRICING.unattended.cremation.label}
+            <sup>{PRICING.unattended.cremation.footnote}</sup>
+          </span>
+          <span class="font-semibold text-ink">
+            {price(PRICING.unattended.cremation.price)}
+          </span>
+        </li>
+      </ul>
+    </div>
+
+    <!-- Fees you must pay -->
+    <div class="border-b border-line px-5 py-5">
+      <h3 class="m-0 font-serif text-lg text-ink sm:text-xl">
+        {PRICING.feesYouMustPay.heading}
+      </h3>
+
+      <div class="mt-4 border-t border-line pt-3">
+        <p class="m-0 text-ink-soft">
+          {PRICING.feesYouMustPay.burial.label}
+          <sup>{PRICING.feesYouMustPay.burial.footnote}</sup>
+        </p>
+        <div class="mt-1 flex flex-col gap-1 sm:flex-row sm:items-baseline sm:justify-between sm:gap-x-6">
+          <span class="text-ink-soft sm:flex-1">
+            {PRICING.feesYouMustPay.burial.localLabel}
+          </span>
+          <span class="font-semibold text-ink">
+            {range(PRICING.feesYouMustPay.burial.low, PRICING.feesYouMustPay.burial.high)}
+          </span>
+        </div>
+        <p class="mt-2 mb-0 text-sm text-ink-muted">{PRICING.feesYouMustPay.burial.note}</p>
+      </div>
+
+      <div class="mt-4 border-t border-line pt-3">
+        <p class="m-0 text-ink-soft">
+          {PRICING.feesYouMustPay.cremation.label}
+          <sup>{PRICING.feesYouMustPay.cremation.footnote}</sup>
+        </p>
+        <div class="mt-1 flex flex-col gap-1 sm:flex-row sm:items-baseline sm:justify-between sm:gap-x-6">
+          <span class="text-ink-soft sm:flex-1">
+            {PRICING.feesYouMustPay.cremation.localLabel}
+          </span>
+          <span class="font-semibold text-ink">
+            {range(
+              PRICING.feesYouMustPay.cremation.low,
+              PRICING.feesYouMustPay.cremation.high,
+            )}
+          </span>
+        </div>
+      </div>
+    </div>
+
+    <!-- Religious / cultural note and footnotes -->
+    <div class="border-b border-line px-5 py-4">
+      <p class="m-0 text-ink-soft">{PRICING.religiousNote}</p>
+      <ol class="mt-4 mb-0 list-none space-y-1 p-0 text-sm text-ink-muted">
+        {
+          PRICING.footnotes.map((f) => (
+            <li>
+              <sup>{f.n}</sup> {f.text}
+            </li>
+          ))
+        }
+      </ol>
+    </div>
+
+    <!-- Additional funeral director products and services -->
+    <div class="px-5 py-5">
+      <h3 class="m-0 font-serif text-lg text-ink sm:text-xl">
+        {PRICING.additionalProductsServices.heading}
+      </h3>
+      <p class="mt-2 mb-0 text-ink-soft">{PRICING.additionalProductsServices.intro}</p>
+
+      <ul class="mt-5 list-none space-y-0 p-0">
+        {
+          PRICING.additionalProductsServices.items.map((item) => (
+            <li class="flex flex-col gap-1 sm:flex-row sm:items-baseline sm:justify-between sm:gap-x-6 border-t border-line py-3">
+              <span class="text-ink-soft sm:flex-1">{item.label}</span>
+              <span class="font-semibold text-ink">
+                {item.mode === 'onRequest' && PRICING.confirmed
+                  ? 'Prices on request'
+                  : price(item.price)}
+              </span>
+            </li>
+          ))
+        }
+      </ul>
+
+      <p class="mt-5 mb-0 text-ink-soft">{PRICING.additionalProductsServices.outro}</p>
+    </div>
+  </section>
+  <!-- ══════════ END PRESCRIBED CMA TEMPLATE ══════════ -->
+
+  <p class="mt-3 text-sm text-ink-muted">
+    {
+      PRICING.confirmed
+        ? `Published in accordance with the Funerals Market Investigation Order 2021. Effective from ${PRICING.effectiveFrom}. Last reviewed ${PRICING.lastReviewed}.`
+        : 'This list is published in accordance with the Funerals Market Investigation Order 2021.'
     }
-  </ul>
+  </p>
+
+  <h2>What this means in practice</h2>
 
   <Callout title="You are not obliged to buy anything else">
     <p>
       You may buy only the attended or unattended funeral above, and nothing more. You are
       under no obligation to take any additional item we offer, and we will not press you
-      to. Anything else you might want is set out separately on our{' '}
+      to. Everything else we can supply is set out separately on our{' '}
       <a href="/funeral-costs/additional-options-price-list/">
         Additional Options Price List
       </a>.
     </p>
   </Callout>
 
-  <h2>Help with paying</h2>
+  <h3>Fees we pay on your behalf</h3>
+  <p>
+    The "fees you must pay" above are set by other people — councils, crematoria,
+    ministers — not by us. We pay them for you and pass them on exactly as charged, with
+    nothing added. The two largest are the burial fee, set by East Lothian Council or
+    Scottish Borders Council, and the cremation fee, set by the crematorium. Neither is
+    charged for anyone under 18 in Scotland.
+  </p>
+  <p>
+    The footnote about doctors' fees applies in England, Wales and Northern Ireland. It
+    does not apply here — Scotland has a different system, and there is no doctors' fee
+    to pay for a cremation.
+  </p>
+
+  <h3>Help with paying</h3>
   <p>
     If money is a worry, please say so at the start rather than at the end. Funeral
     Support Payment is available in Scotland and can be paid straight to us, so it never
@@ -125,16 +261,13 @@ const money = (value: number | null) =>
     <a href="/funeral-costs/help-with-funeral-costs/">More about help with funeral costs</a>.
   </p>
 
-  <h2>Where else you can see this list</h2>
+  <h3>Where else you can see this list</h3>
   <p>
-    Displayed in the window of our funeral home, available in print to take away, and
-    given to you before you commit to anything. You will also receive a full written
-    estimate covering everything you have chosen.
-  </p>
-
-  <p class="text-sm text-ink-muted">
-    {PRICING.confirmed
-      ? `Effective from ${PRICING.effectiveFrom}. Last reviewed ${PRICING.lastReviewed}.`
-      : 'This list is published in accordance with the Funerals Market Investigation Order 2021.'}
+    Displayed in the window of our funeral home, displayed inside it, available in print
+    to take away, and given to you before you commit to anything. You will also receive a
+    full written estimate covering everything you have chosen. If you cannot get to us and
+    would rather not read it on a screen, telephone{' '}
+    <a href={CONTACT.phoneHref} class="font-semibold">{CONTACT.phone}</a> and we will post
+    you a copy.
   </p>
 </Page>
