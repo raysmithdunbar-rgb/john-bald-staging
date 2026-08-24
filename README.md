@@ -36,6 +36,45 @@ trade body verification, plan wording, form handler, photography, domain and
 legal review — are listed in `HANDOVER.md`, which is deliberately not
 committed to this repository.
 
+## Branches
+
+`staging` is the integration branch. `main` is the release branch. Work lands on
+`staging`, is verified there, and only then merges to `main`.
+
+| Branch | Role |
+| :--- | :--- |
+| `staging` | Integration. Branch new work from here, and merge it back here. |
+| `main` | Release. Only ever receives merges from `staging` — no direct commits. |
+| `gh-pages` | Build output. Machine-written by `npm run deploy:staging`; never commit to it by hand. |
+
+Day to day:
+
+```
+git switch staging
+# ...work, commit...
+npm run verify            # must pass clean before the merge
+git switch main
+git merge --ff-only staging
+git push origin main staging
+```
+
+`--ff-only` is deliberate. It fails loudly rather than quietly writing a merge
+commit if `main` has picked up commits `staging` does not have — which is exactly
+the divergence this repo has already been bitten by once (see below). If it
+refuses, work out where the extra commits came from before going any further.
+
+### Three separate things here are called "staging"
+
+Worth stating plainly, because the overlap misleads:
+
+1. **The repo** — `john-bald-staging` on GitHub. The site is pre-launch, so the whole repository carries the name.
+2. **The deployed site** — `npm run deploy:staging` builds with `STAGING=1` (noindex plus a blanket robots disallow) and force-pushes `dist/` to `gh-pages`.
+3. **The branch** — `staging`, the integration branch above.
+
+Deploying the staging *site* does not require being on the staging *branch*: the
+deploy script builds whatever is currently checked out. Deploy from `main` for a
+release candidate, or from `staging` to preview integration work before it merges.
+
 ## Working across sessions — use one clone
 
 The canonical local clone is **`C:\Code\J-Bald\site`**. Always work there, not a fresh
