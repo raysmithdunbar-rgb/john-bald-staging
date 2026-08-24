@@ -77,7 +77,7 @@ release candidate, or from `staging` to preview integration work before it merge
 
 ## Working across sessions — use one clone
 
-The canonical local clone is **`C:\Code\J-Bald\site`**. Always work there, not a fresh
+The canonical local clone is **`C:\Projects\J-Bald\site`**. Always work there, not a fresh
 `gh repo clone` into a temp or scratchpad directory — `HANDOVER.md` lives only in that
 clone (it's gitignored, see above), and so does any work that's been committed locally
 but deliberately held back from `git push`.
@@ -90,7 +90,7 @@ and pushed, which silently undid part of the held work (a deliberately unlinked 
 link got re-linked). It was caught and reconciled by rebasing, but it could as easily
 have shipped wrong. Full account in `HANDOVER.md`.
 
-If you're picking this project up in a new session: check `C:\Code\J-Bald\site` for
+If you're picking this project up in a new session: check `C:\Projects\J-Bald\site` for
 uncommitted or unpushed work before cloning anything, and if you're asked to hold work
 locally rather than push it, say so explicitly, by path, so the next session knows to
 look there first.
