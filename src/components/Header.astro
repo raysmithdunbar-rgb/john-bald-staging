@@ -82,6 +82,21 @@ const isCurrent = (href: string) =>
                   >
                     {item.label}
                   </a>
+                  {item.children && (
+                    <ul class="mb-3 ml-4 border-l border-gold pl-4">
+                      {item.children.map((child) => (
+                        <li>
+                          <a
+                            href={child.href}
+                            aria-current={path === child.href ? 'page' : undefined}
+                            class="block py-2 text-base text-ink-soft no-underline aria-[current=page]:font-semibold aria-[current=page]:text-ink"
+                          >
+                            {child.label}
+                          </a>
+                        </li>
+                      ))}
+                    </ul>
+                  )}
                 </li>
               ))
             }
@@ -91,18 +106,56 @@ const isCurrent = (href: string) =>
     </div>
   </div>
 
-  <nav aria-label="Main" class="hidden border-t border-line lg:block">
-    <ul class="mx-auto flex max-w-6xl flex-wrap justify-center gap-x-8 px-8">
+  <!--
+    Dropdowns open on hover, on keyboard focus, and on the small arrow button
+    (for touch screens and screen readers). The parent label stays a real link,
+    so with scripts off every sub page is still one click further on from the
+    parent page.
+  -->
+  <nav aria-label="Main" class="relative z-30 hidden border-t border-line lg:block">
+    <ul class="mx-auto flex max-w-6xl flex-wrap justify-center gap-x-6 px-8">
       {
-        PRIMARY_NAV.map((item) => (
-          <li>
-            <a
-              href={item.href}
-              aria-current={isCurrent(item.href) ? 'page' : undefined}
-              class="-mb-px block border-b-2 border-transparent py-3 text-[0.95rem] text-ink-soft no-underline hover:border-poppy hover:text-ink aria-[current=page]:border-poppy aria-[current=page]:text-ink"
-            >
-              {item.label}
-            </a>
+        PRIMARY_NAV.map((item, i) => (
+          <li class="jb-item group relative">
+            <div class="flex items-center">
+              <a
+                href={item.href}
+                aria-current={isCurrent(item.href) ? 'page' : undefined}
+                class="-mb-px block border-b-2 border-transparent py-3 pl-1 pr-1 text-[0.95rem] text-ink-soft no-underline hover:border-poppy hover:text-ink aria-[current=page]:border-poppy aria-[current=page]:text-ink"
+              >
+                {item.label}
+              </a>
+              {item.children && (
+                <button
+                  type="button"
+                  class="jb-toggle -mb-px border-b-2 border-transparent px-1 py-3 text-xs text-ink-muted hover:text-ink"
+                  aria-expanded="false"
+                  aria-controls={`jb-sub-${i}`}
+                  aria-label={`Show pages under ${item.label}`}
+                >
+                  <span aria-hidden="true">▾</span>
+                </button>
+              )}
+            </div>
+            {item.children && (
+              <ul
+                id={`jb-sub-${i}`}
+                class="jb-sub invisible absolute left-0 top-full z-40 min-w-64 border border-line border-t-gold bg-paper py-2 opacity-0 shadow-lg transition-opacity duration-150 group-focus-within:visible group-focus-within:opacity-100 group-hover:visible group-hover:opacity-100"
+                style="border-top-width:2px"
+              >
+                {item.children.map((child) => (
+                  <li>
+                    <a
+                      href={child.href}
+                      aria-current={path === child.href ? 'page' : undefined}
+                      class="block px-5 py-2 text-[0.95rem] text-ink-soft no-underline hover:bg-cream hover:text-ink aria-[current=page]:font-semibold aria-[current=page]:text-ink"
+                    >
+                      {child.label}
+                    </a>
+                  </li>
+                ))}
+              </ul>
+            )}
           </li>
         ))
       }
@@ -110,8 +163,38 @@ const isCurrent = (href: string) =>
   </nav>
 </header>
 
+<script>
+  // Arrow buttons: open or close a dropdown for touch and screen-reader users.
+  // Hover and keyboard focus are handled in CSS and need none of this.
+  const items = document.querySelectorAll<HTMLElement>('.jb-item');
+
+  function close(item: HTMLElement) {
+    item.classList.remove('jb-open');
+    item.querySelector('.jb-toggle')?.setAttribute('aria-expanded', 'false');
+  }
+
+  items.forEach((item) => {
+    const toggle = item.querySelector<HTMLButtonElement>('.jb-toggle');
+    toggle?.addEventListener('click', () => {
+      const opening = !item.classList.contains('jb-open');
+      items.forEach(close);
+      if (opening) {
+        item.classList.add('jb-open');
+        toggle.setAttribute('aria-expanded', 'true');
+      }
+    });
+  });
+
+  document.addEventListener('click', (e) => {
+    if (!(e.target as Element).closest('.jb-item')) items.forEach(close);
+  });
+
+  document.addEventListener('keydown', (e) => {
+    if (e.key === 'Escape') items.forEach(close);
+  });
+</script>
+
 <style>
   .jb-menu > summary::-webkit-details-marker {
     display: none;
-  }
-</style>
+  }</style>

@@ -236,3 +236,10 @@
     font-weight: 600;
   }
 }
+
+/* Header dropdown opened by its arrow button. Unlayered on purpose, so it beats
+   the Tailwind `invisible` / `opacity-0` utilities on the same element. */
+.jb-open > .jb-sub {
+  visibility: visible;
+  opacity: 1;
+}
