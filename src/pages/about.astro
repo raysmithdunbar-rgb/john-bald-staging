@@ -2,7 +2,9 @@
 import Page from '../layouts/Page.astro';
 import Callout from '../components/Callout.astro';
 import PageImage from '../components/PageImage.astro';
-import harbourImage from '../assets/photos/harbour-dusk.jpg';
+import PersonBlock from '../components/PersonBlock.astro';
+import bruceImage from '../assets/photos/bruce-robertson.jpg';
+import doyleImage from '../assets/photos/awdri-and-allan-doyle.jpg';
 import handsImage from '../assets/photos/hand-in-hand.jpg';
 import { SITE, CONTACT, MEMBERSHIPS } from '../data/site';
 
@@ -17,11 +19,6 @@ const verifiedMemberships = MEMBERSHIPS.filter((m) => m.verified);
   standfirst="Over fifty years in Dunbar, three sets of hands, and the same idea running through all of it."
   breadcrumbs={breadcrumbs}
 >
-  <PageImage
-    src={harbourImage}
-    alt="Small fishing boats resting in a still stone harbour at sunset on the Scottish east coast."
-  />
-
   <p>
     John Bald opened this business in Dunbar more than fifty years ago. When he retired in
     2001 he passed it to Ian and Elizabeth Torrance, who looked after East Lothian
@@ -35,25 +32,36 @@ const verifiedMemberships = MEMBERSHIPS.filter((m) => m.verified);
     asked.
   </p>
 
-  <h2>Bruce Robertson</h2>
-  <p>
-    Bruce manages our funeral home in Dunbar and looks after families here day to day. If
-    you telephone us or call in, he is most likely the person you will deal with, from the
-    first conversation through to the funeral itself and whatever follows it.
-  </p>
+  <PersonBlock
+    src={bruceImage}
+    alt="Bruce Robertson, who manages the Dunbar funeral home, smiling in a grey suit and tie in front of green leaves."
+  >
+    <h2>Bruce Robertson</h2>
+    <p>
+      Bruce manages our funeral home in Dunbar and looks after families here day to day. If
+      you telephone us or call in, he is most likely the person you will deal with, from the
+      first conversation through to the funeral itself and whatever follows it.
+    </p>
+  </PersonBlock>
 
-  <h2>Awdri and Allan Doyle</h2>
-  <p>
-    Awdri grew up in it. Her parents were funeral directors in Gorebridge, and although
-    she spent her teens certain she wanted nothing to do with the job, she found her way
-    back to it after starting a family. She trained in 2004 and, with Allan, opened
-    A & A Doyle in Galashiels in 2012. She is also a trained organist, and played at
-    funerals for years before she started arranging them.
-  </p>
-  <p>
-    Allan and Awdri lived and worked in Haddington and North Berwick for many years, and
-    knew John Bald himself before he retired. They are not strangers to this county.
-  </p>
+  <PersonBlock
+    src={doyleImage}
+    alt="Awdri and Allan Doyle, smiling side by side outdoors in dark funeral directors' jackets."
+    photoWidth="sm:w-72"
+  >
+    <h2>Awdri and Allan Doyle</h2>
+    <p>
+      Awdri grew up in it. Her parents were funeral directors in Gorebridge, and although
+      she spent her teens certain she wanted nothing to do with the job, she found her way
+      back to it after starting a family. She trained in 2004 and, with Allan, opened
+      A & A Doyle in Galashiels in 2012. She is also a trained organist, and played at
+      funerals for years before she started arranging them.
+    </p>
+    <p>
+      Allan and Awdri lived and worked in Haddington and North Berwick for many years, and
+      knew John Bald himself before he retired. They are not strangers to this county.
+    </p>
+  </PersonBlock>
 
   <h2>How we work</h2>
   <PageImage
