@@ -1,6 +1,8 @@
 ---
 import Page from '../layouts/Page.astro';
 import Callout from '../components/Callout.astro';
+import PageImage from '../components/PageImage.astro';
+import teaImage from '../assets/photos/tea-tray.jpg';
 import { CONTACT, ACTIVE_ADDRESS, ADDRESS } from '../data/site';
 
 const breadcrumbs = [{ name: 'Our funeral home', url: '/our-funeral-home/' }];
@@ -47,6 +49,11 @@ const breadcrumbs = [{ name: 'Our funeral home', url: '/our-funeral-home/' }];
   </p>
 
   <h2>Coming to see us</h2>
+  <PageImage
+    src={teaImage}
+    alt="A tea tray with a white teapot, two cups, shortbread and a single red poppy on a table by a window."
+    ratio="aspect-[3/2]"
+  />
   <p>
     You do not need an appointment to call in and ask a question. Plenty of people put
     their head round the door to ask about a funeral plan, or to record what they would

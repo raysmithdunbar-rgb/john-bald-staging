@@ -1,6 +1,9 @@
 ---
 import Page from '../layouts/Page.astro';
 import Callout from '../components/Callout.astro';
+import PageImage from '../components/PageImage.astro';
+import harbourImage from '../assets/photos/harbour-dusk.jpg';
+import handsImage from '../assets/photos/hand-in-hand.jpg';
 import { SITE, CONTACT, MEMBERSHIPS } from '../data/site';
 
 const breadcrumbs = [{ name: 'About us', url: '/about/' }];
@@ -14,6 +17,11 @@ const verifiedMemberships = MEMBERSHIPS.filter((m) => m.verified);
   standfirst="Over fifty years in Dunbar, three sets of hands, and the same idea running through all of it."
   breadcrumbs={breadcrumbs}
 >
+  <PageImage
+    src={harbourImage}
+    alt="Small fishing boats resting in a still stone harbour at sunset on the Scottish east coast."
+  />
+
   <p>
     John Bald opened this business in Dunbar more than fifty years ago. When he retired in
     2001 he passed it to Ian and Elizabeth Torrance, who looked after East Lothian
@@ -48,6 +56,12 @@ const verifiedMemberships = MEMBERSHIPS.filter((m) => m.verified);
   </p>
 
   <h2>How we work</h2>
+  <PageImage
+    src={handsImage}
+    alt="A younger person's hand resting gently over an older person's hand on a wooden table."
+    ratio="aspect-[3/2]"
+    position="center 55%"
+  />
   <p>
     The rule we run the business by is a simple one, and Awdri's: <em>do everything for
     your families as if they were your own.</em>
