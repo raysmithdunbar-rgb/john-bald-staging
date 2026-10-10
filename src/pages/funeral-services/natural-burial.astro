@@ -1,6 +1,8 @@
 ---
 import Page from '../../layouts/Page.astro';
 import Callout from '../../components/Callout.astro';
+import PageImage from '../../components/PageImage.astro';
+import woodlandImage from '../../assets/photos/woodland-path.jpg';
 import { CONTACT } from '../../data/site';
 
 const breadcrumbs = [
@@ -16,6 +18,11 @@ const breadcrumbs = [
   standfirst="A funeral that leaves nothing behind that will not return to the ground."
   breadcrumbs={breadcrumbs}
 >
+  <PageImage
+    src={woodlandImage}
+    alt="A leaf-covered path running through misty woodland in soft morning light."
+  />
+
   <p>
     Natural burial — also called green or woodland burial — means burial in a way that
     lets everything break down naturally. No embalming, a fully biodegradable coffin or

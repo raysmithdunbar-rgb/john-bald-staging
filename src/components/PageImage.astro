@@ -1,0 +1,28 @@
+---
+import { Image } from 'astro:assets';
+import type { ImageMetadata } from 'astro';
+
+interface Props {
+  src: ImageMetadata;
+  /** Describe what is in the picture; never leave empty unless purely decorative. */
+  alt: string;
+  /** Tailwind aspect class, e.g. `aspect-[16/9]`. */
+  ratio?: string;
+  /** CSS object-position, for choosing what survives the crop. */
+  position?: string;
+}
+
+const { src, alt, ratio = 'aspect-[16/9]', position = 'center' } = Astro.props;
+---
+
+<figure class="my-8 border border-line bg-cream p-1.5">
+  <Image
+    src={src}
+    alt={alt}
+    widths={[480, 720, 960, 1280]}
+    sizes="(min-width: 1152px) 68ch, 100vw"
+    class={`block h-auto w-full object-cover ${ratio}`}
+    style={`object-position:${position}`}
+    loading="lazy"
+  />
+</figure>

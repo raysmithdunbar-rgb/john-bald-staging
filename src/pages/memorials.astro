@@ -1,6 +1,8 @@
 ---
 import Page from '../layouts/Page.astro';
 import Callout from '../components/Callout.astro';
+import PageImage from '../components/PageImage.astro';
+import candleImage from '../assets/photos/candle-poppies.jpg';
 import { CONTACT } from '../data/site';
 
 const breadcrumbs = [{ name: 'Memorials', url: '/memorials/' }];
@@ -13,6 +15,13 @@ const breadcrumbs = [{ name: 'Memorials', url: '/memorials/' }];
   standfirst="There is no deadline on this, and no right answer. Some families decide within months, some take years."
   breadcrumbs={breadcrumbs}
 >
+  <PageImage
+    src={candleImage}
+    alt="A lit white candle beside a glass jar of red poppies on a stone windowsill."
+    ratio="aspect-[16/9]"
+    position="center 60%"
+  />
+
   <p>
     A memorial is the one part of a funeral you get to make slowly. Nothing about it is
     urgent, and the ground itself requires you to wait, which turns out to be a kindness —

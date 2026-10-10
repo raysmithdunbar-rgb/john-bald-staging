@@ -1,6 +1,8 @@
 ---
 import Page from '../layouts/Page.astro';
 import Callout from '../components/Callout.astro';
+import PageImage from '../components/PageImage.astro';
+import planningImage from '../assets/photos/planning-ahead.jpg';
 import { CONTACT, GOLDEN_CHARTER } from '../data/site';
 
 const breadcrumbs = [{ name: 'Planning ahead', url: '/funeral-plans/' }];
@@ -44,6 +46,12 @@ const faq = {
   breadcrumbs={breadcrumbs}
   schema={faq}
 >
+  <PageImage
+    src={planningImage}
+    alt="An older person's hands writing in a notebook at a wooden table, with a cup of tea and a red poppy nearby."
+    position="center 40%"
+  />
+
   <p>
     People come in to talk about this for all sorts of reasons — a diagnosis, a friend's
     funeral that went badly, or simply reaching an age where it feels sensible. Whatever
