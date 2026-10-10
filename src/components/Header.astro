@@ -1,10 +1,12 @@
 ---
 import { Image } from 'astro:assets';
 import logo from '../assets/brand/john-bald-logo-poppies.png';
+import harbour from '../assets/photos/dunbar-harbour.jpg';
 import { SITE, CONTACT } from '../data/site';
 import { PRIMARY_NAV } from '../data/nav';
 
 const path = Astro.url.pathname;
+const isHome = path === '/';
 const isCurrent = (href: string) =>
   href === '/' ? path === '/' : path.startsWith(href);
 ---
@@ -24,42 +26,73 @@ const isCurrent = (href: string) =>
     This site leads with an at-need journey, and the number staying visible
     above the fold is the point of it.
   -->
-  <div class="mx-auto max-w-6xl px-5 py-6 sm:px-8">
-    <!--
-      The logo is a full lockup — it already carries "John Bald / Funeral
-      Directors", so there is no text wordmark beside it to duplicate. The alt
-      text supplies that wording to screen readers and to anyone browsing with
-      images off.
-    -->
-    <a href="/" class="mx-auto block w-fit no-underline" aria-label={`${SITE.name} — home`}>
-      <Image
-        src={logo}
-        alt={SITE.name}
-        widths={[200, 320, 480]}
-        sizes="(min-width: 640px) 240px, 160px"
-        class="h-auto w-32 sm:w-60"
-        loading="eager"
-        fetchpriority="high"
-      />
-    </a>
+  <!--
+    Home page only: the logo and number sit in a light circle over a photograph
+    of the harbour, in the same centred position they hold on every other page.
+    Other pages keep the plain stacked header.
+  -->
+  <div
+    class={isHome
+      ? 'relative isolate flex items-center justify-center px-5 py-6 sm:min-h-[30rem] sm:py-10'
+      : 'mx-auto max-w-6xl px-5 py-6 sm:px-8'}
+  >
+    {
+      isHome && (
+        <Image
+          src={harbour}
+          alt="Dunbar's small red sandstone harbour at sunrise, with fishing boats at the quay and the castle ruins on the rocks beyond."
+          widths={[720, 1280, 1920, 2200]}
+          sizes="100vw"
+          class="absolute inset-0 -z-10 h-full w-full object-cover"
+          loading="eager"
+          fetchpriority="high"
+        />
+      )
+    }
 
-    <!--
-      Hidden on the smallest screens only. The fixed call bar already pins the
-      same number to the bottom of every phone viewport, and a centred stack
-      that repeats it was pushing the "someone has died" card off the first
-      screen — the one thing on this site that must not need scrolling to find.
-    -->
-    <div class="mt-5 hidden text-center sm:block">
-      <a
-        href={CONTACT.phoneHref}
-        class="font-serif text-xl font-semibold text-poppy-deep no-underline hover:text-poppy sm:text-2xl"
-      >
-        {CONTACT.phone}
+    <div
+      class={isHome
+        ? 'flex aspect-square w-64 flex-col items-center justify-center rounded-full border-2 border-gold bg-paper/95 text-center shadow-xl sm:w-80'
+        : ''}
+    >
+      <!--
+        The logo is a full lockup — it already carries "John Bald / Funeral
+        Directors", so there is no text wordmark beside it to duplicate. The alt
+        text supplies that wording to screen readers and to anyone browsing with
+        images off.
+      -->
+      <a href="/" class="mx-auto block w-fit no-underline" aria-label={`${SITE.name} — home`}>
+        <Image
+          src={logo}
+          alt={SITE.name}
+          widths={[200, 320, 480]}
+          sizes="(min-width: 640px) 240px, 160px"
+          class={isHome ? 'h-auto w-36 sm:w-52' : 'h-auto w-32 sm:w-60'}
+          loading="eager"
+          fetchpriority="high"
+        />
       </a>
-      <span class="mt-1 block text-xs text-ink-muted">Day or night, any day</span>
-    </div>
 
-    <div class="mt-5 flex justify-center lg:hidden">
+      <!--
+        Elsewhere this is hidden on the smallest screens: the fixed call bar
+        already pins the same number to the bottom of every phone viewport, and a
+        centred stack that repeats it was pushing the "someone has died" card off
+        the first screen. In the home circle there is room, so it always shows.
+      -->
+      <div class={isHome ? 'mt-3 text-center' : 'mt-5 hidden text-center sm:block'}>
+        <a
+          href={CONTACT.phoneHref}
+          class="font-serif text-xl font-semibold text-poppy-deep no-underline hover:text-poppy sm:text-2xl"
+        >
+          {CONTACT.phone}
+        </a>
+        <span class="mt-1 block text-xs text-ink-muted">Day or night, any day</span>
+      </div>
+    </div>
+  </div>
+
+  <div class="mx-auto max-w-6xl px-5 sm:px-8">
+    <div class={isHome ? 'my-5 flex justify-center lg:hidden' : 'mb-6 flex justify-center lg:hidden'}>
       <!-- Native disclosure: no JavaScript, keyboard and screen-reader accessible by default. -->
       <details class="jb-menu">
         <summary
