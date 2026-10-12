@@ -21,17 +21,13 @@ const isCurrent = (href: string) =>
 
   <!--
     Every page opens on the harbour photograph with the logo and number in a
-    light circle, centred. The home page gets the full-height version; inner
-    pages get a slim band with a smaller circle, so the page content is not
-    pushed down. The number stays visible above the fold on every page: this
-    site leads with an at-need journey, which is why it is in the circle at all
-    (the parent site, Doyle, carries no number in its header).
+    light circle, centred. The band is the same slim size on every page, home
+    included, so the page content is not pushed down. The number stays visible
+    above the fold on every page: this site leads with an at-need journey, which
+    is why it is in the circle at all (the parent site, Doyle, carries no number
+    in its header).
   -->
-  <div
-    class={isHome
-      ? 'relative isolate flex items-center justify-center px-5 py-6 sm:min-h-[30rem] sm:py-10'
-      : 'relative isolate flex items-center justify-center px-5 py-4 sm:py-6'}
-  >
+  <div class="relative isolate flex items-center justify-center px-5 py-4 sm:py-6">
     <Image
       src={harbour}
       alt={isHome
@@ -45,9 +41,7 @@ const isCurrent = (href: string) =>
     />
 
     <div
-      class={`flex aspect-square flex-col items-center justify-center rounded-full border-2 border-gold bg-paper/95 text-center shadow-xl ${
-        isHome ? 'w-64 sm:w-80' : 'w-44 sm:w-52'
-      }`}
+      class="flex aspect-square w-44 flex-col items-center justify-center rounded-full border-2 border-gold bg-paper/95 text-center shadow-xl sm:w-52"
     >
       <!--
         The logo is a full lockup — it already carries "John Bald / Funeral
@@ -61,22 +55,20 @@ const isCurrent = (href: string) =>
           alt={SITE.name}
           widths={[200, 320, 480]}
           sizes="(min-width: 640px) 208px, 144px"
-          class={isHome ? 'h-auto w-36 sm:w-52' : 'h-auto w-24 sm:w-32'}
+          class="h-auto w-24 sm:w-32"
           loading="eager"
           fetchpriority="high"
         />
       </a>
 
-      <div class={isHome ? 'mt-3 text-center' : 'mt-1 text-center sm:mt-2'}>
+      <div class="mt-1 text-center sm:mt-2">
         <a
           href={CONTACT.phoneHref}
-          class={`font-serif font-semibold text-poppy-deep no-underline hover:text-poppy ${
-            isHome ? 'text-xl sm:text-2xl' : 'text-base sm:text-xl'
-          }`}
+          class="font-serif text-base font-semibold text-poppy-deep no-underline hover:text-poppy sm:text-xl"
         >
           {CONTACT.phone}
         </a>
-        <span class={`mt-1 text-xs text-ink-muted ${isHome ? 'block' : 'hidden sm:block'}`}>
+        <span class="mt-1 hidden text-xs text-ink-muted sm:block">
           Day or night, any day
         </span>
       </div>
