@@ -19,41 +19,38 @@
  * (gov.uk, updated 21 January 2025).
  * ─────────────────────────────────────────────────────────────────────────────
  *
- * ── Provenance of these figures ──────────────────────────────────────────────
+ * ── Provenance of these figures (updated 13 Oct 2026) ───────────────────────
  *
- * Sourced from the A & A Doyle Standardised Price List
- * (doylefunerals.co.uk/standardised-price-list/, read August 2026).
+ * John Bald's OWN Standardised Price List, from the scanned price lists Ray was
+ * given (C:/balds/Crem Ray.pdf, page 3). The scan is undated.
+ *   - Attended funeral, unattended burial, unattended cremation range and the
+ *     "additional products and services" lines are exactly as John Bald prints them,
+ *     except the officiant line, which follows the newer celebrant fee list in the
+ *     same file (4 Aug 2026: £220 to £280).
+ *   - "Fees you must pay" (burial and cremation) are THIRD-PARTY fees. John Bald's
+ *     printed figures were out of date against the council and crematorium lists in
+ *     the same file, so these come from those lists instead (see the notes beside
+ *     each figure). Check them with Bruce Robertson before launch.
  *
- * CLIENT-CONFIRMED, AUGUST 2026: A & A Doyle Ltd operates uniform pricing across
- * all three branches — Galashiels, Gorebridge (Herkes) and Dunbar (John Bald).
- * These are therefore John Bald's own prices, not another branch's, and publishing
- * them here is correct. The Order requires each branch's list to reflect what that
- * branch actually charges: identical figures are compliant where pricing genuinely
- * is uniform, and a breach only where a branch differs. If Dunbar ever diverges —
- * after the move to Countess Crescent, for instance — this file must be updated
- * independently of the other two branches.
+ * Replaces the earlier A & A Doyle (Galashiels) figures, which were the wrong
+ * source: John Bald's own Dunbar prices are lower (£2,565, not £2,801).
  *
- * KNOWN ISSUE IN THE SOURCE LIST: Doyle's published headline for the attended
- * funeral is £2,800, but their six itemised prices sum to £2,801. The Order
- * requires the items to add up to the total, so one or the other has to give.
- * Client decision, August 2026: keep all six item prices exactly as published and
- * carry the £1 into the total, so the headline here is £2,801. The £1 viewing fee
- * is Doyle's device for satisfying the Order's "every item greater than £0" rule.
- * The same discrepancy is live on the Doyle and Herkes lists and should be
- * corrected at source.
+ * Where the printed sheet shows "from £325" (coffin) or "No additional charge"
+ * (viewing), the Order requires a monetary value on the Standardised Price List, so
+ * the coffin is shown as £325 and viewing as £0.00. NEEDS CLIENT CONFIRMATION.
  *
  * The Order requires the individual attended-funeral item prices to ADD UP to the
- * attended-funeral total, and every item to be greater than £0. Both are asserted
- * at the foot of this file. The assertion throws during `npm run build`, so a
- * non-compliant list cannot reach the deployed site.
+ * attended-funeral total. That is asserted at the foot of this file. The assertion
+ * throws during `npm run build`, so a list that does not add up cannot reach the
+ * deployed site.
  */
 
 type Money = number | null;
 
 export const PRICING = {
   confirmed: true,
-  effectiveFrom: 'August 2026',
-  lastReviewed: 'August 2026',
+  effectiveFrom: 'October 2026',
+  lastReviewed: 'October 2026',
 
   /**
    * PRESCRIBED — the standing preamble that heads the list.
@@ -73,10 +70,8 @@ export const PRICING = {
 
     /**
      * Headline figure. Must equal the sum of `items` below — asserted at build time.
-     * £2,801 rather than Doyle's published £2,800: see "KNOWN ISSUE" in the file
-     * header. All six item prices are exactly as Doyle publishes them.
      */
-    total: 2801 as Money,
+    total: 2565 as Money,
 
     /**
      * PRESCRIBED — six items, this wording, this order. Each price must be > £0.
@@ -90,7 +85,7 @@ export const PRICING = {
       {
         id: 'arrangements',
         label: 'Taking care of all necessary legal and administrative arrangements',
-        price: 1550 as Money,
+        price: 1495 as Money,
       },
       {
         id: 'collection',
@@ -105,19 +100,19 @@ export const PRICING = {
         label:
           'Care of the deceased person before the funeral in appropriate facilities. ' +
           'The deceased person will be kept at {care}',
-        price: 250 as Money,
+        price: 150 as Money,
       },
       {
         id: 'coffin',
         label: 'Providing a suitable coffin – this will be made from {coffin}',
-        price: 375 as Money,
+        price: 325 as Money,
       },
       {
         id: 'viewing',
         label:
           'Viewing of the deceased person for family and friends, by appointment with ' +
           'the funeral director (where viewing is requested by the customer)',
-        price: 1 as Money,
+        price: 0 as Money,
       },
       {
         id: 'hearse',
@@ -125,7 +120,7 @@ export const PRICING = {
           'At a date and time you agree with the funeral director, taking the deceased ' +
           'person direct to the agreed cemetery or crematorium (normally within 20 miles ' +
           "of the funeral director's premises) in a hearse or other appropriate vehicle",
-        price: 325 as Money,
+        price: 295 as Money,
       },
     ],
   },
@@ -150,12 +145,14 @@ export const PRICING = {
     /** PRESCRIBED line labels. `null` price renders as "Not offered" once confirmed. */
     burial: {
       label: "Burial (funeral director's charges only)",
-      price: 1200 as Money,
+      price: 995 as Money,
     },
     cremation: {
       label: "Cremation (funeral director's charges plus the cremation fee)",
       footnote: 2,
-      price: 1495 as Money,
+      /** John Bald prints a range, £995 to £1,400, depending on the crematorium. */
+      price: 995 as Money,
+      priceHigh: 1400 as Money,
     },
   },
 
@@ -172,11 +169,13 @@ export const PRICING = {
     burial: {
       label: 'For an Attended or Unattended burial funeral, the burial fee.',
       footnote: 1,
-      rangeLow: 1147 as Money,
-      rangeHigh: 2779.5 as Money,
+      /** Weekday adult interment, resident rates: East Lothian Council £1,100, Scottish Borders Council £1,147, City of Edinburgh Council £1,457 (council websites and PDF, 13 Oct 2026). */
+      rangeLow: 1100 as Money,
+      rangeHigh: 1457 as Money,
       localLabel:
         'In this local area, the typical cost of the burial fee for local residents is:',
-      typical: 1495 as Money,
+      /** East Lothian Council adult interment: Dunbar Cemetery is the local one. */
+      typical: 1100 as Money,
       note:
         'For a new grave, you will also need to pay for the plot; for an existing grave ' +
         'with a memorial in place, you may need to pay a removal/replacement fee. In ' +
@@ -185,11 +184,13 @@ export const PRICING = {
     cremation: {
       label: 'For an Attended cremation funeral, the cremation fee.',
       footnote: 2,
-      rangeLow: 795 as Money,
-      rangeHigh: 1750 as Money,
+      /** Weekday and Saturday attended fees, 2026: Mortonhall early service £748 up to East Lothian Crematorium £1,300. Sunday services excluded. */
+      rangeLow: 748 as Money,
+      rangeHigh: 1300 as Money,
       localLabel:
         'In this local area, the typical cost of a cremation for local residents is:',
-      typical: 1295 as Money,
+      /** Houndwood Crematorium, Monday to Friday midday slots (from 2 Jan 2026). */
+      typical: 1165 as Money,
     },
   },
 
@@ -246,7 +247,7 @@ export const PRICING = {
           "Additional transfers of the deceased person's body (e.g. to their home, to a " +
           'place of worship etc.) (price per transfer)',
         mode: 'money' as const,
-        price: 195 as Money,
+        price: 150 as Money,
         display: '',
       },
       {
@@ -265,13 +266,13 @@ export const PRICING = {
         label: 'Funeral officiant (e.g. celebrant, minister of religion etc.)',
         mode: 'text' as const,
         price: null as Money,
-        display: 'Nil to £300',
+        display: 'Nil to £280',
       },
       {
         label: 'Services supplied outside of normal office hours',
-        mode: 'text' as const,
+        mode: 'onRequest' as const,
         price: null as Money,
-        display: 'Nil to £250',
+        display: '',
       },
     ],
     outro:
@@ -284,7 +285,7 @@ export const PRICING = {
 
 /**
  * Build-time guard for the two arithmetic rules the Order imposes on the
- * attended funeral: every item must be greater than £0, and the items must add
+ * attended funeral: every item must have a price (£0 is allowed), and the items must add
  * up to the headline total. Only runs once prices are confirmed — before that
  * the page renders a notice rather than figures, so there is nothing to check.
  *
@@ -295,10 +296,11 @@ export const PRICING = {
 if (PRICING.confirmed) {
   const items = PRICING.attended.items;
 
-  const nonPositive = items.filter((i) => i.price === null || i.price <= 0);
+  // £0 is allowed (John Bald makes no extra charge for viewing); a missing or negative price is not.
+  const nonPositive = items.filter((i) => i.price === null || i.price < 0);
   if (nonPositive.length > 0) {
     throw new Error(
-      `Standardised Price List: every attended-funeral item must be greater than £0. ` +
+      `Standardised Price List: every attended-funeral item needs a price of £0 or more. ` +
         `Offending items: ${nonPositive.map((i) => i.id).join(', ')}`,
     );
   }
@@ -316,62 +318,117 @@ if (PRICING.confirmed) {
   }
 }
 
-/**
- * The CMA Additional Options Price List — every product and service offered
- * beyond the Standardised Price List, itemised.
- *
- * The Order allows these to be shown as a fixed price, a "from" price, or a
- * range, which is why this is a looser structure than the list above.
- */
+/** A line on the list. `price` is shown exactly as written; no price means "ask us". */
+interface OptionItem {
+  name: string;
+  price?: string;
+  note?: string;
+}
+
 interface OptionGroup {
   title: string;
   note?: string;
-  items: string[];
+  items: OptionItem[];
 }
 
+/**
+ * Prices are from John Bald's own "Bespoke Price List" (page 4 of the scanned price
+ * lists, undated) and the celebrants' fee list dated 4 Aug 2026. Anything without a
+ * price there has no price here. `confirmed` stays false until every line is priced
+ * and John Bald have signed the list off.
+ */
 export const ADDITIONAL_OPTIONS: { confirmed: boolean; groups: OptionGroup[] } = {
   confirmed: false,
   groups: [
     {
-      title: 'Coffins',
-      note: 'Our full range, including the eco range, is shown on our coffins page.',
+      title: 'Complete funeral options',
+      note: 'Crematorium or cemetery fees are included in the first two; the third has them added on top.',
       items: [
-        'Traditional veneered coffin',
-        'Solid wood coffin',
-        'Woven willow, bamboo, pandanus or banana leaf',
-        'Recycled cardboard',
-        'Shroud',
+        {
+          name: 'Direct cremation (unattended), fees included',
+          price: '£1,395',
+        },
+        {
+          name: 'Early morning simple cremation, fees included',
+          price: 'from £2,795',
+          note: 'At Houndwood Crematorium this is usually only available at 9am and 9.30am. Family may attend and listen to no more than three pieces of music, but there is no formal celebrant or service, and time in the chapel is restricted.',
+        },
+        {
+          name: 'Simple funeral service (local), plus fees',
+          price: '£1,995 + fees',
+          note: 'Includes a simple wood-effect or earth care coffin, dressing and all necessary arrangements. No additional services can be added to this package. Third-party fees must be paid in full within 24 hours of making funeral arrangements. Visiting is available within office hours, and dates and times for the funeral service are restricted.',
+        },
       ],
     },
     {
-      title: 'Cars',
-      items: ['Additional limousine', 'Horse-drawn hearse', 'Alternative or specialist hearse'],
+      title: 'Traditional funeral: our own charges',
+      note: 'These add up to the same figures as our Standardised Price List.',
+      items: [
+        {
+          name: 'Professional services',
+          price: '£1,495',
+          note: 'All advice and guidance on funeral arrangements, all liaison with third parties and completion of all paperwork, and visiting the person who has died at any time, day or night.',
+        },
+        { name: 'Transfer, care and preparation of the deceased (24 hours)', price: '£450' },
+        { name: 'Hearse', price: '£295' },
+      ],
+    },
+    {
+      title: 'Coffins',
+      note: 'Our full range, including the eco range, is shown on our coffins page.',
+      items: [
+        { name: 'Coffin', price: 'from £325' },
+        { name: 'Traditional veneered coffin' },
+        { name: 'Solid wood coffin' },
+        { name: 'Woven willow, bamboo, pandanus or banana leaf' },
+        { name: 'Recycled cardboard' },
+        { name: 'Shroud' },
+      ],
+    },
+    {
+      title: 'Cars and bearers',
+      items: [
+        { name: 'Limousine (7 seats)', price: '£285' },
+        { name: 'Car (4 seats)', price: '£150' },
+        { name: 'Additional bearer', price: '£75' },
+        { name: 'Horse-drawn hearse', price: 'On request' },
+        { name: 'Motorcycle hearse', price: 'On request' },
+      ],
     },
     {
       title: 'On the day',
       items: [
-        'Flowers',
-        'Orders of service',
-        'Notices in local and national newspapers',
-        'Recording or livestreaming the service',
-        'Catering and venue hire',
+        {
+          name: "Celebrant's fee",
+          price: '£220 to £280',
+          note: 'Depends on the celebrant you choose. Fees from 4 August 2026.',
+        },
+        { name: 'Minister, priest and church fees', price: 'Varies, please ask' },
+        { name: 'Flowers' },
+        { name: 'Orders of service' },
+        { name: 'Notices in local and national newspapers' },
+        { name: 'Recording or livestreaming the service' },
+        { name: 'Catering and venue hire' },
       ],
     },
     {
       title: 'Care of the person who has died',
       items: [
-        'Embalming, where you or the circumstances require it',
-        'Dressing in their own clothes',
-        'Additional or out-of-area collection',
+        { name: 'Embalming, where you or the circumstances require it', price: '£150' },
+        { name: 'Additional transfer of the deceased (price per transfer)', price: '£150' },
+        { name: 'Additional mileage (per mile)', price: '£2' },
+        { name: 'Dressing in their own clothes' },
       ],
     },
     {
       title: 'Afterwards',
       items: [
-        'Urns and ashes caskets',
-        'Scattering or interment of ashes',
-        'Headstones, plaques and memorials',
-        'Keepsake jewellery and glass memorials',
+        { name: 'Ashes caskets', price: 'from £75' },
+        { name: 'Scatter tubes', price: '£35' },
+        { name: 'Collection and delivery of ashes', price: 'On request' },
+        { name: 'Binning Memorial Wood burial site', price: 'Varies, please ask' },
+        { name: 'Headstones, plaques and memorials' },
+        { name: 'Keepsake jewellery and glass memorials' },
       ],
     },
   ],

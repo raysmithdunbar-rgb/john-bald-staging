@@ -130,7 +130,7 @@ const fill = (label: string) =>
             <sup>{PRICING.unattended.cremation.footnote}</sup>
           </span>
           <span class="font-semibold text-ink">
-            {price(PRICING.unattended.cremation.price)}
+            {range(PRICING.unattended.cremation.price, PRICING.unattended.cremation.priceHigh)}
           </span>
         </li>
       </ul>
@@ -263,6 +263,10 @@ const fill = (label: string) =>
     nothing added. The two largest are the burial fee, set by East Lothian Council or
     Scottish Borders Council, and the cremation fee, set by the crematorium. Neither is
     charged for anyone under 18 in Scotland.
+  </p>
+  <p>
+    The current figures for each crematorium, cemetery and celebrant are on our{' '}
+    <a href="/funeral-costs/third-party-fees/">crematorium, cemetery and celebrant fees</a> page.
   </p>
   <p>
     The footnote about doctors' fees applies in England, Wales and Northern Ireland. It

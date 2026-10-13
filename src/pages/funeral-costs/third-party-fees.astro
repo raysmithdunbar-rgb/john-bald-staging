@@ -1,0 +1,92 @@
+---
+import Page from '../../layouts/Page.astro';
+import Callout from '../../components/Callout.astro';
+import FeeSheet from '../../components/FeeSheet.astro';
+import { CONTACT } from '../../data/site';
+import {
+  CREMATORIUM_SHEETS,
+  EAST_LOTHIAN_BURIAL,
+  SCOTTISH_BORDERS_BURIAL,
+  EDINBURGH_BURIAL,
+  CELEBRANT_FEES,
+} from '../../data/thirdPartyFees';
+
+const breadcrumbs = [
+  { name: 'Our prices', url: '/funeral-costs/' },
+  { name: 'Crematorium, cemetery and celebrant fees', url: '/funeral-costs/third-party-fees/' },
+];
+
+const jumps = [
+  ...CREMATORIUM_SHEETS.map((s) => ({ id: s.id, label: s.name })),
+  { id: EAST_LOTHIAN_BURIAL.id, label: 'East Lothian Council burial charges' },
+  { id: SCOTTISH_BORDERS_BURIAL.id, label: 'Scottish Borders Council burial fees' },
+  { id: EDINBURGH_BURIAL.id, label: 'City of Edinburgh Council burial charges' },
+  { id: 'celebrants', label: 'Celebrant fees' },
+];
+---
+
+<Page
+  title="Crematorium, Cemetery and Celebrant Fees — John Bald, Dunbar"
+  heading="Crematorium, cemetery and celebrant fees"
+  description="What crematoria, councils and celebrants near Dunbar charge, listed in one place so you can see the full cost of a funeral. John Bald Funeral Directors."
+  standfirst="These fees are set by other people, not by us. We list them so you can see the whole cost before you decide."
+  breadcrumbs={breadcrumbs}
+>
+  <Callout title="We pass these on at cost">
+    <p>
+      Everything on this page is charged by the crematorium, the council or the celebrant.
+      We pay them on your behalf and add nothing. Our own charges are on the{' '}
+      <a href="/funeral-costs/standardised-price-list/">Standardised Price List</a> and the{' '}
+      <a href="/funeral-costs/additional-options-price-list/">Additional Options Price List</a>.
+    </p>
+  </Callout>
+
+  <p>
+    Each list shows the date its owner gave it. Fees change, usually every April, so please
+    treat this page as a guide and ask us for the figure that applies to your funeral.
+  </p>
+
+  <h2>On this page</h2>
+  <ul>
+    {jumps.map((j) => <li><a href={`#${j.id}`}>{j.label}</a></li>)}
+  </ul>
+
+  <h2>Crematoria</h2>
+  {CREMATORIUM_SHEETS.map((sheet) => <FeeSheet sheet={sheet} level={3} showName />)}
+
+  <h2>Cemeteries and burial</h2>
+  <p>
+    Dunbar, Haddington, North Berwick and Tranent cemeteries are run by East Lothian
+    Council. Duns and Eyemouth are run by Scottish Borders Council, which charges
+    differently.
+  </p>
+  <FeeSheet sheet={EAST_LOTHIAN_BURIAL} level={3} showName />
+  <FeeSheet sheet={SCOTTISH_BORDERS_BURIAL} level={3} showName />
+  <FeeSheet sheet={EDINBURGH_BURIAL} level={3} showName />
+
+  <section id="celebrants">
+    <h2>Celebrant fees</h2>
+    <p class="text-ink-soft">
+      Celebrants set their own fees. This is the list we hold, dated {CELEBRANT_FEES.effective}.
+      Ministers, priests and churches charge variable amounts, so please ask.
+    </p>
+    <ul class="my-3 list-none space-y-0 p-0">
+      {
+        CELEBRANT_FEES.rows.map((row) => (
+          <li class="flex flex-col gap-1 border-t border-line py-2 sm:flex-row sm:items-baseline sm:justify-between sm:gap-x-6">
+            <span class="text-ink-soft sm:flex-1">{row.label}</span>
+            <span class="font-semibold text-ink sm:text-right">{row.price}</span>
+          </li>
+        ))
+      }
+    </ul>
+  </section>
+
+  <Callout tone="accent">
+    <p>
+      To find out which fees apply to your funeral, telephone{' '}
+      <a href={CONTACT.phoneHref} class="font-semibold">{CONTACT.phone}</a>. You will get a
+      written estimate that separates these fees from ours.
+    </p>
+  </Callout>
+</Page>

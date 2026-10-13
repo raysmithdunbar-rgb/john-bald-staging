@@ -43,6 +43,7 @@ export const PRIMARY_NAV: NavItem[] = [
     children: [
       { label: 'Standardised Price List', href: '/funeral-costs/standardised-price-list/' },
       { label: 'Additional options', href: '/funeral-costs/additional-options-price-list/' },
+      { label: 'Crematorium and cemetery fees', href: '/funeral-costs/third-party-fees/' },
       { label: 'Help with funeral costs', href: '/funeral-costs/help-with-funeral-costs/' },
     ],
   },

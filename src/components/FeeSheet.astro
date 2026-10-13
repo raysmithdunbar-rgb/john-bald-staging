@@ -1,0 +1,62 @@
+---
+import type { FeeSheet } from '../data/thirdPartyFees';
+
+interface Props {
+  sheet: FeeSheet;
+  /** Heading level to start at: 2 on directory pages, 3 on the fees page. */
+  level?: 2 | 3;
+  /** Show the sheet's own name as a heading (the fees page does, directory pages do not). */
+  showName?: boolean;
+}
+
+const { sheet, level = 2, showName = false } = Astro.props;
+const H = `h${level}` as 'h2' | 'h3';
+const Sub = `h${level + 1}` as 'h3' | 'h4';
+---
+
+<section class="fee-sheet" id={sheet.id}>
+  {showName && <H>{sheet.name}</H>}
+  {!showName && <H>{/burial/i.test(sheet.name) ? sheet.name : `Fees at ${sheet.name}`}</H>}
+
+  <p class="text-ink-soft">
+    Set by {sheet.setBy}, not by us. Their list is dated: {sheet.effective}.
+    {sheet.basis && <> {sheet.basis}</>}
+  </p>
+
+  {
+    sheet.tables.map((table) => (
+      <>
+        <Sub>{table.title}</Sub>
+        {table.note && <p class="text-sm text-ink-muted">{table.note}</p>}
+        <ul class="my-3 list-none space-y-0 p-0">
+          {table.rows.map((row) => (
+            <li class="flex flex-col gap-1 border-t border-line py-2 sm:flex-row sm:items-baseline sm:justify-between sm:gap-x-6">
+              <span class="text-ink-soft sm:flex-1">
+                {row.label}
+                {row.note && <span class="block text-sm text-ink-muted">{row.note}</span>}
+              </span>
+              <span class="font-semibold text-ink sm:text-right">{row.price}</span>
+            </li>
+          ))}
+        </ul>
+      </>
+    ))
+  }
+
+  {
+    sheet.footnotes && (
+      <ul class="text-sm text-ink-muted">
+        {sheet.footnotes.map((f) => (
+          <li>{f}</li>
+        ))}
+      </ul>
+    )
+  }
+
+  <p class="text-sm text-ink-muted">
+    Fees change, and these were copied from the operator’s published list. Please check the current list
+    with {sheet.sourceUrl ? <a href={sheet.sourceUrl} rel="noopener">{sheet.sourceLabel ?? 'their website'}</a> : 'them'}
+    or ask us, and we will tell you exactly what applies to your funeral. We pass these on at
+    cost, with nothing added.
+  </p>
+</section>

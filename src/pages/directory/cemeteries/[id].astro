@@ -3,6 +3,8 @@ import type { GetStaticPaths } from 'astro';
 import { getCollection, render } from 'astro:content';
 import DirectoryEntry from '../../../layouts/DirectoryEntry.astro';
 import { clampDescription } from '../../../lib/seo';
+import FeeSheet from '../../../components/FeeSheet.astro';
+import { CEMETERY_FEES } from '../../../data/thirdPartyFees';
 
 export const getStaticPaths = (async () => {
   const cemeteries = await getCollection('cemeteries');
@@ -12,6 +14,7 @@ export const getStaticPaths = (async () => {
 const { entry } = Astro.props;
 const { Content } = await render(entry);
 const d = entry.data;
+const fees = CEMETERY_FEES[entry.id];
 
 const facts = [
   { label: 'Type', value: d.type },
@@ -71,4 +74,17 @@ const schema = {
   backLabel="All cemeteries"
 >
   <Content />
+  {
+    fees ? (
+      <FeeSheet sheet={fees} />
+    ) : (
+      <>
+        <h2>Fees</h2>
+        <p>
+          We do not yet show this cemetery's fees here. Please ask us, or check with them directly.
+          Our <a href="/funeral-costs/third-party-fees/">fees page</a> lists the ones we have.
+        </p>
+      </>
+    )
+  }
 </DirectoryEntry>
